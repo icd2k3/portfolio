@@ -1,18 +1,18 @@
 'use strict';
 
-angular.module('portfolioApp', [
-  'ngCookies',
-  'ngResource',
-  'ngSanitize',
-  'ngRoute'
-])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+angular.module('portfolio', ['ngRoute', 'portfolio.controllers'])
+.config(function ($routeProvider, $locationProvider) {
+	$locationProvider.html5Mode(true);
+	$routeProvider
+	.when('/', {
+		templateUrl: 'views/main.html',
+		controller: 'MainApp'
+	})
+	.when('/:projectId', {
+		templateUrl: 'views/main.html',
+		controller: 'MainApp'
+	})
+	.otherwise({
+		redirectTo: '/'
+	});
+});

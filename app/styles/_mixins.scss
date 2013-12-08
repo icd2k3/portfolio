@@ -1,0 +1,16 @@
+@mixin font($family:null, $size:null, $weight:null, $style:null, $color:null, $text-decoration:null, $text-align:null, $text-indent:null, $text-transform:null, $text-overflow:null, $line-height:null, $letter-spacing:null, $word-spacing:null, $white-space:null) {
+	@if $family          != null {font-family:     $family;            }
+	@if $size            != null {font-size:       $size;              }
+	@if $weight          != null {font-weight:     $weight;            }
+	@if $style           != null {font-style:      $style;             }
+	@if $color           != null {color:           $color;             }
+	@if $text-decoration != null {text-decoration: $text-decoration;   }
+	@if $text-align      != null {text-align:      $text-align;        }
+	@if $text-indent     != null {text-indent:     $text-indent;       }
+	@if $text-transform	 != null {text-transform:  $text-transform;    }
+	@if $text-overflow	 != null {text-overflow:   $text-overflow;     }
+	@if $line-height     != null {line-height:     $line-height;       }
+	@if $letter-spacing  != null {letter-spacing:  $letter-spacing;    }
+	@if $word-spacing    != null {word-spacing:    $word-spacing;      }
+	@if $white-space	 != null {white-space: 	   $white-space;       }
+};

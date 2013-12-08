@@ -1,4 +1,4 @@
-'use strict';
+/*'use strict';
 
 angular.module('portfolioApp')
   .controller('MainCtrl', function ($scope) {
@@ -7,4 +7,4 @@ angular.module('portfolioApp')
       'AngularJS',
       'Karma'
     ];
-  });
+  });*/
