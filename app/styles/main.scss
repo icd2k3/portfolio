@@ -4,9 +4,12 @@
 
 @import '_mixins';
 @import '_common';
+@import 'grid';
 
+html, body { @include size(100%, 100%); padding: 0; margin: 0; }
 body {
     @include font($family: $font-source-sans-pro);
-    overflow-x: hidden;
-    overflow-y: auto;
+}
+#container {
+    @include size(inherit, inherit);
 }

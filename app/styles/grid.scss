@@ -1,0 +1,18 @@
+/* MAIN.SCSS
+- Overall styles for the site
+*/
+
+@import '_mixins';
+@import '_common';
+
+#grid { @include size(inherit, inherit); }
+.grid-row {
+
+}
+.grid-item {
+	// note: height of the item is set in directive
+	width: 33.3%;
+	height: 100%;
+	background-size: cover;
+	float: left;
+}
