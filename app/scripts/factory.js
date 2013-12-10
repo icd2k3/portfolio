@@ -1,7 +1,7 @@
 'use strict';
 // Handles loading portfolio data
 Portfolio.factory('data', ['$http', function($http){
-	var path    = 'data/portfolio.json',
+	var path    = '/data/portfolio.json',
 		factory = {},
 		data    = $http.get(path).then(function(response){
 			console.log('Data loaded');

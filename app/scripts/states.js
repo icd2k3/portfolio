@@ -13,7 +13,7 @@ Portfolio.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', f
 	$stateProvider
 		.state('index', {
 			url: '/',
-			templateUrl: 'views/grid.html',
+			templateUrl: '/views/grid.html',
 			resolve: {
 				// make portfolio json data a dependency of the controller
 				data: ['data', function(data){
@@ -23,11 +23,10 @@ Portfolio.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', f
 			controller: 'GridCtrl'
 		})
 		.state('index.project', {
-			url: '/project/:projectId'
+			url: 'project/:projectId',
+			templateUrl: '/views/partials/item_detail.html'
 		})
 		.state('index.about', {
-			url: '/about'
-		})
-		// .state(portfolio.about)
-		// .state(portfolio.project)
+			url: 'about'
+		});
 }]);

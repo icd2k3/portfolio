@@ -1,5 +1,8 @@
-<div id="grid" window-resize>
-	<div class="grid-row" style="height:{{rowHeight}}px;">
-  		<div class="grid-item" ng-repeat="item in items" item-directive item-image="{{item.images.small[0]}}"></div>
+<div id="grid" grid-resize class="{{gridClass(itemsPerRow)}}">
+  	<div ng-controller="ItemCtrl" class="grid-item" data-index="{{$index}}" ng-repeat="item in items" item-directive data-image="{{item.images.small[0]}}">
+  		<a ui-sref="index.project({projectId: $index})">
+  			Item {{$index}}
+  		</a>
   	</div>
+  	<div ui-view></div>
 </div>

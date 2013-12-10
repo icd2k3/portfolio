@@ -5,14 +5,23 @@
 @import '_mixins';
 @import '_common';
 
-#grid { @include size(inherit, inherit); }
-.grid-row {
-
-}
-.grid-item {
-	// note: height of the item is set in directive
-	width: 33.3%;
-	height: 100%;
-	background-size: cover;
-	float: left;
+#grid {
+	@include size(inherit, inherit);
+	.grid-item {
+		background-size: cover;
+		float: left;
+		cursor: pointer;
+	}
+	&.four-up {
+		.grid-item { width: 25%; }
+	}
+	&.three-up {
+		.grid-item { width: 33.333%; }
+	}
+	&.two-up {
+		.grid-item { width: 50%; }
+	}
+	&.one-up {
+		.grid-item { width: 100%; }
+	}
 }
