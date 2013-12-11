@@ -12,6 +12,7 @@ Portfolio.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', f
 	// angular ui-router for state switching support & nested views
 	$stateProvider
 		.state('index', {
+			abstract: true,
 			url: '/',
 			templateUrl: '/views/grid.html',
 			resolve: {
@@ -22,11 +23,11 @@ Portfolio.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', f
 			},
 			controller: 'GridCtrl'
 		})
+		.state('index.grid', {
+			url: ''
+		})
 		.state('index.project', {
 			url: 'project/:projectId',
 			templateUrl: '/views/partials/item_detail.html'
-		})
-		.state('index.about', {
-			url: 'about'
 		});
 }]);

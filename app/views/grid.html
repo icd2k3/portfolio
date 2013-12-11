@@ -1,8 +1,16 @@
 <div id="grid" grid-resize class="{{gridClass(itemsPerRow)}}">
-  	<div ng-controller="ItemCtrl" class="grid-item" data-index="{{$index}}" ng-repeat="item in items" item-directive data-image="{{item.images.small[0]}}">
-  		<a ui-sref="index.project({projectId: $index})">
-  			Item {{$index}}
-  		</a>
-  	</div>
-  	<div ui-view></div>
+	<div class="grid-row-container" ng-repeat="row in rows track by $index">
+		<div class="grid-row" style="height:{{rowHeight}}px;">
+			<div ng-controller="ItemCtrl" class="grid-item" data-index="{{$index}}" ng-repeat="item in items | filter:{row: $index}" item-directive data-image="{{item.images.small[0]}}">
+		  		<a ui-sref="index.project({projectId: item.id})">
+		  			Item {{item.id}} Row {{item.row}}
+		  		</a>
+		  	</div>
+		 </div>
+		 <div ng-if="projectDetailsConditional($index)">
+		 	ProjectID: {{projectData.projectId}}<br/>
+		 	ProjectRow: {{projectData.projectRow}}<br/>
+		 	Row: {{$index+1}}<br/>
+		 </div>
+	 </div>
 </div>

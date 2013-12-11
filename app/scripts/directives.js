@@ -8,6 +8,18 @@ Portfolio.directive('itemDirective', function(){
 	};
 });
 
+Portfolio.directive('itemDetailDirective', function() {
+	return {
+		link: function(scope, element, attrs) {
+			console.log(attrs.projectRow);
+			console.log(attrs.projectId);
+			scope.$watch(attrs.projectId, function(){
+				console.log('change');
+			});
+		}
+	};
+});
+
 Portfolio.directive('gridResize', function($window) {
 	return {
 		link: function(scope, element, attrs) {
@@ -20,22 +32,26 @@ Portfolio.directive('gridResize', function($window) {
 				if(windowWidth < 960)  { itemsPerRow = 2; }
 				if(windowWidth < 320)  { itemsPerRow = 1; }
 
-				// trigger change container class to 1-up, 2-up, etc
+				// assign rows & grid layout params
 				if(itemsPerRow !== scope.itemsPerRow) {
+					scope.rows = new Array(Math.ceil(scope.items.length / itemsPerRow));
+					for(var i=0; i<scope.items.length; i++) {
+						var item = scope.items[i];
+						item.row = Math.floor(i / itemsPerRow);
+					}
 					scope.itemsPerRow = itemsPerRow;
 					scope.$apply();
 				}
 				var newRowHeight = Math.round(windowWidth / itemsPerRow);
 				if(newRowHeight !== scope.rowHeight) {
-					scope.rowHeight = Math.round(windowWidth / itemsPerRow);
-					element.children().css({
-						'height': scope.rowHeight+'px'
-					});
+					scope.rowHeight = newRowHeight;
+					//element.children().attr('data-height', scope.rowHeight);
+					scope.$apply();
 				}
 			};
 			angular.element($window).bind('resize', windowResize);
 			// trigger initial resize on first render
 			setTimeout(function(){ windowResize(); }, 1);
 		}
-	}
+	};
 });
