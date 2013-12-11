@@ -2,10 +2,13 @@
 - Overall styles for the site
 */
 
+// IMPORTS ///////////////
 @import '_mixins';
 @import '_common';
-@import 'grid';
+@import "compass/css3/transition";
+@import "compass/css3/box-sizing";
 
+// BODY & CONTAINER //////
 html, body { @include size(100%, 100%); padding: 0; margin: 0; }
 body {
     @include font($family: $font-source-sans-pro, $color: $white);
@@ -13,4 +16,74 @@ body {
 }
 #container {
     @include size(inherit, inherit);
+}
+
+// GRID //////////////////
+#grid {
+    @include size(inherit, inherit);
+    position: relative;
+    .grid-row {
+        height: 100%;
+    }
+    &.four-up {
+        .grid-item { width: 25%; }
+    }
+    &.three-up {
+        .grid-item { width: 33.333%; }
+    }
+    &.two-up {
+        .grid-item { width: 50%; }
+    }
+    &.one-up {
+        .grid-item { width: 100%; }
+    }
+}
+
+// GRID ITEM //////////////////
+.grid-item {
+    @include box-sizing("border-box");
+    height: 100%;
+    background-size: cover;
+    float: left;
+}
+.item-link {
+    @include size(100%, 100%);
+    display: block;
+}
+
+// PROJECT ///////////////////
+.project-details {
+    @include single-transition(max-height, 0.5s, $ease-out-quad);
+    max-height: 0;
+    overflow: hidden;
+    &.open {
+        max-height: 500px;
+    }
+}
+
+// ABOUT /////////////////////
+#about-link {
+    position: absolute;
+    cursor: pointer;
+    a {
+        &:before {
+            @include position-absolute($top: 0, $left: 0);
+            border-top: 100px solid $black;
+             border-right: 100px solid transparent;
+            width: 0;
+            content: '';
+        }
+        &:hover {
+            &:before {
+                border-top: 100px solid $lime;
+            }
+        }
+    }
+}
+#about-details {
+    @include single-transition(height, 0.25s, $ease-out-quad);
+    height: 0px;
+    &.open {
+        height: 100px;
+    }
 }

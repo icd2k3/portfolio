@@ -1,6 +1,53 @@
+@mixin enable-webkit-acceleration() {
+    -webkit-transform: translateZ(0);
+}
+@mixin alternate-webkit-acceleration() {
+    -webkit-perspective:     1000;
+    -webkit-transform-style: preserve-3d;
+}
+@mixin fix-webkit-acceleration() {
+    -webkit-backface-visibility: hidden;
+}
+@mixin everything-webkit-acceleration() {
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective:         1000;
+    -webkit-transform-style:     preserve-3d;
+}
+@mixin enable-fast-image-rendering() {
+    image-rendering: optimizeSpeed;             
+    image-rendering: -moz-crisp-edges;          
+    image-rendering: -o-crisp-edges;            
+    image-rendering: -webkit-optimize-contrast; 
+    image-rendering: optimize-contrast;   
+    -ms-interpolation-mode: nearest-neighbor;   
+}
 @mixin size($width, $height) {
 	@if $width  != null {width:  $width;}
 	@if $height != null {height: $height;}
+}
+@mixin position-absolute($left:null, $top:null, $right:null, $bottom:null, $z-index:null) {
+	position: absolute;
+	@if $left    != null {left:   $left;}
+	@if $top     != null {top:    $top;}
+	@if $right   != null {right:  $right;}
+	@if $bottom  != null {bottom: $bottom;}
+	@if $z-index != null {z-index: $z-index;}
+}
+@mixin position-relative($left:null, $top:null, $right:null, $bottom:null, $z-index:null) {
+	position: relative;
+	@if $left    != null {left:   $left;}
+	@if $top     != null {top:    $top;}
+	@if $right   != null {right:  $right;}
+	@if $bottom  != null {bottom: $bottom;}
+	@if $z-index != null {z-index: $z-index;}
+}   
+@mixin position-fixed($left:null, $top:null, $right:null, $bottom:null, $z-index:null) {
+	position: fixed;
+	@if $left    != null {left:   $left;}
+	@if $top     != null {top:    $top;}
+	@if $right   != null {right:  $right;}
+	@if $bottom  != null {bottom: $bottom;}
+	@if $z-index != null {z-index: $z-index;}
 }
 @mixin font($family:null, $size:null, $weight:null, $style:null, $color:null, $text-decoration:null, $text-align:null, $text-indent:null, $text-transform:null, $text-overflow:null, $line-height:null, $letter-spacing:null, $word-spacing:null, $white-space:null) {
 	@if $family          != null {font-family:     $family;            }

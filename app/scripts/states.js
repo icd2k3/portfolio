@@ -30,4 +30,12 @@ Portfolio.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', f
 			url: 'project/:projectId',
 			templateUrl: '/views/partials/item_detail.html'
 		});
+		/*.state('index.about', {
+			url: 'about/',
+			views: {
+				'about' : {
+					templateUrl: '/views/partials/about.html'
+				}
+			}
+		});*/
 }]);

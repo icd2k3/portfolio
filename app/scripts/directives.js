@@ -1,23 +1,5 @@
 'use strict';
 // Directives
-Portfolio.directive('itemDirective', function(){
-	return function(scope, element, attrs) {
-		element.css({
-			'background-image': 'url('+attrs.image+')'
-		});
-	};
-});
-
-Portfolio.directive('gridRowDirective', function(){
-	return {
-		link: function(scope, element, attrs) {
-			attrs.$observe('rowHeight', function(val){
-				element.css({'height': val+'px'});
-			});
-		}
-	}
-});
-
 Portfolio.directive('gridResize', function($window) {
 	return {
 		link: function(scope, element, attrs) {
@@ -42,7 +24,6 @@ Portfolio.directive('gridResize', function($window) {
 				}
 				var newRowHeight = Math.round(windowWidth / itemsPerRow);
 				if(newRowHeight !== scope.rowHeight) {
-					//scope.rowHeight = newRowHeight;
 					scope.$apply(function(){
 						scope.rowHeight = newRowHeight;
 					});
@@ -53,4 +34,33 @@ Portfolio.directive('gridResize', function($window) {
 			setTimeout(function(){ windowResize(); }, 1);
 		}
 	};
+});
+
+// update grid row height from gridResize directive
+Portfolio.directive('gridRowDirective', function(){
+	return {
+		link: function(scope, element, attrs) {
+			attrs.$observe('rowHeight', function(val){
+				element.css({'height': val+'px'});
+			});
+		}
+	}
+});
+
+// grid items directive for image loading, switching, and setting
+Portfolio.directive('itemDirective', function(){
+	return function(scope, element, attrs) {
+		element.css({
+			'background-image': 'url('+attrs.image+')'
+		});
+	};
+});
+
+// project details directive for applying template
+Portfolio.directive('projectDetailsDirective', function(){
+	return {
+		link: function(scope, element, attrs) {
+			console.log('project details');
+		}
+	}
 });

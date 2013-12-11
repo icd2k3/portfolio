@@ -10,6 +10,10 @@ Portfolio.controller('GridCtrl', ['$rootScope', '$scope', '$state', '$stateParam
 	$scope.rows        = [];
 	$scope.itemsPerRow = 0;
 	$scope.projectData = {};
+	$scope.aboutClass  = '';
+	$scope.templates = {
+		about: '/views/partials/about.html'
+	}
 
 	// TODO: hook up state on page refresh or direct link
 	console.log($rootScope.$state.params);
@@ -24,6 +28,15 @@ Portfolio.controller('GridCtrl', ['$rootScope', '$scope', '$state', '$stateParam
 		return (row + 1) === Math.ceil($scope.projectData.projectId / $scope.itemsPerRow);
 	};
 
+	$scope.onAboutToggle = function() {
+		console.log('toooggllleeee');
+		if($scope.aboutClass === 'open') {
+			$scope.aboutClass = '';
+		} else {
+			$scope.aboutClass = 'open';
+		}
+	};
+
 	// handle route changes from ui-router directly in the grid
 	$scope.$on('$stateChangeSuccess', function(evt, toState, toParams, fromState, fromParams) {
 	  	evt.preventDefault();
@@ -32,8 +45,9 @@ Portfolio.controller('GridCtrl', ['$rootScope', '$scope', '$state', '$stateParam
 	  		$scope.projectData = {
 	  			projectId: toParams.projectId
 	  		};
-			console.log($scope.projectData);
 		}
+
+		console.log($scope.projectData);
 	});
 }]);
 
