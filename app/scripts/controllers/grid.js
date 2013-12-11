@@ -21,8 +21,7 @@ Portfolio.controller('GridCtrl', ['$rootScope', '$scope', '$state', '$stateParam
 	};
 
 	$scope.projectDetailsConditional = function(row) {
-		console.log('check to render project')
-		return row+1 === $scope.projectData.projectRow;
+		return (row + 1) === Math.ceil($scope.projectData.projectId / $scope.itemsPerRow);
 	};
 
 	// handle route changes from ui-router directly in the grid
@@ -31,8 +30,7 @@ Portfolio.controller('GridCtrl', ['$rootScope', '$scope', '$state', '$stateParam
 	  	// find the row the project details should render in
 	  	if(toState.name === 'index.project' && $scope.itemsPerRow !== 0) {
 	  		$scope.projectData = {
-	  			projectId: toParams.projectId,
-	  			projectRow: Math.ceil(toParams.projectId / $scope.itemsPerRow)
+	  			projectId: toParams.projectId
 	  		};
 			console.log($scope.projectData);
 		}

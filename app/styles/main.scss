@@ -8,7 +8,8 @@
 
 html, body { @include size(100%, 100%); padding: 0; margin: 0; }
 body {
-    @include font($family: $font-source-sans-pro);
+    @include font($family: $font-source-sans-pro, $color: $white);
+    background-color: $black;
 }
 #container {
     @include size(inherit, inherit);

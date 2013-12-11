@@ -8,16 +8,14 @@ Portfolio.directive('itemDirective', function(){
 	};
 });
 
-Portfolio.directive('itemDetailDirective', function() {
+Portfolio.directive('gridRowDirective', function(){
 	return {
 		link: function(scope, element, attrs) {
-			console.log(attrs.projectRow);
-			console.log(attrs.projectId);
-			scope.$watch(attrs.projectId, function(){
-				console.log('change');
+			attrs.$observe('rowHeight', function(val){
+				element.css({'height': val+'px'});
 			});
 		}
-	};
+	}
 });
 
 Portfolio.directive('gridResize', function($window) {
@@ -44,9 +42,10 @@ Portfolio.directive('gridResize', function($window) {
 				}
 				var newRowHeight = Math.round(windowWidth / itemsPerRow);
 				if(newRowHeight !== scope.rowHeight) {
-					scope.rowHeight = newRowHeight;
-					//element.children().attr('data-height', scope.rowHeight);
-					scope.$apply();
+					//scope.rowHeight = newRowHeight;
+					scope.$apply(function(){
+						scope.rowHeight = newRowHeight;
+					});
 				}
 			};
 			angular.element($window).bind('resize', windowResize);
