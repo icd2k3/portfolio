@@ -85,12 +85,10 @@ body {
         }
     }
 }
-#about-details {
-    height: 100px;
-}
 
 // ANIMATIONS ////////////////
-#about-details {
+.about-animation {
+    height: 100px;
     &.ng-enter, &.ng-leave {
         @include single-transition(height, 0.25s, $ease-out-quad);
     }

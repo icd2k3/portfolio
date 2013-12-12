@@ -64,11 +64,3 @@ angular.module('Portfolio').directive('projectDetailsDirective', function(){
 		}
 	};
 });
-
-angular.module('Portfolio').animation('.wave', function(){
-	return {
-		enter: function(element, done) {
-			console.log('\n\n\n--------- WAVE');
-		}
-	};
-});

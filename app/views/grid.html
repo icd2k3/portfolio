@@ -1,4 +1,4 @@
-<div ng-view id="about-details" ng-if="aboutToggle" ng-include="templates.about"></div>
+<div id="about-details" class="about-animation" ng-if="aboutToggle" ng-include="templates.about"></div>
 <div id="grid" grid-resize class="{{gridClass(itemsPerRow)}}">
 	<div id="about-link">
 		<a ng-click="aboutToggle = !aboutToggle"></a>
