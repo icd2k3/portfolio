@@ -22,9 +22,6 @@ body {
 #grid {
     @include size(inherit, inherit);
     position: relative;
-    .grid-row {
-        height: 100%;
-    }
     &.four-up {
         .grid-item { width: 25%; }
     }
@@ -38,6 +35,9 @@ body {
         .grid-item { width: 100%; }
     }
 }
+.grid-row {
+    height: 100%;
+}
 
 // GRID ITEM //////////////////
 .grid-item {
@@ -49,6 +49,11 @@ body {
 .item-link {
     @include size(100%, 100%);
     display: block;
+}
+.item-content {
+    width: 100px;
+    height: 100px;
+    background-color: $lime;
 }
 
 // PROJECT ///////////////////
@@ -81,9 +86,16 @@ body {
     }
 }
 #about-details {
-    @include single-transition(height, 0.25s, $ease-out-quad);
-    height: 0px;
-    &.open {
-        height: 100px;
+    height: 100px;
+}
+
+// ANIMATIONS ////////////////
+#about-details {
+    &.ng-enter, &.ng-leave {
+        @include single-transition(height, 0.25s, $ease-out-quad);
     }
+    &.ng-enter { height: 0px; }
+    &.ng-enter-active { height: 100px; }
+    &.ng-leave { height: 100px; }
+    &.ng-leave-active { height: 0px; }
 }

@@ -1,16 +1,14 @@
-<div id="about-details" ng-include="templates.about" ng-class="aboutClass">{{aboutClass}}</div>
+<div ng-view id="about-details" ng-if="aboutToggle" ng-include="templates.about"></div>
 <div id="grid" grid-resize class="{{gridClass(itemsPerRow)}}">
 	<div id="about-link">
-		<a ng-click="onAboutToggle()"></a>
+		<a ng-click="aboutToggle = !aboutToggle"></a>
 	</div>
 	<div class="grid-row-container" ng-repeat="row in rows track by $index">
 		<div class="grid-row" grid-row-directive data-row-height="{{rowHeight}}">
-			<div class="grid-item" data-index="{{$index}}" ng-repeat="item in items | filter:{row: $index}" item-directive data-image="{{item.images.small[0]}}">
-		  		<a class="item-link" ui-sref="index.project({projectId: item.id})"></a>
-		  	</div>
+			<div class="grid-item" ng-include="templates.item" data-index="{{$index}}" ng-repeat="item in items | filter:{row: $index}" item-directive data-image="{{item.images.small[0]}}"></div>
 		 </div>
-		 <div class="project-details" ng-class="projectDetailsConditional($index) ? 'open' : ''">
-		 	<div ng-if="projectDetailsConditional($index)" project-details-directive>
+		 <div class="project-details" ng-class="renderProject($index) ? 'open' : ''">
+		 	<div ng-if="renderProject($index)" project-details-directive>
 		 		ProjectID: {{projectData.projectId}}<br/>
 		 		Row: {{$index+1}}<br/><br/><br/><br/><br/><br/><br/><br/><br/>
 		 	</div>

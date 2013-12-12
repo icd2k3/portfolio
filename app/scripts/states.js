@@ -4,7 +4,7 @@
 	- This code handles switching of app states based on the url
 */
 
-Portfolio.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouteProvider, $locationProvider) {
+angular.module('Portfolio').config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouteProvider, $locationProvider) {
 	$locationProvider.html5Mode(true);
 	$urlRouteProvider.otherwise('/');
 	// typically we would use the built in angular router for routing an app,
@@ -28,14 +28,6 @@ Portfolio.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', f
 		})
 		.state('index.project', {
 			url: 'project/:projectId',
-			templateUrl: '/views/partials/item_detail.html'
+			templateUrl: '/views/partials/project.html'
 		});
-		/*.state('index.about', {
-			url: 'about/',
-			views: {
-				'about' : {
-					templateUrl: '/views/partials/about.html'
-				}
-			}
-		});*/
 }]);

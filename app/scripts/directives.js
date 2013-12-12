@@ -1,6 +1,6 @@
 'use strict';
 // Directives
-Portfolio.directive('gridResize', function($window) {
+angular.module('Portfolio').directive('gridResize', function($window) {
 	return {
 		link: function(scope, element, attrs) {
 			// resize row height to make items perfect squares
@@ -37,18 +37,18 @@ Portfolio.directive('gridResize', function($window) {
 });
 
 // update grid row height from gridResize directive
-Portfolio.directive('gridRowDirective', function(){
+angular.module('Portfolio').directive('gridRowDirective', function(){
 	return {
 		link: function(scope, element, attrs) {
 			attrs.$observe('rowHeight', function(val){
 				element.css({'height': val+'px'});
 			});
 		}
-	}
+	};
 });
 
 // grid items directive for image loading, switching, and setting
-Portfolio.directive('itemDirective', function(){
+angular.module('Portfolio').directive('itemDirective', function(){
 	return function(scope, element, attrs) {
 		element.css({
 			'background-image': 'url('+attrs.image+')'
@@ -57,10 +57,18 @@ Portfolio.directive('itemDirective', function(){
 });
 
 // project details directive for applying template
-Portfolio.directive('projectDetailsDirective', function(){
+angular.module('Portfolio').directive('projectDetailsDirective', function(){
 	return {
 		link: function(scope, element, attrs) {
 			console.log('project details');
 		}
-	}
+	};
+});
+
+angular.module('Portfolio').animation('.wave', function(){
+	return {
+		enter: function(element, done) {
+			console.log('\n\n\n--------- WAVE');
+		}
+	};
 });
