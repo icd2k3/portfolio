@@ -1,4 +1,27 @@
 {
+	"version": 0.1,
+	"about": {
+		"name": "Justin Schrader",
+		"profession": "Interactive Developer",
+		"resume": {
+			"title": "Resume",
+			"link": {
+				"url": "/resume/justin_schrader_resume.pdf",
+				"title": "PDF"
+			}
+		},
+		"contact": {
+			"title": "Contact",
+			"email": "me@justin-schrader.com"
+		},
+		"source": {
+			"title": "Code Sample",
+			"link": {
+				"url": "https://github.com/icd2k3/portfolio",
+				"title": "GIT"
+			}
+		}
+	},
 	"items":[
 		{
 			"id": 1,
@@ -8,7 +31,8 @@
 			"images": {
 				"small" : [
 					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/pathbrite/pathbrite_1.jpg"
+					"/img/projects/luxahoy/1.jpg",
+					"/img/projects/panera_lced/1.jpg"
 				],
 				"large" : []
 			}
@@ -21,7 +45,8 @@
 			"images": {
 				"small" : [
 					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/pathbrite/pathbrite_1.jpg"
+					"/img/projects/luxahoy/1.jpg",
+					"/img/projects/panera_lced/1.jpg"
 				],
 				"large" : []
 			}
@@ -34,7 +59,8 @@
 			"images": {
 				"small" : [
 					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/pathbrite/pathbrite_1.jpg"
+					"/img/projects/luxahoy/1.jpg",
+					"/img/projects/panera_lced/1.jpg"
 				],
 				"large" : []
 			}
@@ -47,7 +73,8 @@
 			"images": {
 				"small" : [
 					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/pathbrite/pathbrite_1.jpg"
+					"/img/projects/luxahoy/1.jpg",
+					"/img/projects/panera_lced/1.jpg"
 				],
 				"large" : []
 			}
@@ -60,7 +87,8 @@
 			"images": {
 				"small" : [
 					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/pathbrite/pathbrite_1.jpg"
+					"/img/projects/luxahoy/1.jpg",
+					"/img/projects/panera_lced/1.jpg"
 				],
 				"large" : []
 			}
@@ -73,7 +101,8 @@
 			"images": {
 				"small" : [
 					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/pathbrite/pathbrite_1.jpg"
+					"/img/projects/luxahoy/1.jpg",
+					"/img/projects/panera_lced/1.jpg"
 				],
 				"large" : []
 			}
@@ -86,7 +115,8 @@
 			"images": {
 				"small" : [
 					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/pathbrite/pathbrite_1.jpg"
+					"/img/projects/luxahoy/1.jpg",
+					"/img/projects/panera_lced/1.jpg"
 				],
 				"large" : []
 			}
@@ -99,7 +129,8 @@
 			"images": {
 				"small" : [
 					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/pathbrite/pathbrite_1.jpg"
+					"/img/projects/luxahoy/1.jpg",
+					"/img/projects/panera_lced/1.jpg"
 				],
 				"large" : []
 			}
@@ -112,7 +143,8 @@
 			"images": {
 				"small" : [
 					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/pathbrite/pathbrite_1.jpg"
+					"/img/projects/luxahoy/1.jpg",
+					"/img/projects/panera_lced/1.jpg"
 				],
 				"large" : []
 			}

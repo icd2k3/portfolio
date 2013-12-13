@@ -6,7 +6,6 @@
 @import '_mixins';
 @import '_common';
 @import "compass/css3/transition";
-@import "compass/css3/box-sizing";
 
 // BODY & CONTAINER //////
 html, body { @include size(100%, 100%); padding: 0; margin: 0; }
@@ -41,40 +40,55 @@ body {
 
 // GRID ITEM //////////////////
 .grid-item {
-    @include box-sizing("border-box");
     height: 100%;
     background-size: cover;
     float: left;
 }
 .item-link {
+    @include single-transition(opacity, 0.25s, $ease-out-quad);
     @include size(100%, 100%);
+    position: absolute;
     display: block;
+    background-color: #000;
+    opacity: 0;
+    &:hover, &:focus {
+        opacity: 0.5;
+    }
 }
 .item-content {
-    width: 100px;
-    height: 100px;
-    background-color: $lime;
+    position: relative;
+}
+.item-content, .item-cube, .item-cube-side {
+    @include size(100%, 100%);
+}
+.item-cube {
+    .item-image {
+        @include size(100%, 100%);
+        background-size: cover;
+    }
+    img.loader {
+        visibility: hidden;
+        display: block;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+    }
 }
 
 // PROJECT ///////////////////
 .project-details {
-    @include single-transition(max-height, 0.5s, $ease-out-quad);
-    max-height: 0;
     overflow: hidden;
-    &.open {
-        max-height: 500px;
-    }
 }
 
-// ABOUT /////////////////////
-#about-link {
-    position: absolute;
+// LOGO //////////////////////
+#logo {
+    @include position-fixed($z-index: 2);
     cursor: pointer;
     a {
         &:before {
             @include position-absolute($top: 0, $left: 0);
             border-top: 100px solid $black;
-             border-right: 100px solid transparent;
+            border-right: 100px solid transparent;
             width: 0;
             content: '';
         }
@@ -87,6 +101,7 @@ body {
 }
 
 // ANIMATIONS ////////////////
+// TODO: create mixin for angular animations?
 .about-animation {
     height: 100px;
     &.ng-enter, &.ng-leave {
@@ -96,4 +111,28 @@ body {
     &.ng-enter-active { height: 100px; }
     &.ng-leave { height: 100px; }
     &.ng-leave-active { height: 0px; }
+}
+
+.project-animation {
+    max-height: 500px;
+    &.ng-enter, &.ng-leave {
+        @include single-transition(max-height, 0.25s, $ease-out-quad);
+    }
+    &.ng-enter { max-height: 0px; }
+    &.ng-enter-active { max-height: 500px; }
+    &.ng-leave { max-height: 500px; }
+    &.ng-leave-active { max-height: 0px; }
+}
+
+.logo-animation {
+    top: 0;
+    left: 0;
+    &.ng-enter, &.ng-leave {
+        @include single-transition(top, 0.25s, $ease-out-quad);
+        @include single-transition(left, 0.25s, $ease-out-quad);
+    }
+    &.ng-enter { top: -50px; left: -50px; }
+    &.ng-enter-active { top: 0; left: 0; }
+    &.ng-leave { top: 0; left: 0; }
+    &.ng-leave-active { top: -50px; left: -50px; }
 }

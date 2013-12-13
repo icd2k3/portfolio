@@ -12,3 +12,18 @@ angular.module('Portfolio').factory('data', ['$http', function($http){
 	factory.about = function() { return data.about; };
 	return factory;
 }]);
+
+angular.module('Portfolio').service('imageLoader', function($http){
+
+});
+
+angular.module('Portfolio').service('aboutService', function(){
+	var sharedData = {
+		active: false,
+		data: {}
+	};
+	return {
+		get: function(){ return sharedData; },
+		set: function(d){ sharedData.data = d; }
+	}
+});

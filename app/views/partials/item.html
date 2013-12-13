@@ -1,3 +1,11 @@
-<div ng-view class="item-content fadeIn">
-	<a class="item-link" ui-sref="index.project({projectId: item.id})"></a>
+<div class="item-content" ng-controller="ItemCtrl">
+	<a class="item-link" ui-sref="index.project({projectId: item.id})">
+		
+	</a>
+	<div class="item-cube">
+		<div class="item-cube-side">
+			<div ng-if="item.loaded" class="item-image" item-cube-side-directive data-image="{{item.currentImage}}"></div>
+			<img class="loader" image-loader src="{{item.currentImage}}"></img>
+		</div>
+	</div>
 </div>

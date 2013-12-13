@@ -1,2 +1,5 @@
-Justin Schrader<br/>
-Interactive Developer
+<div id="about" ng-controller="AboutCtrl">
+	{{aboutData.data.name}}<br/>
+	{{aboutData.data.profession}}
+	<a ng-click="about().active = !about().active">CLOSE</a>
+</div>

@@ -5,16 +5,24 @@
 */
 
 // Main grid controller
-angular.module('Portfolio').controller('GridCtrl', ['$rootScope', '$scope', '$state', '$stateParams', 'data', function($rootScope, $scope, $state, $stateParams, data) {
+angular.module('Portfolio').controller('GridCtrl',
+['$rootScope', '$scope', '$state', '$stateParams', 'data', 'aboutService',
+function($rootScope, $scope, $state, $stateParams, data, aboutService) {
+	// set shared vars
+	aboutService.set(data.about);
+
+	// set scope vars
 	$scope.items       = data.items;
 	$scope.rows        = [];
 	$scope.itemsPerRow = 0;
 	$scope.projectData = {};
-	$scope.aboutToggle = false;
+	$scope.about       = aboutService.get;
 	$scope.templates = {
 		about: '/views/partials/about.html',
 		item: '/views/partials/item.html'
 	};
+
+	console.log(data);
 
 	// TODO: hook up state on page refresh or direct link
 	// console.log($rootScope.$state.params);
@@ -41,11 +49,31 @@ angular.module('Portfolio').controller('GridCtrl', ['$rootScope', '$scope', '$st
 				projectId: toParams.projectId
 			};
 		}
-		//console.log($scope.projectData);
 	});
 }]);
 
+angular.module('Portfolio').controller('AboutCtrl',
+['$rootScope', '$scope', 'aboutService',
+function($rootScope, $scope, aboutService) {
+	$scope.about = aboutService.get; // allow for grabbing dynamic data between controllers ex: "about().active"
+	$scope.aboutData = aboutService.get();  // use static data
+}]);
+
 // Grid item controller
-angular.module('Portfolio').controller('ItemCtrl', ['$rootScope', '$scope', 'data', function($rootScope, $scope, data) {
-	
+angular.module('Portfolio').controller('ItemCtrl',
+['$rootScope', '$scope', '$http', '$timeout',
+function($rootScope, $scope, $http, $timeout) {
+	var item          = $scope.item;
+	item.imageIndex   = Math.floor(Math.random()*item.images.small.length);
+	item.currentImage = item.images.small[item.imageIndex]+'?'+Math.round(Math.random()*500);
+	item.loaded      	 = false;
+
+	/*$http.get(item.images.small[item.imageIndex], {
+		tracker: 'images'
+	}).then(function(response){
+		console.log('image loaded!!!!! ', item.currentImage);
+		item.loaded = true;
+	});*/
+
+	//console.log(item.imageIndex);
 }]);

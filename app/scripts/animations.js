@@ -7,3 +7,11 @@ angular.module('Portfolio').animation('.about-animation', function(){
 		}
 	};
 });
+
+angular.module('Portfolio').animation('.project-details', function(){
+	return {
+		enter: function(element, done) {
+			
+		}
+	};
+});

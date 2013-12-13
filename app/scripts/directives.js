@@ -1,5 +1,7 @@
 'use strict';
 // Directives
+
+// handles the main grid layout, items per row, window resize etc
 angular.module('Portfolio').directive('gridResize', function($window) {
 	return {
 		link: function(scope, element, attrs) {
@@ -36,6 +38,34 @@ angular.module('Portfolio').directive('gridResize', function($window) {
 	};
 });
 
+angular.module('Portfolio').directive('itemCubeSideDirective', function(){
+	return {
+		link: function(scope, element, attrs) {
+	    	element.css({
+				'background-image': 'url('+attrs.image+')'
+			});
+	    }
+	};
+});
+
+// image preloader directive
+// usage: on img tags to know when the image has finished loading
+angular.module('Portfolio').directive('imageLoader', function(){
+	return {
+		link: function(scope, element, attrs) {
+	      console.log("Inside Image Directive");
+	      element.bind("load", function() {
+	         element.remove();
+	         scope.item.loaded = true;
+	         scope.$apply();
+	      });
+	      element.bind("error", function() {
+	        // TODO: something on error
+	      });
+	    }
+	};
+});
+
 // update grid row height from gridResize directive
 angular.module('Portfolio').directive('gridRowDirective', function(){
 	return {
@@ -44,15 +74,6 @@ angular.module('Portfolio').directive('gridRowDirective', function(){
 				element.css({'height': val+'px'});
 			});
 		}
-	};
-});
-
-// grid items directive for image loading, switching, and setting
-angular.module('Portfolio').directive('itemDirective', function(){
-	return function(scope, element, attrs) {
-		element.css({
-			'background-image': 'url('+attrs.image+')'
-		});
 	};
 });
 
