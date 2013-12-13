@@ -13,8 +13,14 @@ angular.module('Portfolio').factory('data', ['$http', function($http){
 	return factory;
 }]);
 
-angular.module('Portfolio').service('imageLoader', function($http){
+// used so other areas of the view can adjust z-index accordingly
+angular.module('Portfolio').service('cubeService', function(){
+	var sharedData = {
 
+	}
+	return {
+
+	};
 });
 
 angular.module('Portfolio').service('aboutService', function(){
@@ -25,5 +31,5 @@ angular.module('Portfolio').service('aboutService', function(){
 	return {
 		get: function(){ return sharedData; },
 		set: function(d){ sharedData.data = d; }
-	}
+	};
 });

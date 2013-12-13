@@ -2,10 +2,18 @@
 	<a class="item-link" ui-sref="index.project({projectId: item.id})">
 		
 	</a>
-	<div class="item-cube">
-		<div class="item-cube-side">
-			<div ng-if="item.loaded" class="item-image" item-cube-side-directive data-image="{{item.currentImage}}"></div>
-			<img class="loader" image-loader src="{{item.currentImage}}"></img>
+	<div class="item-cube-container">
+		<div class="item-cube" item-cube-directive data-ready="{{cube.ready}}" ng-class="cube.transition ? 'animate' : ''">
+			<div class="side one">
+				<div ng-if="cube.sides[0].ready" class="item-image" bg-image-directive data-image="{{cube.sides[0].image}}"></div>
+				<img class="loader" image-loader src="{{cube.sides[0].image}}" data-side="0"></img>
+				Side 1
+			</div>
+			<div class="side two">
+				<div ng-if="cube.sides[1].ready" class="item-image" bg-image-directive data-image="{{cube.sides[1].image}}"></div>
+				<img class="loader" image-loader src="{{cube.sides[1].image}}" data-side="1"></img>
+				Side 2
+			</div>
 		</div>
 	</div>
 </div>

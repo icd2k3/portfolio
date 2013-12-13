@@ -15,3 +15,14 @@ angular.module('Portfolio').animation('.project-details', function(){
 		}
 	};
 });
+
+angular.module('Portfolio').animation('.cube-transition', function(){
+	return {
+		addClass: function(element, className) {
+			console.log('--- add class');
+		},
+		removeClass: function(element, className) {
+			console.log('--- remove class');
+		}
+	};
+});

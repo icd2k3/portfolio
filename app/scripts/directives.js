@@ -38,10 +38,11 @@ angular.module('Portfolio').directive('gridResize', function($window) {
 	};
 });
 
-angular.module('Portfolio').directive('itemCubeSideDirective', function(){
+// set background image of div based on data-image attribute
+angular.module('Portfolio').directive('bgImageDirective', function(){
 	return {
 		link: function(scope, element, attrs) {
-	    	element.css({
+			element.css({
 				'background-image': 'url('+attrs.image+')'
 			});
 	    }
@@ -53,15 +54,38 @@ angular.module('Portfolio').directive('itemCubeSideDirective', function(){
 angular.module('Portfolio').directive('imageLoader', function(){
 	return {
 		link: function(scope, element, attrs) {
-	      console.log("Inside Image Directive");
-	      element.bind("load", function() {
-	         element.remove();
-	         scope.item.loaded = true;
-	         scope.$apply();
-	      });
-	      element.bind("error", function() {
-	        // TODO: something on error
-	      });
+			element.bind("load", function() {
+				scope.cube.sides[attrs.side].ready = true;
+				if(scope.cube.sides[0].ready && scope.cube.sides[1].ready) {
+					scope.cube.ready = true;
+				}
+				// end set scope vars
+				scope.$apply();
+			});
+			element.bind("error", function() {
+				console.warn('ERROR LOADING IMAGE');
+			});
+	    }
+	};
+});
+
+// wait for both sides of cube to load, random delay, transition, reset vars
+// TODO: since we can't use percentages in 3d transforms, we have to set a px ammount based on item size
+// TODO: use element.find() to determine if images are loaded
+angular.module('Portfolio').directive('itemCubeDirective', function($timeout, $animate){
+	return {
+		link: function(scope, element, attrs) {
+			// set 3d values based on width/height of item
+			attrs.$observe('ready', function(val){
+				if(val === "true") {
+		    		$timeout(function(){
+		    			scope.cube.transition = true;
+		    			$timeout(function(){
+		    				scope.transitionComplete();
+		    			}, 400); // NOTE: make sure this matches the css transition speed*/
+		    		}, Math.round(Math.random()*10000)+1000);
+		    	}
+			});
 	    }
 	};
 });

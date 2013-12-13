@@ -6,6 +6,7 @@
 @import '_mixins';
 @import '_common';
 @import "compass/css3/transition";
+@import "compass/css3/transform";
 
 // BODY & CONTAINER //////
 html, body { @include size(100%, 100%); padding: 0; margin: 0; }
@@ -46,8 +47,9 @@ body {
 }
 .item-link {
     @include single-transition(opacity, 0.25s, $ease-out-quad);
+    @include position-absolute($z-index: 1);
+    //position: absolute;
     @include size(100%, 100%);
-    position: absolute;
     display: block;
     background-color: #000;
     opacity: 0;
@@ -58,20 +60,41 @@ body {
 .item-content {
     position: relative;
 }
-.item-content, .item-cube, .item-cube-side {
+
+// ITEM CUBE ////////////////
+.item-content, .item-cube-container, .item-cube, .item-cube .side {
     @include size(100%, 100%);
 }
+.item-cube-container {
+    @include perspective(1000px);
+}
 .item-cube {
+    @include transform-style(preserve-3d);
+    @include translate3d(0, 0, -200px);
+    position: relative;
     .item-image {
         @include size(100%, 100%);
         background-size: cover;
     }
     img.loader {
+        @include size(1px, 1px);
         visibility: hidden;
         display: block;
-        width: 1px;
-        height: 1px;
         overflow: hidden;
+    }
+    .side {
+        position: absolute;
+        @include backface-visibility(hidden);
+        &.one {
+            @include translate3d(0, 0, 200px);
+        }
+        &.two {
+            @include transform(rotateY(-90deg) translate3d(0, 0, 200px));
+        }
+    }
+    &.animate {
+        @include single-transition(all, 0.4s, $ease-out-quad);
+        @include transform(rotateY(90deg) translate3d(200px, 0, 0));
     }
 }
 
@@ -136,3 +159,8 @@ body {
     &.ng-leave { top: 0; left: 0; }
     &.ng-leave-active { top: -50px; left: -50px; }
 }
+
+/*.cube-transition {
+    @include single-transition(all, 0.4s, $ease-out-quad);
+    -webkit-transform: rotateY(90deg) translate3d(200px, 0, 0);
+}*/
