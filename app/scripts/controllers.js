@@ -63,46 +63,18 @@ function($rootScope, $scope, aboutService) {
 angular.module('Portfolio').controller('ItemCtrl',
 ['$rootScope', '$scope', '$http', '$timeout',
 function($rootScope, $scope, $http, $timeout) {
+	var index = Math.floor(Math.random()*$scope.item.images.small.length), nextIndex;
 
-	$scope.setCube = function(firstRun) {
-		var directions      = ['left', 'right', 'up', 'down'],
-			randomDirection = directions[Math.round(Math.random()*4)],
-			index,
-			nextIndex;
-
-		if(firstRun) {
-			index = Math.floor(Math.random()*$scope.item.images.small.length);
-		} else {
-			index = $scope.cube.next;
-		}
-		if(index === $scope.item.images.small.length-1) {
-			nextIndex = 0;
-		} else {
-			nextIndex = index + 1;
-		}
-
-		$scope.cube = {
-			ready      : false,    			// both sides loaded
-			transition : false,      		// start transition
-			index      : index,      		// current image/side
-			next       : nextIndex,
-			direction  : randomDirection,	// animation direction of the cube
-			sides: [						// data for each side
-				{
-					ready: false,
-					image: $scope.item.images.small[index]
-				},
-				{
-					ready: false,
-					image: $scope.item.images.small[nextIndex]
-				}
-			]
-		};
-	};
-
-	$scope.setCube(true);
-
-	$scope.transitionComplete = function() {
-		$scope.setCube();
+	if(index === $scope.item.images.small.length - 1) {
+		nextIndex = 0;
+	} else {
+		nextIndex = index + 1;
+	}
+	$scope.item.cube = {
+		index: index,
+		nextIndex: nextIndex,
+		sidesLoaded: 0,
+		transition: false,
+		transitionComplete: false
 	};
 }]);

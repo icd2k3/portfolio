@@ -76,7 +76,7 @@ body {
         @include size(100%, 100%);
         background-size: cover;
     }
-    img.loader {
+    img {
         @include size(1px, 1px);
         visibility: hidden;
         display: block;
@@ -87,6 +87,7 @@ body {
         @include backface-visibility(hidden);
         &.one {
             @include translate3d(0, 0, 200px);
+            z-index: 1;
         }
         &.two {
             @include transform(rotateY(-90deg) translate3d(0, 0, 200px));
