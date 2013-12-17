@@ -44,6 +44,10 @@ angular.module('Portfolio').directive('gridResize', function($window, gridServic
 });
 
 // handles all cube switching functionality
+// TODO:
+// - don't show cube until both sides are rendered on first page load
+// - 3d transitions should stop when user focus leaves window
+// - fallback transition for older browsers
 angular.module('Portfolio').directive('cube', function($timeout, $animate, gridService){
 	return {
 		link: function(scope, element, attrs) {
@@ -124,7 +128,6 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 });
 
 // handles loading of cube side images and setting next & current side elements for the cube directive to use
-// TODO: simplify, rename, and organize
 angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, gridService){
 	return {
 		link: function(scope, element, attrs) {
@@ -141,8 +144,8 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 				$img.bind('load', function(){
 					// set cube side background to the image after it's finished loading
 					element.css({
-						'background-image': 'url('+$img.attr('src')+')',
-						'background-size': 'cover'
+						'background-image' : 'url('+$img.attr('src')+')',
+						'background-size'  : 'cover'
 					});
 					// remove the img tag as it's no longer needed
 					$img.unbind();
@@ -159,6 +162,7 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 			preloadImage();
 
 			// cube is transitioning, apply 3d rules to the sides
+			// TODO: simplify this
 			scope.$watch(function(){ return scope.item.cube.transition }, function(val){
 				if(!val) return;
 				var translateDistance = gridService.getZ();
@@ -217,7 +221,7 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 	};
 });
 
-// grid item
+// handles setting grid-row-container to be active so we can adjust z-index to top (helps with the cube illusion)
 angular.module('Portfolio').directive('gridItem', function(){
 	return {
 		link: function(scope, element, attrs) {
