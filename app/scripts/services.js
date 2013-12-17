@@ -4,7 +4,9 @@ angular.module('Portfolio').factory('data', ['$http', function($http){
 	var path    = '/data/portfolio.json',
 		factory = {},
 		data    = $http.get(path).then(function(response){
-			console.log('Data loaded');
+			for(var i=0; i<response.data.items.length; i++) {
+				response.data.items[i].index = i;
+			}
 			return response.data;
 		});
 	factory.all = function() { return data; };
@@ -13,13 +15,18 @@ angular.module('Portfolio').factory('data', ['$http', function($http){
 	return factory;
 }]);
 
-// used so other areas of the view can adjust z-index accordingly
-angular.module('Portfolio').service('cubeService', function(){
+// Since 3d transforms don't support percentages, we have to let the cube know what dimensions it should be manually
+angular.module('Portfolio').service('gridService', function(){
 	var sharedData = {
-
-	}
+		windowWidth: 1024,
+		z: 188
+	};
 	return {
-
+		getZ: function() {
+			return Math.round((sharedData.windowWidth / sharedData.itemsPerRow) * 0.5);
+		},
+		setWindowWidth: function(w) { sharedData.windowWidth = w; },
+		setItemsPerRow: function(i) { sharedData.itemsPerRow = i; }
 	};
 });
 

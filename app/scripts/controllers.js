@@ -13,19 +13,18 @@ function($rootScope, $scope, $state, $stateParams, data, aboutService) {
 
 	// set scope vars
 	$scope.items       = data.items;
-	$scope.rows        = [];
-	$scope.itemsPerRow = 0;
-	$scope.projectData = {};
 	$scope.about       = aboutService.get;
+	$scope.project = {
+		projectId: null
+	};
+	$scope.grid = {
+		itemsPerRow: 0,
+		rows: []
+	};
 	$scope.templates = {
 		about: '/views/partials/about.html',
 		item: '/views/partials/item.html'
 	};
-
-	console.log(data);
-
-	// TODO: hook up state on page refresh or direct link
-	// console.log($rootScope.$state.params);
 
 	// assign class for grid (one-up, two-up, three-up, etc)
 	// TODO: move this to a service or into the grid resize directive
@@ -36,7 +35,7 @@ function($rootScope, $scope, $state, $stateParams, data, aboutService) {
 
 	$scope.renderProject = function(row) {
 		// returns boolean for template to know if it should render project details or not
-		return (row + 1) === Math.ceil($scope.projectData.projectId / $scope.itemsPerRow);
+		return (row + 1) === Math.ceil($scope.project.projectId / $scope.grid.itemsPerRow);
 	};
 
 	// handle route changes from ui-router directly in the grid
@@ -45,7 +44,7 @@ function($rootScope, $scope, $state, $stateParams, data, aboutService) {
 		evt.preventDefault();
 		// find the row the project details should render in
 		if(toState.name === 'index.project' && $scope.itemsPerRow !== 0) {
-			$scope.projectData = {
+			$scope.project = {
 				projectId: toParams.projectId
 			};
 		}
@@ -60,21 +59,42 @@ function($rootScope, $scope, aboutService) {
 }]);
 
 // Grid item controller
+// TODO: store timer in model so we can clear it in case of screen resize etc
 angular.module('Portfolio').controller('ItemCtrl',
 ['$rootScope', '$scope', '$http', '$timeout',
 function($rootScope, $scope, $http, $timeout) {
-	var index = Math.floor(Math.random()*$scope.item.images.small.length), nextIndex;
+	// model is already there. This probably means the user switched screen sizes and re-rendered the grid
+	// cancel any transition timers and reset the model
+	if($scope.item.cube) {
+		if($scope.item.cube.transitionTimer) {
+			$timeout.cancel($scope.item.cube.transitionTimer);
+		}
+		if($scope.item.cube.transitionWaitTimer) {
+			$timeout.cancel($scope.item.cube.transitionWaitTimer);
+		}
+		$scope.item.cube = null;
+		$scope.$apply;
+	}
 
+	// set cube model
+	var index = Math.floor(Math.random()*$scope.item.images.small.length), nextIndex;
 	if(index === $scope.item.images.small.length - 1) {
 		nextIndex = 0;
 	} else {
 		nextIndex = index + 1;
 	}
+	$scope.getRandomDirection = function() {
+		var directions = ['left', 'right', 'up', 'down'];
+		return directions[Math.floor(Math.random()*directions.length)];
+	};
 	$scope.item.cube = {
-		index: index,
-		nextIndex: nextIndex,
-		sidesLoaded: 0,
-		transition: false,
-		transitionComplete: false
+		index                : index,			// used for tracking the current image
+		nextIndex            : nextIndex,		// used for tracking the next image in queue
+		sidesLoaded          : 0,				// used for knowing when both sides of the cube are loaded
+		transition           : false,			// cube is in transition
+		transitionComplete   : false,			// cube has completed transition
+		transitionWaitTimer  : null,			// random ammount of time the cube waits before animating to the next side
+		transitionTimer      : null,			// full timer that includes the random wait delay above ^,
+		direction            : $scope.getRandomDirection()
 	};
 }]);

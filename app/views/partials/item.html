@@ -2,14 +2,10 @@
 	<a class="item-link" ui-sref="index.project({projectId: item.id})">
 		
 	</a>
-	<div class="item-cube-container">
+	<div class="item-cube-container" ng-if="item.cube">
 		<div class="item-cube" cube>
-			<div class="side one" cube-side>
-				<img src="{{item.images.small[item.cube.index]}}"></img>
-			</div>
-			<div class="side two" cube-side>
-				<img src="{{item.images.small[item.cube.nextIndex]}}"></img>
-			</div>
+			<div class="side one" cube-side></div>
+			<div class="side two" cube-side></div>
 		</div>
 	</div>
 </div>

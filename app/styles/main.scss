@@ -22,6 +22,13 @@ body {
 #grid {
     @include size(inherit, inherit);
     position: relative;
+    .grid-item {
+        position: relative;
+        z-index: 1;
+        &.active {
+            z-index: 2;
+        }
+    }
     &.four-up {
         .grid-item { width: 25%; }
     }
@@ -35,8 +42,14 @@ body {
         .grid-item { width: 100%; }
     }
 }
-.grid-row {
-    height: 100%;
+.grid-row-container {
+    @include position-relative($z-index: 1);
+    &.active {
+        z-index: 2;
+    }
+    .grid-row {
+        height: 100%;
+    }
 }
 
 // GRID ITEM //////////////////
@@ -44,6 +57,10 @@ body {
     height: 100%;
     background-size: cover;
     float: left;
+    z-index: 1;
+    &.animate {
+        z-index: 2;
+    }
 }
 .item-link {
     @include single-transition(opacity, 0.25s, $ease-out-quad);
@@ -66,11 +83,11 @@ body {
     @include size(100%, 100%);
 }
 .item-cube-container {
-    @include perspective(1000px);
+    @include perspective(600px);
 }
 .item-cube {
     @include transform-style(preserve-3d);
-    @include translate3d(0, 0, -200px);
+    //@include translate3d(0, 0, -200px);
     position: relative;
     .item-image {
         @include size(100%, 100%);
@@ -86,16 +103,19 @@ body {
         position: absolute;
         @include backface-visibility(hidden);
         &.one {
-            @include translate3d(0, 0, 200px);
-            z-index: 1;
+            //@include translate3d(0, 0, 188px);
+            z-index: 2;
         }
         &.two {
-            @include transform(rotateY(-90deg) translate3d(0, 0, 200px));
+            z-index: 1;
+            //@include transform(rotateY(-90deg) translate3d(0, 0, 188px));
         }
     }
     &.animate {
-        @include single-transition(all, 0.4s, $ease-out-quad);
-        @include transform(rotateY(90deg) translate3d(200px, 0, 0));
+        @include enable-fast-image-rendering();
+        .side {
+            @include enable-fast-image-rendering();
+        }
     }
 }
 
@@ -106,7 +126,7 @@ body {
 
 // LOGO //////////////////////
 #logo {
-    @include position-fixed($z-index: 2);
+    @include position-fixed($z-index: 3);
     cursor: pointer;
     a {
         &:before {
@@ -160,6 +180,39 @@ body {
     &.ng-leave { top: 0; left: 0; }
     &.ng-leave-active { top: -50px; left: -50px; }
 }
+
+//$cubeTransitionSpeed: 1s;
+//$cubeTransitionDelay: 1s;
+/*.item-cube.animate {
+    @include single-transition(all, $cubeTransitionSpeed, $ease-out-quad);
+    @include transform(rotateY(90deg) translate3d(200px, 0, 0));
+    z-index: 99;
+}*/
+/*.grid-row-container{
+    &:nth-child(1) {
+        .grid-item {
+            &:nth-child(2) .item-cube { @include transition-delay($cubeTransitionDelay); }
+            &:nth-child(3) .item-cube { @include transition-delay($cubeTransitionDelay * 2); }
+            &:nth-child(4) .item-cube { @include transition-delay($cubeTransitionDelay * 3); }
+        }
+    }
+    &:nth-child(2) {
+        .grid-item {
+            &:nth-child(1) .item-cube { @include transition-delay($cubeTransitionDelay * 2); }
+            &:nth-child(2) .item-cube { @include transition-delay($cubeTransitionDelay * 3); }
+            &:nth-child(3) .item-cube { @include transition-delay($cubeTransitionDelay * 4); }
+            &:nth-child(4) .item-cube { @include transition-delay($cubeTransitionDelay * 5); }
+        }
+    }
+    &:nth-child(3) {
+        .grid-item {
+            &:nth-child(1) .item-cube { @include transition-delay($cubeTransitionDelay * 3); }
+            &:nth-child(2) .item-cube { @include transition-delay($cubeTransitionDelay * 4); }
+            &:nth-child(3) .item-cube { @include transition-delay($cubeTransitionDelay * 5); }
+            &:nth-child(4) .item-cube { @include transition-delay($cubeTransitionDelay * 6); }
+        }
+    }
+}*/
 
 /*.cube-transition {
     @include single-transition(all, 0.4s, $ease-out-quad);
