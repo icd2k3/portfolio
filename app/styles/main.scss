@@ -87,7 +87,6 @@ body {
 }
 .item-cube {
     @include transform-style(preserve-3d);
-    //@include translate3d(0, 0, -200px);
     position: relative;
     .item-image {
         @include size(100%, 100%);
@@ -102,14 +101,8 @@ body {
     .side {
         position: absolute;
         @include backface-visibility(hidden);
-        &.one {
-            //@include translate3d(0, 0, 188px);
-            z-index: 2;
-        }
-        &.two {
-            z-index: 1;
-            //@include transform(rotateY(-90deg) translate3d(0, 0, 188px));
-        }
+        &.one { z-index: 2; }
+        &.two { z-index: 1; }
     }
     &.animate {
         @include enable-fast-image-rendering();

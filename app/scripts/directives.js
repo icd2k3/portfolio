@@ -1,5 +1,4 @@
 'use strict';
-// Directives
 
 // handles the main grid layout, items per row, window resize etc
 angular.module('Portfolio').directive('gridResize', function($window, gridService) {
@@ -56,7 +55,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 			scope.$watch(function(){ return scope.item.cube.sidesLoaded }, function(val){
 				if(val === 2) {
 					scope.item.cube.transitionComplete = false;
-					var transitionDelay = Math.round(Math.random()*10000)+1000;
+					var transitionDelay = Math.round(Math.random()*15000)+1000;
 					scope.item.cube.direction = scope.getRandomDirection();
 
 					// transition the cube to the next side
@@ -69,6 +68,8 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 							'-webkit-transform' : 'translate3d(0, 0, -'+translateDistance+'px)',
 							'transform'         : 'translate3d(0, 0, -'+translateDistance+'px)',
 						});
+
+						// this timeout makes sure that the css set above takes effect before the transition starts (mostly a FF problem)
 						setTimeout(function(){
 							element.css({'transition' : 'all '+transitionSpeed+'s cubic-bezier(0.25, 0.46, 0.45, 0.94)'});
 							element.addClass('animate');
@@ -98,7 +99,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 									});
 								break;
 							}
-						}, 1);
+						}, 100);
 					}, transitionDelay);
 
 					// cube transition complete
@@ -118,7 +119,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 						// reset
 						element.removeAttr('style');
 						scope.item.cube.transitionComplete = true;
-					}, transitionDelay + (transitionSpeed*1000));
+					}, transitionDelay + (transitionSpeed*1000) + 100);
 				} else {
 					element.removeAttr('style');
 				}

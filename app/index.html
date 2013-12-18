@@ -19,6 +19,9 @@
     <script type="text/javascript" src="//use.typekit.net/xie3kbw.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     <!-- End typekit -->
+    <!-- Modernizr -->
+    <script type="text/javascript" src="/bower_components/modernizr/modernizr_custom.js"></script>
+    <!-- End Modernizr -->
 </head>
   <body>
     <!--[if lt IE 7]>
@@ -40,6 +43,16 @@
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
     </script>
+
+    <!-- Modernizr -->
+    <script type="text/javascript">
+      // Load jquery if user's browser doesn't support css3 animation/transitions
+      Modernizr.load([{
+        test: !Modernizr.csstransitions,
+        nope: '/bower_components/jquery/jquery.js'
+      }]);
+    </script>
+    <!-- End Modernizr -->
 
     <!-- <script src="bower_components/jquery/jquery.js"></script> -->
     <script src="/bower_components/angular/angular.js"></script>

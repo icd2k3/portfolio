@@ -30,6 +30,10 @@ angular.module('Portfolio').service('gridService', function(){
 	};
 });
 
+angular.module('Portfolio').service('Modernizr', function(){
+	
+});
+
 angular.module('Portfolio').service('aboutService', function(){
 	var sharedData = {
 		active: false,
