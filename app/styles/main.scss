@@ -22,7 +22,7 @@ body {
 #grid {
     @include size(inherit, inherit);
     position: relative;
-    .grid-item {
+    .grid-project {
         position: relative;
         z-index: 1;
         &.active {
@@ -30,16 +30,16 @@ body {
         }
     }
     &.four-up {
-        .grid-item { width: 25%; }
+        .grid-project { width: 25%; }
     }
     &.three-up {
-        .grid-item { width: 33.333%; }
+        .grid-project { width: 33.333%; }
     }
     &.two-up {
-        .grid-item { width: 50%; }
+        .grid-project { width: 50%; }
     }
     &.one-up {
-        .grid-item { width: 100%; }
+        .grid-project { width: 100%; }
     }
 }
 .grid-row-container {
@@ -53,7 +53,7 @@ body {
 }
 
 // GRID ITEM //////////////////
-.grid-item {
+.grid-project {
     height: 100%;
     background-size: cover;
     float: left;

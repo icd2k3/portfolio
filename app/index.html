@@ -47,9 +47,10 @@
     <!-- Modernizr -->
     <script type="text/javascript">
       // Load jquery if user's browser doesn't support css3 animation/transitions
+      Modernizr.csstransitions = false;
       Modernizr.load([{
-        test: !Modernizr.csstransitions,
-        nope: '/bower_components/jquery/jquery.js'
+        test: Modernizr.csstransitions,
+        nope: '/bower_components/jquery/jquery.min.js'
       }]);
     </script>
     <!-- End Modernizr -->

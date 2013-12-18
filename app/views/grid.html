@@ -3,13 +3,13 @@
 <div id="logo" class="logo-animation" ng-if="!about().active">
 	<a ng-click="about().active = !about().active"></a>
 </div>
-<div id="grid" grid grid-resize class="{{gridClass(grid.itemsPerRow)}}">
+<div id="grid" grid grid-resize class="{{gridClass(grid.projectsPerRow)}}">
 	<div class="grid-row-container" ng-repeat="row in grid.rows track by $index">
 		<div class="grid-row" grid-row-directive data-row-height="{{rowHeight}}">
-			<div class="grid-item" grid-item ng-class="{active : item.cube.transition}" ng-include="templates.item" data-index="{{$index}}" ng-repeat="item in items | filter:{row: $index}"></div>
+			<div class="grid-project" ng-repeat="project in projects | filter:{row: $index}" grid-project ng-class="{active : project.cube.transition}" ng-include="templates.item" data-index="{{$index}}"></div>
 		 </div>
 		 <div class="project-details project-animation" ng-if="renderProject($index)">
-		 	ProjectID: {{project.projectId}}<br/>
+		 	ProjectID: {{projectDetails.projectId}}<br/>
 		 	Row: {{$index+1}}<br/><br/><br/><br/><br/><br/><br/><br/><br/>
 		 </div>
 	 </div>

@@ -1,31 +1,31 @@
 'use strict';
 
-// handles the main grid layout, items per row, window resize etc
+// handles the main grid layout, projects per row, window resize etc
 angular.module('Portfolio').directive('gridResize', function($window, gridService) {
 	return {
 		link: function(scope, element, attrs) {
-			// resize row height to make items perfect squares
+			// resize row height to make projects perfect squares
 			var windowResize = function(){
 				var windowWidth = $window.innerWidth,
-					itemsPerRow = 4;
+					projectsPerRow = 4;
 
 				scope.grid.windowWidth = windowWidth;
 				// NOTE: make sure these match the css media query values
-				if(windowWidth < 1280) { itemsPerRow = 3; }
-				if(windowWidth < 960)  { itemsPerRow = 2; }
-				if(windowWidth < 321)  { itemsPerRow = 1; }
+				if(windowWidth < 1280) { projectsPerRow = 3; }
+				if(windowWidth < 960)  { projectsPerRow = 2; }
+				if(windowWidth < 321)  { projectsPerRow = 1; }
 
 				// assign rows & grid layout params
-				if(itemsPerRow !== scope.grid.itemsPerRow) {
-					scope.grid.rows = new Array(Math.ceil(scope.items.length / itemsPerRow));
-					for(var i=0; i<scope.items.length; i++) {
-						var item = scope.items[i];
-						item.row = Math.floor(i / itemsPerRow);
+				if(projectsPerRow !== scope.grid.projectsPerRow) {
+					scope.grid.rows = new Array(Math.ceil(scope.projects.length / projectsPerRow));
+					for(var i=0; i<scope.projects.length; i++) {
+						var project = scope.projects[i];
+						project.row = Math.floor(i / projectsPerRow);
 					}
-					scope.grid.itemsPerRow = itemsPerRow;
+					scope.grid.projectsPerRow = projectsPerRow;
 					scope.$apply();
 				}
-				var newRowHeight = Math.round(windowWidth / itemsPerRow);
+				var newRowHeight = Math.round(windowWidth / projectsPerRow);
 				if(newRowHeight !== scope.rowHeight) {
 					scope.$apply(function(){
 						scope.rowHeight = newRowHeight;
@@ -33,7 +33,7 @@ angular.module('Portfolio').directive('gridResize', function($window, gridServic
 				}
 				// set vars in gridService so other directives can use the data
 				gridService.setWindowWidth(windowWidth);
-				gridService.setItemsPerRow(itemsPerRow);
+				gridService.setProjectsPerRow(projectsPerRow);
 			};
 			angular.element($window).bind('resize', windowResize);
 			// trigger initial resize on first render
@@ -52,18 +52,18 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 		link: function(scope, element, attrs) {
 			var transitionSpeed = 0.7;
 			// watch for both sides of the cube to be loaded
-			scope.$watch(function(){ return scope.item.cube.sidesLoaded }, function(val){
+			scope.$watch(function(){ return scope.project.cube.sidesLoaded }, function(val){
 				if(val === 2) {
-					scope.item.cube.transitionComplete = false;
-					var transitionDelay = Math.round(Math.random()*15000)+1000;
-					scope.item.cube.direction = scope.getRandomDirection();
+					scope.project.cube.transitionComplete = false;
+					var transitionDelay = Math.round(Math.random()*1000)+1000;
+					scope.project.cube.direction = scope.getRandomDirection();
 
 					// transition the cube to the next side
 					// NOTE: we have to manually apply css here as 3d translates don't support percentages
-					scope.item.cube.transitionWaitTimer = $timeout(function(){
+					scope.project.cube.transitionWaitTimer = $timeout(function(){
 						var translateDistance = gridService.getZ();
 
-						scope.item.cube.transition = true;
+						scope.project.cube.transition = true;
 						element.css({
 							'-webkit-transform' : 'translate3d(0, 0, -'+translateDistance+'px)',
 							'transform'         : 'translate3d(0, 0, -'+translateDistance+'px)',
@@ -73,7 +73,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 						setTimeout(function(){
 							element.css({'transition' : 'all '+transitionSpeed+'s cubic-bezier(0.25, 0.46, 0.45, 0.94)'});
 							element.addClass('animate');
-							switch(scope.item.cube.direction) {
+							switch(scope.project.cube.direction) {
 								case 'right':
 									element.css({
 										'-webkit-transform' : 'rotateY(90deg) translate3d('+translateDistance+'px, 0, 0)',
@@ -103,22 +103,22 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 					}, transitionDelay);
 
 					// cube transition complete
-					scope.item.cube.transitionTimer = $timeout(function(){
+					scope.project.cube.transitionTimer = $timeout(function(){
 						element.removeClass('animate');
-						scope.item.cube.transition = false;
-						scope.item.cube.sidesLoaded = 1;
+						scope.project.cube.transition = false;
+						scope.project.cube.sidesLoaded = 1;
 
 						// TODO: move to controller scope as function
-						scope.item.cube.index = scope.item.cube.nextIndex;
-						if(scope.item.cube.index === scope.item.images.small.length - 1) {
-							scope.item.cube.nextIndex = 0;
+						scope.project.cube.index = scope.project.cube.nextIndex;
+						if(scope.project.cube.index === scope.project.images.length - 1) {
+							scope.project.cube.nextIndex = 0;
 						} else {
-							scope.item.cube.nextIndex = scope.item.cube.index + 1;
+							scope.project.cube.nextIndex = scope.project.cube.index + 1;
 						}
 
 						// reset
 						element.removeAttr('style');
-						scope.item.cube.transitionComplete = true;
+						scope.project.cube.transitionComplete = true;
 					}, transitionDelay + (transitionSpeed*1000) + 100);
 				} else {
 					element.removeAttr('style');
@@ -129,6 +129,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 });
 
 // handles loading of cube side images and setting next & current side elements for the cube directive to use
+// TODO: keep previous sides and make them invisible, then pull them back in if cube index resets
 angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, gridService){
 	return {
 		link: function(scope, element, attrs) {
@@ -136,39 +137,43 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 
 			// adds an img tag into the div so it can preload the cube side image
 			var preloadImage = function() {
-				if(isNextSide) {
-					element.html('<img src="'+scope.item.images.small[scope.item.cube.nextIndex]+'"></img>');
-				} else {
-					element.html('<img src="'+scope.item.images.small[scope.item.cube.index]+'"></img>');
-				}
-				var $img = element.find('img');
-				$img.bind('load', function(){
-					// set cube side background to the image after it's finished loading
-					element.css({
-						'background-image' : 'url('+$img.attr('src')+')',
-						'background-size'  : 'cover'
-					});
-					// remove the img tag as it's no longer needed
-					$img.unbind();
-					$img.remove();
+				var index        = isNextSide ? scope.project.cube.nextIndex : scope.project.cube.index,
+					loadComplete = function() {
+						console.log('load complete');
+						// set cube side background to the image after it's finished loading
+						element.css({
+							'background-image' : 'url('+scope.project.images[index].src+')',
+							'background-size'  : 'cover'
+						});
+						// remove the img tag as it's no longer needed
+						if($img) { $img.unbind().remove(); }
 
-					// set sides loaded on cube
-					scope.item.cube.sidesLoaded++;
-					if(scope.item.cube.sidesLoaded === 2) {
-						scope.$apply();
-					}
-				});
-				$img.bind('error', function() { console.warn('IMAGE ERROR'); });
+						scope.project.images[index].loaded = true;
+
+						// set sides loaded on cube
+						scope.project.cube.sidesLoaded++;
+						if(scope.project.cube.sidesLoaded === 2) {
+							scope.$apply();
+						}
+					};
+				if(scope.project.images[index].loaded) {
+					setTimeout(function(){ loadComplete(); }, 1);
+				} else {
+					element.html('<img src="'+scope.project.images[index].src+'"></img>');
+					var $img = element.find('img');
+					$img.bind('load', loadComplete);
+					$img.bind('error', function() { console.warn('IMAGE ERROR'); });
+				}
 			};
 			preloadImage();
 
 			// cube is transitioning, apply 3d rules to the sides
 			// TODO: simplify this
-			scope.$watch(function(){ return scope.item.cube.transition }, function(val){
+			scope.$watch(function(){ return scope.project.cube.transition }, function(val){
 				if(!val) return;
 				var translateDistance = gridService.getZ();
 				if(isNextSide) {
-					switch(scope.item.cube.direction) {
+					switch(scope.project.cube.direction) {
 						case 'right':
 							element.css({
 								'-webkit-transform' : 'rotateY(-90deg) translate3d(0, 0, '+translateDistance+'px)',
@@ -203,7 +208,7 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 			});
 
 			// swap cube sides: side 2 becomes side 1, and the new side 2 renders the next image of the cube
-			scope.$watch(function(){ return scope.item.cube.transitionComplete }, function(val){
+			scope.$watch(function(){ return scope.project.cube.transitionComplete }, function(val){
 				if(!val) return;
 				element.css({
 					'-webkit-transform' : 'none',
@@ -223,10 +228,10 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 });
 
 // handles setting grid-row-container to be active so we can adjust z-index to top (helps with the cube illusion)
-angular.module('Portfolio').directive('gridItem', function(){
+angular.module('Portfolio').directive('gridProject', function(){
 	return {
 		link: function(scope, element, attrs) {
-			scope.$watch(function(){ return scope.item.cube.transition }, function(val) {
+			scope.$watch(function(){ return scope.project.cube.transition }, function(val) {
 				if(val) {
 					element.parent().parent().addClass('active');
 				} else {

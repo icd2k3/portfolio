@@ -22,132 +22,17 @@
 			}
 		}
 	},
-	"items":[
+	"projects":[
 		{
 			"id": 1,
 			"title": "Pathbrite",
 			"descShort": "",
 			"descLong": "erfoqpwef",
-			"images": {
-				"small" : [
-					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/luxahoy/1.jpg",
-					"/img/projects/panera_lced/1.jpg"
-				],
-				"large" : []
-			}
-		},
-		{
-			"id": 2,
-			"title": "Pathbrite",
-			"descShort": "",
-			"descLong": "erfoqpwef",
-			"images": {
-				"small" : [
-					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/luxahoy/1.jpg",
-					"/img/projects/panera_lced/1.jpg"
-				],
-				"large" : []
-			}
-		},
-		{
-			"id": 3,
-			"title": "Pathbrite",
-			"descShort": "",
-			"descLong": "erfoqpwef",
-			"images": {
-				"small" : [
-					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/luxahoy/1.jpg",
-					"/img/projects/panera_lced/1.jpg"
-				],
-				"large" : []
-			}
-		},
-		{
-			"id": 4,
-			"title": "Pathbrite",
-			"descShort": "",
-			"descLong": "erfoqpwef",
-			"images": {
-				"small" : [
-					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/luxahoy/1.jpg",
-					"/img/projects/panera_lced/1.jpg"
-				],
-				"large" : []
-			}
-		},
-		{
-			"id": 5,
-			"title": "Pathbrite",
-			"descShort": "",
-			"descLong": "erfoqpwef",
-			"images": {
-				"small" : [
-					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/luxahoy/1.jpg",
-					"/img/projects/panera_lced/1.jpg"
-				],
-				"large" : []
-			}
-		},
-		{
-			"id": 6,
-			"title": "Pathbrite",
-			"descShort": "",
-			"descLong": "erfoqpwef",
-			"images": {
-				"small" : [
-					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/luxahoy/1.jpg",
-					"/img/projects/panera_lced/1.jpg"
-				],
-				"large" : []
-			}
-		},
-		{
-			"id": 7,
-			"title": "Pathbrite",
-			"descShort": "",
-			"descLong": "erfoqpwef",
-			"images": {
-				"small" : [
-					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/luxahoy/1.jpg",
-					"/img/projects/panera_lced/1.jpg"
-				],
-				"large" : []
-			}
-		},
-		{
-			"id": 8,
-			"title": "Pathbrite",
-			"descShort": "",
-			"descLong": "erfoqpwef",
-			"images": {
-				"small" : [
-					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/luxahoy/1.jpg",
-					"/img/projects/panera_lced/1.jpg"
-				],
-				"large" : []
-			}
-		},
-		{
-			"id": 9,
-			"title": "Pathbrite",
-			"descShort": "",
-			"descLong": "erfoqpwef",
-			"images": {
-				"small" : [
-					"/img/projects/pathbrite/pathbrite_1.jpg",
-					"/img/projects/luxahoy/1.jpg",
-					"/img/projects/panera_lced/1.jpg"
-				],
-				"large" : []
-			}
+			"images": [
+				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
+				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
+				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
+			]
 		}
 	]
 }
