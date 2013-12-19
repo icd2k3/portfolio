@@ -30,9 +30,42 @@ angular.module('Portfolio').service('gridService', function(){
 	};
 });
 
-// TODO: move css logic from directives to here
+// this service returns a css 3d object for the cube/sides based on direction of the current animation
 angular.module('Portfolio').service('cubeCSS', function(gridService){
 	return {
+		cube: function(direction, transitionSpeed) {
+			var translateDistance = gridService.getHalfItemWidth();
+			switch(direction) {
+				case 'right':
+					return {
+						'transition'        : 'all '+transitionSpeed+'s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+						'-webkit-transform' : 'rotateY(90deg) translate3d('+translateDistance+'px, 0, 0)',
+						'transform'         : 'rotateY(90deg) translate3d('+translateDistance+'px, 0, 0)'
+					};
+				break;
+				case 'left':
+					return {
+						'transition'        : 'all '+transitionSpeed+'s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+						'-webkit-transform' : 'rotateY(-90deg) translate3d(-'+translateDistance+'px, 0, 0)',
+						'transform'         : 'rotateY(-90deg) translate3d(-'+translateDistance+'px, 0, 0)'
+					};
+				break;
+				case 'up':
+					return {
+						'transition'        : 'all '+transitionSpeed+'s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+						'-webkit-transform' : 'rotateX(90deg) translate3d(0, -'+translateDistance+'px, 0)',
+						'transform'         : 'rotateX(90deg) translate3d(0, -'+translateDistance+'px, 0)'
+					};
+				break;
+				case 'down':
+					return {
+						'transition'        : 'all '+transitionSpeed+'s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+						'-webkit-transform' : 'rotateX(-90deg) translate3d(0, '+translateDistance+'px, 0)',
+						'transform'         : 'rotateX(-90deg) translate3d(0, '+translateDistance+'px, 0)'
+					};
+				break;
+			}
+		},
 		side: function(direction, isNextSide){
 			var translateDistance = gridService.getHalfItemWidth();
 			if(isNextSide) {

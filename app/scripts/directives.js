@@ -47,7 +47,7 @@ angular.module('Portfolio').directive('gridResize', function($window, gridServic
 // - don't show cube until both sides are rendered on first page load
 // - 3d transitions should stop when user focus leaves window
 // - fallback transition for older browsers
-angular.module('Portfolio').directive('cube', function($timeout, $animate, gridService){
+angular.module('Portfolio').directive('cube', function($timeout, $animate, gridService, cubeCSS){
 	return {
 		link: function(scope, element, attrs) {
 			var transitionSpeed = 0.7;
@@ -71,34 +71,9 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 
 						// this timeout makes sure that the css set above takes effect before the transition starts (mostly a FF problem)
 						setTimeout(function(){
-							element.css({'transition' : 'all '+transitionSpeed+'s cubic-bezier(0.25, 0.46, 0.45, 0.94)'});
+							//element.css({'transition' : 'all '+transitionSpeed+'s cubic-bezier(0.25, 0.46, 0.45, 0.94)'});
 							element.addClass('animate');
-							switch(scope.project.cube.direction) {
-								case 'right':
-									element.css({
-										'-webkit-transform' : 'rotateY(90deg) translate3d('+translateDistance+'px, 0, 0)',
-										'transform'         : 'rotateY(90deg) translate3d('+translateDistance+'px, 0, 0)'
-									});
-								break;
-								case 'left':
-									element.css({
-										'-webkit-transform' : 'rotateY(-90deg) translate3d(-'+translateDistance+'px, 0, 0)',
-										'transform'         : 'rotateY(-90deg) translate3d(-'+translateDistance+'px, 0, 0)'
-									});
-								break;
-								case 'up':
-									element.css({
-										'-webkit-transform' : 'rotateX(90deg) translate3d(0, -'+translateDistance+'px, 0)',
-										'transform'         : 'rotateX(90deg) translate3d(0, -'+translateDistance+'px, 0)'
-									});
-								break;
-								case 'down':
-									element.css({
-										'-webkit-transform' : 'rotateX(-90deg) translate3d(0, '+translateDistance+'px, 0)',
-										'transform'         : 'rotateX(-90deg) translate3d(0, '+translateDistance+'px, 0)'
-									});
-								break;
-							}
+							element.css(cubeCSS.cube(scope.project.cube.direction, transitionSpeed));
 						}, 100);
 					}, transitionDelay);
 
@@ -187,7 +162,6 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 			preloadImage();
 
 			// cube is transitioning, apply 3d rules to the sides
-			// TODO: simplify this
 			scope.$watch(function(){ return scope.project.cube.transition }, function(val){
 				if(!val) return;
 				element.css(cubeCSS.side(scope.project.cube.direction, isNextSide));
