@@ -1,5 +1,5 @@
 <div class="item-content" ng-controller="ItemCtrl">
-	<a class="item-link" ui-sref="index.project({projectId: project.id})">
+	<a class="item-link" ng-mouseenter="onMouseOver()" ng-mouseleave="onMouseOut()" ui-sref="index.project({projectId: project.id})">
 		
 	</a>
 	<div class="item-cube-container" ng-if="project.cube">

@@ -57,35 +57,41 @@ function($rootScope, $scope, aboutService) {
 }]);
 
 // Grid item controller
-// TODO: store timer in model so we can clear it in case of screen resize etc
 angular.module('Portfolio').controller('ItemCtrl',
 ['$rootScope', '$scope', '$http', '$timeout',
 function($rootScope, $scope, $http, $timeout) {
-	// model is already there. This probably means the user switched screen sizes and re-rendered the grid
-	// cancel any transition timers and reset the model
-	if($scope.project.cube) {
-		if($scope.project.cube.transitionTimer) {
-			$timeout.cancel($scope.project.cube.transitionTimer);
+	// clear both transition timers on the project cube
+	var clearTimers = function() {
+		if($scope.project.cube) {
+			if($scope.project.cube.transitionTimer) {
+				$timeout.cancel($scope.project.cube.transitionTimer);
+			}
+			if($scope.project.cube.transitionWaitTimer) {
+				$timeout.cancel($scope.project.cube.transitionWaitTimer);
+			}
 		}
-		if($scope.project.cube.transitionWaitTimer) {
-			$timeout.cancel($scope.project.cube.transitionWaitTimer);
-		}
-		$scope.project.cube = null;
-		$scope.$apply;
-	}
+	};
+	clearTimers();
+	// if cube model was already there we just reset it (happens when grid changes on screen resize for example)
+	$scope.project.cube = null;
+	$scope.$apply;
 
 	// set cube model
-	//var index = Math.floor(Math.random()*$scope.project.images.length), nextIndex;
-	var index = 0, nextIndex;
+	var index = Math.floor(Math.random()*$scope.project.images.length), nextIndex;
 	if(index === $scope.project.images.length - 1) {
 		nextIndex = 0;
 	} else {
 		nextIndex = index + 1;
 	}
+
+	// TODO: move to a service
 	$scope.getRandomDirection = function() {
 		var directions = ['left', 'right', 'up', 'down'];
 		return directions[Math.floor(Math.random()*directions.length)];
 	};
+
+	// Set cube & project item vars
+	//$scope.project.mouseOver = $scope.project.selected = false;
 	$scope.project.cube = {
 		index                : index,			// used for tracking the current image
 		nextIndex            : nextIndex,		// used for tracking the next image in queue
@@ -93,8 +99,21 @@ function($rootScope, $scope, $http, $timeout) {
 		sideArchive          : [],				// used for storing sides that have already been loaded for less network calls
 		transition           : false,			// cube is in transition
 		transitionComplete   : false,			// cube has completed transition
+		pause                : false,
 		transitionWaitTimer  : null,			// random ammount of time the cube waits before animating to the next side
 		transitionTimer      : null,			// full timer that includes the random wait delay above ^,
 		direction            : $scope.getRandomDirection()
+	};
+
+	// user is hovering over this project cube
+	$scope.onMouseOver = function() {
+		$scope.project.cube.pause = true;
+		//$scope.project.mouseOver = true;
+		//clearTimers();
+	};
+	$scope.onMouseOut = function() {
+		console.log('out');
+		///if(!first)
+		$scope.project.cube.pause = false;
 	};
 }]);

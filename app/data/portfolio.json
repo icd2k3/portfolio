@@ -33,6 +33,83 @@
 				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
 				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
 			]
+		},
+		{
+			"id": 2,
+			"title": "Pathbrite",
+			"descShort": "",
+			"descLong": "erfoqpwef",
+			"images": [
+				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
+				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
+				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
+			]
+		},
+		{
+			"id": 3,
+			"title": "Pathbrite",
+			"descShort": "",
+			"descLong": "erfoqpwef",
+			"images": [
+				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
+				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
+				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
+			]
+		},
+		{
+			"id": 4,
+			"title": "Pathbrite",
+			"descShort": "",
+			"descLong": "erfoqpwef",
+			"images": [
+				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
+				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
+				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
+			]
+		},
+		{
+			"id": 5,
+			"title": "Pathbrite",
+			"descShort": "",
+			"descLong": "erfoqpwef",
+			"images": [
+				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
+				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
+				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
+			]
+		},
+		{
+			"id": 6,
+			"title": "Pathbrite",
+			"descShort": "",
+			"descLong": "erfoqpwef",
+			"images": [
+				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
+				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
+				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
+			]
+		},
+		{
+			"id": 7,
+			"title": "Pathbrite",
+			"descShort": "",
+			"descLong": "erfoqpwef",
+			"images": [
+				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
+				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
+				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
+			]
+		},
+		{
+			"id": 8,
+			"title": "Pathbrite",
+			"descShort": "",
+			"descLong": "erfoqpwef",
+			"images": [
+				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
+				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
+				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
+			]
 		}
 	]
 }
