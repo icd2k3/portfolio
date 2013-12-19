@@ -61,7 +61,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 					// transition the cube to the next side
 					// NOTE: we have to manually apply css here as 3d translates don't support percentages
 					scope.project.cube.transitionWaitTimer = $timeout(function(){
-						var translateDistance = gridService.getZ();
+						var translateDistance = gridService.getHalfItemWidth();
 
 						scope.project.cube.transition = true;
 						element.css({
@@ -130,7 +130,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 
 // handles loading of cube side images and setting next & current side elements for the cube directive to use
 // TODO: keep previous sides and make them invisible, then pull them back in if cube index resets
-angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, gridService){
+angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, gridService, cubeCSS){
 	return {
 		link: function(scope, element, attrs) {
 			var isNextSide = element.hasClass('two');
@@ -139,14 +139,33 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 			var preloadImage = function() {
 				var index        = isNextSide ? scope.project.cube.nextIndex : scope.project.cube.index,
 					loadComplete = function() {
+						var $archiveSide;
+						for(var i=0; i<scope.project.cube.sideArchive.length; i++) {
+							if(index === scope.project.cube.sideArchive[i].index) {
+								$archiveSide = scope.project.cube.sideArchive[i].side;
+							}
+						}
 						console.log('load complete');
 						// set cube side background to the image after it's finished loading
-						element.css({
-							'background-image' : 'url('+scope.project.images[index].src+')',
-							'background-size'  : 'cover'
-						});
-						// remove the img tag as it's no longer needed
-						if($img) { $img.unbind().remove(); }
+						if(!$archiveSide) {
+							element.css({
+								'background-image' : 'url('+scope.project.images[index].src+')',
+								'background-size'  : 'cover'
+							});
+							// remove the img tag as it's no longer needed
+							if($img) { $img.unbind().remove(); }
+
+							// archive the side to use later (no extra network calls)
+							$archiveSide = element.clone();
+							$archiveSide.removeClass('one two').addClass('archive');
+							element.parent().append($archiveSide)
+							scope.project.cube.sideArchive.push({index: index, side: $archiveSide});
+						} else {
+							console.log('archive side found');
+							//element.remove();
+							element = $archiveSide;
+							element.removeClass('archive').addClass('archive-active');
+						}
 
 						scope.project.images[index].loaded = true;
 
@@ -171,40 +190,7 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 			// TODO: simplify this
 			scope.$watch(function(){ return scope.project.cube.transition }, function(val){
 				if(!val) return;
-				var translateDistance = gridService.getZ();
-				if(isNextSide) {
-					switch(scope.project.cube.direction) {
-						case 'right':
-							element.css({
-								'-webkit-transform' : 'rotateY(-90deg) translate3d(0, 0, '+translateDistance+'px)',
-								'transform'         : 'rotateY(-90deg) translate3d(0, 0, '+translateDistance+'px)'
-							});
-						break;
-						case 'left':
-							element.css({
-								'-webkit-transform' : 'rotateY(90deg) translate3d(0, 0, '+translateDistance+'px)',
-								'transform'         : 'rotateY(90deg) translate3d(0, 0, '+translateDistance+'px)'
-							});
-						break;
-						case 'up':
-							element.css({
-								'-webkit-transform' : 'rotateX(-90deg) translate3d(0, 0, '+translateDistance+'px)',
-								'transform'         : 'rotateX(-90deg) translate3d(0, 0, '+translateDistance+'px)'
-							});
-						break;
-						case 'down':
-							element.css({
-								'-webkit-transform' : 'rotateX(90deg) translate3d(0, 0, '+translateDistance+'px)',
-								'transform'         : 'rotateX(90deg) translate3d(0, 0, '+translateDistance+'px)'
-							});
-						break;
-					}
-				} else {
-					element.css({
-						'-webkit-transform' : 'translate3d(0, 0, '+translateDistance+'px)',
-						'transform'         : 'translate3d(0, 0, '+translateDistance+'px)'
-					});
-				}
+				element.css(cubeCSS.side(scope.project.cube.direction, isNextSide));
 			});
 
 			// swap cube sides: side 2 becomes side 1, and the new side 2 renders the next image of the cube
@@ -216,9 +202,13 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 				});
 				if(isNextSide) {
 					isNextSide = false;
-					element.addClass('one').removeClass('two');
+					element.removeClass('two').addClass('one');
 				} else {
-					element.addClass('two').removeClass('one');
+					element.removeClass('one').addClass('two');
+					// if this was an archived side, send it back to the archive
+					if(element.hasClass('archive-active')) {
+						element.addClass('archive');
+					}
 					isNextSide = true;
 					preloadImage();
 				}

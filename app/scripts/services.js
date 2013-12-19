@@ -22,7 +22,7 @@ angular.module('Portfolio').service('gridService', function(){
 		z: 188
 	};
 	return {
-		getZ: function() {
+		getHalfItemWidth: function() {
 			return Math.round((sharedData.windowWidth / sharedData.projectsPerRow) * 0.5);
 		},
 		setWindowWidth: function(w) { sharedData.windowWidth = w; },
@@ -31,10 +31,43 @@ angular.module('Portfolio').service('gridService', function(){
 });
 
 // TODO: move css logic from directives to here
-angular.module('Portfolio').service('cubeSide', function(){
+angular.module('Portfolio').service('cubeCSS', function(gridService){
 	return {
-		getCSS: function(direction){
-
+		side: function(direction, isNextSide){
+			var translateDistance = gridService.getHalfItemWidth();
+			if(isNextSide) {
+				switch(direction) {
+					case 'right':
+						return {
+							'-webkit-transform' : 'rotateY(-90deg) translate3d(0, 0, '+translateDistance+'px)',
+							'transform'         : 'rotateY(-90deg) translate3d(0, 0, '+translateDistance+'px)'
+						};
+					break;
+					case 'left':
+						return {
+							'-webkit-transform' : 'rotateY(90deg) translate3d(0, 0, '+translateDistance+'px)',
+							'transform'         : 'rotateY(90deg) translate3d(0, 0, '+translateDistance+'px)'
+						};
+					break;
+					case 'up':
+						return {
+							'-webkit-transform' : 'rotateX(-90deg) translate3d(0, 0, '+translateDistance+'px)',
+							'transform'         : 'rotateX(-90deg) translate3d(0, 0, '+translateDistance+'px)'
+						};
+					break;
+					case 'down':
+						return {
+							'-webkit-transform' : 'rotateX(90deg) translate3d(0, 0, '+translateDistance+'px)',
+							'transform'         : 'rotateX(90deg) translate3d(0, 0, '+translateDistance+'px)'
+						};
+					break;
+				}
+			} else {
+				return {
+					'-webkit-transform' : 'translate3d(0, 0, '+translateDistance+'px)',
+					'transform'         : 'translate3d(0, 0, '+translateDistance+'px)'
+				};
+			}
 		}
 	}
 });

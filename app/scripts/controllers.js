@@ -75,7 +75,8 @@ function($rootScope, $scope, $http, $timeout) {
 	}
 
 	// set cube model
-	var index = Math.floor(Math.random()*$scope.project.images.length), nextIndex;
+	//var index = Math.floor(Math.random()*$scope.project.images.length), nextIndex;
+	var index = 0, nextIndex;
 	if(index === $scope.project.images.length - 1) {
 		nextIndex = 0;
 	} else {
@@ -89,6 +90,7 @@ function($rootScope, $scope, $http, $timeout) {
 		index                : index,			// used for tracking the current image
 		nextIndex            : nextIndex,		// used for tracking the next image in queue
 		sidesLoaded          : 0,				// used for knowing when both sides of the cube are loaded
+		sideArchive          : [],				// used for storing sides that have already been loaded for less network calls
 		transition           : false,			// cube is in transition
 		transitionComplete   : false,			// cube has completed transition
 		transitionWaitTimer  : null,			// random ammount of time the cube waits before animating to the next side
