@@ -7,6 +7,7 @@
 @import '_common';
 @import "compass/css3/transition";
 @import "compass/css3/transform";
+@import "compass/css3/images";
 
 // BODY & CONTAINER //////
 html, body { @include size(100%, 100%); padding: 0; margin: 0; }
@@ -63,15 +64,60 @@ body {
     }
 }
 .item-link {
-    @include single-transition(opacity, 0.25s, $ease-out-quad);
     @include position-absolute($z-index: 1);
-    //position: absolute;
     @include size(100%, 100%);
     display: block;
-    background-color: #000;
-    opacity: 0;
+    overflow: hidden;
+    .gradient {
+        @include single-transition(opacity, 0.25s, linear);
+        @include background-image(linear-gradient(transparent 50%, #000 100%));
+        @include size(100%, 100%);
+        @include position-absolute($z-index: 1);
+        opacity: 0;
+    }
+    .info {
+        @include single-transition(opacity, 0.25s, linear);
+        @include position-absolute($bottom: 0, $z-index: 2);
+        @include font($color: #FFF);
+        padding: 0 100px 0 20px;
+        opacity: 0;
+        .title {
+            @include font($size: 24px);
+            display: block;
+            margin-bottom: 5px;
+        }
+        .client {
+            @include font($size: 12px, $color: #CCC);
+        }
+        p {
+            @include font($size: 14px);
+        }
+    }
+    .more-info {
+        &:before {
+            @include single-transition(all, 0.15s, $ease-out-quad);
+            @include position-absolute($right: -100px, $bottom: -100px, $z-index: 2);
+            border-right: 100px solid $lime;
+            border-top: 100px solid transparent;
+            width: 0;
+            content: '';
+        }
+        &:hover {
+            &:before {
+                border-top: 100px solid $lime;
+            }
+        }
+    }
     &:hover, &:focus {
-        opacity: 0.5;
+        .gradient {
+            opacity: 0.6;
+        }
+        .info {
+            opacity: 1;
+        }
+        .more-info:before {
+            @include position-absolute($right: 0px, $bottom: 0px);
+        }
     }
 }
 .item-content {

@@ -24,8 +24,17 @@
 	},
 	"projects":[
 		{
-			"id": 1,
 			"title": "Pathbrite",
+			"descShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras imperdiet nulla sed metus adipiscing eleifend. Suspendisse lorem nisl.",
+			"descLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras imperdiet nulla sed metus adipiscing eleifend. Suspendisse lorem nisl, egestas sit amet",
+			"images": [
+				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
+				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
+				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
+			]
+		},
+		{
+			"title": "Lux Ahoy",
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
@@ -35,8 +44,7 @@
 			]
 		},
 		{
-			"id": 2,
-			"title": "Pathbrite",
+			"title": "What If",
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
@@ -46,8 +54,7 @@
 			]
 		},
 		{
-			"id": 3,
-			"title": "Pathbrite",
+			"title": "The Maester's Path",
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
@@ -57,8 +64,7 @@
 			]
 		},
 		{
-			"id": 4,
-			"title": "Pathbrite",
+			"title": "Lunchables Dream Hangout",
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
@@ -68,8 +74,7 @@
 			]
 		},
 		{
-			"id": 5,
-			"title": "Pathbrite",
+			"title": "Another project",
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
@@ -79,8 +84,7 @@
 			]
 		},
 		{
-			"id": 6,
-			"title": "Pathbrite",
+			"title": "Yet another project",
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
@@ -90,19 +94,7 @@
 			]
 		},
 		{
-			"id": 7,
-			"title": "Pathbrite",
-			"descShort": "",
-			"descLong": "erfoqpwef",
-			"images": [
-				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
-				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
-				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
-			]
-		},
-		{
-			"id": 8,
-			"title": "Pathbrite",
+			"title": "a final project",
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [

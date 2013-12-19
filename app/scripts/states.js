@@ -27,7 +27,7 @@ angular.module('Portfolio').config(['$stateProvider', '$urlRouterProvider', '$lo
 			url: ''
 		})
 		.state('index.project', {
-			url: 'project/:projectId',
+			url: 'project/:id',
 			templateUrl: '/views/partials/project.html'
 		});
 }]);

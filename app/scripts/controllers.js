@@ -6,8 +6,8 @@
 
 // Main grid controller
 angular.module('Portfolio').controller('GridCtrl',
-['$rootScope', '$scope', '$state', '$stateParams', 'data', 'aboutService',
-function($rootScope, $scope, $state, $stateParams, data, aboutService) {
+['$rootScope', '$scope', '$state', '$stateParams', 'data', 'aboutService', 'Convert',
+function($rootScope, $scope, $state, $stateParams, data, aboutService, Convert) {
 	// set shared vars
 	aboutService.set(data.about);
 
@@ -29,22 +29,20 @@ function($rootScope, $scope, $state, $stateParams, data, aboutService) {
 	// assign class for grid (one-up, two-up, three-up, etc)
 	// TODO: move this to a service or into the grid resize directive
 	$scope.gridClass = function(projectsPerRow) {
-		var textNums = ['zero','one','two','three','four','five','six','seven','eight','nine','ten'];
-		return textNums[projectsPerRow]+'-up';
+		return Convert.numToString(projectsPerRow)+'-up';
 	};
 
-	$scope.renderProject = function(row) {
-		// returns boolean for template to know if it should render project details or not
-		return (row + 1) === Math.ceil($scope.projectDetails.projectId / $scope.grid.projectsPerRow);
-	};
-
-	// handle route changes from ui-router directly in the grid
-	// TODO: change this event to on state start and handle animate-out before animate in
+	// handle route changes
 	$scope.$on('$stateChangeSuccess', function(evt, toState, toParams, fromState, fromParams) {
 		evt.preventDefault();
-		// find the row the project details should render in
+		// find the correct project if user has routed to one
 		if(toState.name === 'index.project' && $scope.projectsPerRow !== 0) {
-			$scope.projectDetails.projectId = toParams.projectId;
+			for(var i=0; i<$scope.projects.length; i++) {
+				if($scope.projects[i].id === toParams.id) {
+					$scope.projectDetails = $scope.projects[i];
+					break;
+				}
+			}
 		}
 	});
 }]);
@@ -71,18 +69,8 @@ function($rootScope, $scope, $http, $timeout) {
 			}
 		}
 	};
+	// cube model might already exist (for example, if user resized the grid) so we need to clear any active timers before restting the model
 	clearTimers();
-	// if cube model was already there we just reset it (happens when grid changes on screen resize for example)
-	$scope.project.cube = null;
-	$scope.$apply;
-
-	// set cube model
-	var index = Math.floor(Math.random()*$scope.project.images.length), nextIndex;
-	if(index === $scope.project.images.length - 1) {
-		nextIndex = 0;
-	} else {
-		nextIndex = index + 1;
-	}
 
 	// TODO: move to a service
 	$scope.getRandomDirection = function() {
@@ -91,7 +79,12 @@ function($rootScope, $scope, $http, $timeout) {
 	};
 
 	// Set cube & project item vars
-	//$scope.project.mouseOver = $scope.project.selected = false;
+	var index = Math.floor(Math.random()*$scope.project.images.length), nextIndex;
+	if(index === $scope.project.images.length - 1) {
+		nextIndex = 0;
+	} else {
+		nextIndex = index + 1;
+	}
 	$scope.project.cube = {
 		index                : index,			// used for tracking the current image
 		nextIndex            : nextIndex,		// used for tracking the next image in queue
@@ -99,21 +92,13 @@ function($rootScope, $scope, $http, $timeout) {
 		sideArchive          : [],				// used for storing sides that have already been loaded for less network calls
 		transition           : false,			// cube is in transition
 		transitionComplete   : false,			// cube has completed transition
-		pause                : false,
+		pause                : false,			// pause the cube if user is hovering on it or it's currently selected
 		transitionWaitTimer  : null,			// random ammount of time the cube waits before animating to the next side
 		transitionTimer      : null,			// full timer that includes the random wait delay above ^,
 		direction            : $scope.getRandomDirection()
 	};
 
 	// user is hovering over this project cube
-	$scope.onMouseOver = function() {
-		$scope.project.cube.pause = true;
-		//$scope.project.mouseOver = true;
-		//clearTimers();
-	};
-	$scope.onMouseOut = function() {
-		console.log('out');
-		///if(!first)
-		$scope.project.cube.pause = false;
-	};
+	$scope.onMouseOver = function() { $scope.project.cube.pause = true; };
+	$scope.onMouseOut = function() { $scope.project.cube.pause = false; };
 }]);

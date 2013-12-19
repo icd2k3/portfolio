@@ -8,8 +8,8 @@
 		<div class="grid-row" grid-row-directive data-row-height="{{rowHeight}}">
 			<div class="grid-project" ng-repeat="project in projects | filter:{row: $index}" grid-project ng-class="{active : project.cube.transition}" ng-include="templates.item" data-index="{{$index}}"></div>
 		 </div>
-		 <div class="project-details project-animation" ng-if="renderProject($index)">
-		 	ProjectID: {{projectDetails.projectId}}<br/>
+		 <div class="project-details project-animation" ng-if="projectDetails.row == $index">
+		 	Project: {{projectDetails.title}}<br/>
 		 	Row: {{$index+1}}<br/><br/><br/><br/><br/><br/><br/><br/><br/>
 		 </div>
 	 </div>

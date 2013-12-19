@@ -5,7 +5,10 @@ angular.module('Portfolio').factory('data', ['$http', function($http){
 		factory = {},
 		data    = $http.get(path).then(function(response){
 			for(var i=0; i<response.data.projects.length; i++) {
-				response.data.projects[i].index = i;
+				var project = response.data.projects[i];
+				project.index = i;
+				// set id as title url slug
+				project.id = project.title.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
 			}
 			return response.data;
 		});
@@ -18,15 +21,27 @@ angular.module('Portfolio').factory('data', ['$http', function($http){
 // Since 3d transforms don't support percentages, we have to let the cube know what dimensions it should be manually
 angular.module('Portfolio').service('gridService', function(){
 	var sharedData = {
-		windowWidth: 1024,
-		z: 188
+		windowWidth: 0,
+		projectsPerRow: 0
 	};
 	return {
 		getHalfItemWidth: function() {
 			return Math.round((sharedData.windowWidth / sharedData.projectsPerRow) * 0.5);
 		},
-		setWindowWidth: function(w) { sharedData.windowWidth = w; },
-		setProjectsPerRow: function(i) { sharedData.projectsPerRow = i; }
+		set: function(obj) {
+			if(obj.windowWidth) { sharedData.windowWidth = obj.windowWidth; }
+			if(obj.projectsPerRow) { sharedData.projectsPerRow = obj.projectsPerRow; }
+		}
+	};
+});
+
+// Unit conversion helpers
+angular.module('Portfolio').service('Convert', function(){
+	var textNums = ['zero','one','two','three','four','five','six','seven','eight','nine','ten'];
+	return {
+		numToString: function(num) {
+			return textNums[Math.round(num)];
+		}
 	};
 });
 

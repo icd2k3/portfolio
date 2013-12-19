@@ -32,8 +32,7 @@ angular.module('Portfolio').directive('gridResize', function($window, gridServic
 					});
 				}
 				// set vars in gridService so other directives can use the data
-				gridService.setWindowWidth(windowWidth);
-				gridService.setProjectsPerRow(projectsPerRow);
+				gridService.set({windowWidth: windowWidth, projectsPerRow: projectsPerRow});
 			};
 			angular.element($window).bind('resize', windowResize);
 			// trigger initial resize on first render
@@ -55,15 +54,14 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 					element.removeClass('animate');
 					scope.project.cube.transition = false;
 					scope.project.cube.sidesLoaded = 1;
-					// TODO: move to controller scope as function
+					// set next cube image index
 					scope.project.cube.index = scope.project.cube.nextIndex;
 					if(scope.project.cube.index === scope.project.images.length - 1) {
 						scope.project.cube.nextIndex = 0;
 					} else {
 						scope.project.cube.nextIndex = scope.project.cube.index + 1;
 					}
-
-					// reset
+					// clear transition
 					element.removeAttr('style');
 					scope.project.cube.transitionComplete = true;
 				},
@@ -94,6 +92,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 						scope.project.cube.transitionTimer = $timeout(transitionComplete, (transitionSpeed * 1000) + 100);
 					}, transitionDelay);
 				};
+
 			// watch for both sides of the cube to be loaded
 			scope.$watch(function(){ return scope.project.cube.sidesLoaded }, function(val){
 				if(val === 2) {
