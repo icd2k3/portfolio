@@ -38,11 +38,18 @@ function($rootScope, $scope, $state, $stateParams, data, aboutService, Convert) 
 		// find the correct project if user has routed to one
 		if(toState.name === 'index.project' && $scope.projectsPerRow !== 0) {
 			for(var i=0; i<$scope.projects.length; i++) {
+				if($scope.projects[i].selected) $scope.projects[i].selected = false;
 				if($scope.projects[i].id === toParams.id) {
 					$scope.projectDetails = $scope.projects[i];
-					break;
+					$scope.projects[i].selected = true;
+					//break;
 				}
 			}
+		} else if(toState.name === 'index.grid') {
+			for(var i=0; i<$scope.projects.length; i++) {
+				if($scope.projects[i].selected) $scope.projects[i].selected = false;
+			}
+			$scope.projectDetails = null;
 		}
 	});
 }]);
@@ -58,6 +65,7 @@ function($rootScope, $scope, aboutService) {
 angular.module('Portfolio').controller('ItemCtrl',
 ['$rootScope', '$scope', '$http', '$timeout',
 function($rootScope, $scope, $http, $timeout) {
+	console.log('item ctrl')
 	// clear both transition timers on the project cube
 	var clearTimers = function() {
 		if($scope.project.cube) {
@@ -100,5 +108,5 @@ function($rootScope, $scope, $http, $timeout) {
 
 	// user is hovering over this project cube
 	$scope.onMouseOver = function() { $scope.project.cube.pause = true; };
-	$scope.onMouseOut = function() { $scope.project.cube.pause = false; };
+	$scope.onMouseOut = function() { if(!$scope.project.selected) { $scope.project.cube.pause = false; } };
 }]);

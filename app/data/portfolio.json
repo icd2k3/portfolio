@@ -25,82 +25,102 @@
 	"projects":[
 		{
 			"title": "Pathbrite",
-			"descShort": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras imperdiet nulla sed metus adipiscing eleifend. Suspendisse lorem nisl.",
-			"descLong": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras imperdiet nulla sed metus adipiscing eleifend. Suspendisse lorem nisl, egestas sit amet",
+			"descriptionShort": "A large scale education technology web application.",
+			"description": "Pathbrite is a large scale education technology web application. Features incude e-portfolio creation, courses, assignments, student grading, and enterprise level community tools. During my time with this company I was responsible for developing several new features as well as improving old ones. I also assisted in making the site more mobile & touch friendly. If you would like a demo of the platform, please contact me at me@justin-schrader.com.",
 			"images": [
-				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
-				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
-				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
+				{"src": "/img/projects/pathbrite/1.jpg", "loaded": false},
+				{"src": "/img/projects/pathbrite/2.jpg", "loaded": false},
+				{"src": "/img/projects/pathbrite/3.jpg", "loaded": false}
 			]
 		},
 		{
 			"title": "Lux Ahoy",
+			"company": "Luxurious Animals",
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
-				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
 				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
-				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
+				{"src": "/img/projects/luxahoy/2.jpg", "loaded": false}
 			]
 		},
 		{
 			"title": "What If",
+			"client": "Morgan Stanley",
+			"company": "Luxurious Animals",
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
-				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
-				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
-				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
+				{"src": "/img/projects/what_if/1.jpg", "loaded": false},
+				{"src": "/img/projects/what_if/2.jpg", "loaded": false},
+				{"src": "/img/projects/what_if/3.jpg", "loaded": false}
+			]
+		},
+		{
+			"title": "Soup Stories",
+			"client": "Panera",
+			"company": "Luxurious Animals",
+			"descShort": "",
+			"descLong": "erfoqpwef",
+			"images": [
+				{"src": "/img/projects/soup_stories/1.jpg", "loaded": false},
+				{"src": "/img/projects/soup_stories/2.jpg", "loaded": false},
+				{"src": "/img/projects/soup_stories/3.jpg", "loaded": false}
+			]
+		},
+		{
+			"title": "Live Consciously",
+			"client": "Panera",
+			"company": "Luxurious Animals",
+			"descShort": "",
+			"descLong": "erfoqpwef",
+			"images": [
+				{"src": "/img/projects/lced/1.jpg", "loaded": false},
+				{"src": "/img/projects/lced/2.jpg", "loaded": false},
+				{"src": "/img/projects/lced/3.jpg", "loaded": false},
+				{"src": "/img/projects/lced/4.jpg", "loaded": false}
+			]
+		},
+		{
+			"title": "Luxurious Animals",
+			"company": "Luxurious Animals",
+			"descShort": "",
+			"descLong": "erfoqpwef",
+			"images": [
+				{"src": "/img/projects/lux_animals/1.jpg", "loaded": false},
+				{"src": "/img/projects/lux_animals/2.jpg", "loaded": false}
 			]
 		},
 		{
 			"title": "The Maester's Path",
+			"company": "Luxurious Animals",
+			"client": "HBO",
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
-				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
-				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
-				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
+				{"src": "/img/projects/got/1.jpg", "loaded": false},
+				{"src": "/img/projects/got/2.jpg", "loaded": false}
 			]
 		},
 		{
-			"title": "Lunchables Dream Hangout",
+			"title": "Dream Hangout",
+			"company": "Luxurious Animals",
+			"client": "Lunchables",
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
-				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
-				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
-				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
+				{"src": "/img/projects/lunchables/1.jpg", "loaded": false},
+				{"src": "/img/projects/lunchables/2.jpg", "loaded": false}
 			]
 		},
 		{
-			"title": "Another project",
+			"title": "Winning On The Road",
+			"company": "Luxurious Animals",
+			"client": "CDW",
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
-				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
-				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
-				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
-			]
-		},
-		{
-			"title": "Yet another project",
-			"descShort": "",
-			"descLong": "erfoqpwef",
-			"images": [
-				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
-				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
-				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
-			]
-		},
-		{
-			"title": "a final project",
-			"descShort": "",
-			"descLong": "erfoqpwef",
-			"images": [
-				{"src": "/img/projects/pathbrite/pathbrite_1.jpg", "loaded": false},
-				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
-				{"src": "/img/projects/panera_lced/1.jpg", "loaded": false}
+				{"src": "/img/projects/cdw/1.jpg", "loaded": false},
+				{"src": "/img/projects/cdw/2.jpg", "loaded": false}
 			]
 		}
 	]

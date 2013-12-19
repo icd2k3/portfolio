@@ -25,6 +25,16 @@
 	@if $width  != null {width:  $width;}
 	@if $height != null {height: $height;}
 }
+@mixin size-centered($width, $height) {
+	@if $width  != null {
+		width:  $width;
+		margin-left: -$width/2;
+	}
+	@if $height != null {
+		height: $height;
+		margin-top: -$height/2;
+	}
+}
 @mixin position-absolute($left:null, $top:null, $right:null, $bottom:null, $z-index:null) {
 	position: absolute;
 	@if $left    != null {left:   $left;}

@@ -12,4 +12,7 @@ $white : #FFF;
 
 // EASING //////////
 $ease-out-quad: cubic-bezier(0.250, 0.460, 0.450, 0.940);
-$ease-out-circ  : cubic-bezier(0.075, 0.820, 0.165, 1.000);
+$ease-out-circ: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+
+// SPACING /////////
+$padding: 30px;

@@ -3,21 +3,55 @@
 */
 
 // IMPORTS ///////////////
-@import '_mixins';
-@import '_common';
 @import "compass/css3/transition";
 @import "compass/css3/transform";
 @import "compass/css3/images";
+@import "compass/css3/box-shadow";
+@import '_mixins';
+@import '_common';
 
 // BODY & CONTAINER //////
 html, body { @include size(100%, 100%); padding: 0; margin: 0; }
 body {
     @include font($family: $font-source-sans-pro, $color: $white);
-    background-color: $black;
+    background: url(/img/background.png) repeat #000;
+    background-color: $white;
 }
 #container {
     @include size(inherit, inherit);
 }
+
+// GLOBAL
+::selection {
+    color: $lime;
+    background: $black;
+}
+::-moz-selection {
+    color: $lime;
+    background: $black;
+}
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    background: $black;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: $lime;
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: $lime;
+}
+.alpha, .omega {
+    width: 50%;
+}
+.alpha { float: left; }
+.omega { float: right; }
 
 // GRID //////////////////
 #grid {
@@ -59,8 +93,34 @@ body {
     background-size: cover;
     float: left;
     z-index: 1;
+    .selected-container {
+        @include size($width: 100%, $height: 100%);
+        position: absolute;
+        overflow: hidden;
+    }
+    .selected-tip {
+        @include single-transition(bottom, 0.25s, $ease-out-quad);
+        @include position-absolute($bottom: -34px, $left: 50%, $z-index: 3);
+        @include size-centered(68px, 34px);
+        background: url(/img/selected.png) no-repeat;
+    }
     &.animate {
         z-index: 2;
+    }
+    &.selected {
+        .item-link {
+            cursor: default;
+        }
+        .gradient, .info {
+            opacity: 0 !important;
+        }
+        .more-info:before {
+            right: -100px !important;
+            bottom: -100px !important;
+        }
+        .selected-tip {
+            bottom: 0px;
+        }
     }
 }
 .item-link {
@@ -69,17 +129,17 @@ body {
     display: block;
     overflow: hidden;
     .gradient {
-        @include single-transition(opacity, 0.25s, linear);
+        @include single-transition(opacity, 0.15s, linear);
         @include background-image(linear-gradient(transparent 50%, #000 100%));
         @include size(100%, 100%);
         @include position-absolute($z-index: 1);
         opacity: 0;
     }
     .info {
-        @include single-transition(opacity, 0.25s, linear);
+        @include single-transition(opacity, 0.15s, linear);
         @include position-absolute($bottom: 0, $z-index: 2);
         @include font($color: #FFF);
-        padding: 0 100px 0 20px;
+        padding: 0 100px $padding $padding;
         opacity: 0;
         .title {
             @include font($size: 24px);
@@ -91,6 +151,7 @@ body {
         }
         p {
             @include font($size: 14px);
+            margin: 0;
         }
     }
     .more-info {
@@ -104,16 +165,13 @@ body {
         }
         &:hover {
             &:before {
-                border-top: 100px solid $lime;
+                border-right: 100px solid $black;
             }
         }
     }
     &:hover, &:focus {
-        .gradient {
-            opacity: 0.6;
-        }
-        .info {
-            opacity: 1;
+        .gradient, .info {
+            opacity: 0.95;
         }
         .more-info:before {
             @include position-absolute($right: 0px, $bottom: 0px);
@@ -161,6 +219,20 @@ body {
 // PROJECT ///////////////////
 .project-details {
     overflow: hidden;
+    position: relative;
+    .alpha, .omega {
+        padding: $padding;
+    }
+    p {
+        @include font($size: 16px, $line-height: 32px);
+    }
+    h1 {
+        @include font($color: $lime, $weight: normal);
+        margin: 0 0 15px;
+    }
+    .close {
+        @include position-absolute($top: $padding, $right: $padding);
+    }
 }
 
 // LOGO //////////////////////
@@ -199,7 +271,7 @@ body {
 .project-animation {
     max-height: 500px;
     &.ng-enter, &.ng-leave {
-        @include single-transition(max-height, 0.25s, $ease-out-quad);
+        @include single-transition(max-height, 0.5s, $ease-out-quad);
     }
     &.ng-enter { max-height: 0px; }
     &.ng-enter-active { max-height: 500px; }

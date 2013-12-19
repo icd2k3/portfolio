@@ -68,14 +68,14 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 				transitionInit = function(){
 					if(scope.project.cube.pause) return;
 					scope.project.cube.transitionComplete = false;
-					var transitionDelay = Math.round(Math.random()*7000)+2000;
-					scope.project.cube.direction = scope.getRandomDirection();
+					var transitionDelay = Math.round(Math.random()*15000)+2000;
 
 					// transition the cube to the next side
 					// NOTE: we have to manually apply css here as 3d translates don't support percentages
 					scope.project.cube.transitionWaitTimer = $timeout(function(){
 						if(scope.project.cube.pause) return;
 						var translateDistance = gridService.getHalfItemWidth();
+						scope.project.cube.direction = scope.getRandomDirection();
 						scope.project.cube.transition = true;
 						element.css({
 							'-webkit-transform' : 'translate3d(0, 0, -'+translateDistance+'px)',
@@ -102,11 +102,23 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 				}
 			});
 
+			scope.$watch(function(){ return scope.project.selected; }, function(newVal, oldVal){
+				if(newVal) {
+					scope.project.cube.pause = true;
+				} else {
+					scope.project.cube.pause = false;
+				}
+			});
+
 			scope.$watch(function(){ return scope.project.cube.pause; }, function(newVal, oldVal){
 				if(oldVal === newVal) return;
 				if(newVal) {
 					// clear animation timer on hover
 					if(scope.project.cube.transitionWaitTimer) { $timeout.cancel(scope.project.cube.transitionWaitTimer); }
+					if(scope.project.cube.transitionTimer) { $timeout.cancel(scope.project.cube.transitionTimer); }
+					if(scope.project.cube.transition) {
+						transitionComplete();
+					}
 				} else {
 					// reset the transition
 					transitionInit();
