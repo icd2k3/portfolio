@@ -1,0 +1,34 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-12-20: Created.
+-->
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>
+Created by FontForge 20120731 at Fri Dec 20 14:23:12 2013
+ By Justin Schrader
+Created by Justin Schrader with FontForge 2.0 (http://fontforge.sf.net)
+</metadata>
+<defs>
+<font id="fontcustom" horiz-adv-x="512" >
+  <font-face 
+    font-family="fontcustom"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="512"
+    panose-1="2 0 6 9 0 0 0 0 0 0"
+    ascent="448"
+    descent="-64"
+    bbox="27.3877 -53.1836 457.312 433.296"
+    underline-thickness="25.6"
+    underline-position="-51.2"
+    unicode-range="U+F100-F101"
+  />
+    <missing-glyph />
+    <glyph glyph-name="uniF100" unicode="&#xf100;" 
+d="M298.912 433.296l45.248 -45.248l-67.8721 -67.8721l181.023 -181.04l-192.336 -192.319l-45.2637 45.248l147.088 147.071l-181.023 181.04zM129.2 82.5762l56.5762 56.5596l-90.5127 90.5283l45.248 45.248l135.776 -135.776l-101.824 -101.808zM72.6357 342.801
+l45.2607 -45.248l-45.248 -45.2607l-45.2607 45.248z" />
+    <glyph glyph-name="uniF101" unicode="&#xf101;" 
+d="M448 304v-64h-96v-256h-272v64h208v256h160zM80 176h80v128h64v-192h-144v64zM160 336v64h64v-64h-64z" />
+  </font>
+</defs></svg>

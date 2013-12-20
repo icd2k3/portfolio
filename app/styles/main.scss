@@ -9,19 +9,20 @@
 @import "compass/css3/box-shadow";
 @import '_mixins';
 @import '_common';
+@import '_fontcustom';
 
 // BODY & CONTAINER //////
 html, body { @include size(100%, 100%); padding: 0; margin: 0; }
 body {
     @include font($family: $font-source-sans-pro, $color: $white);
-    background: url(/img/background.png) repeat #000;
+    background: url(/images/background.png) repeat #000;
     background-color: $white;
 }
 #container {
     @include size(inherit, inherit);
 }
 
-// GLOBAL
+// GLOBAL ///////////////
 ::selection {
     color: $lime;
     background: $black;
@@ -52,6 +53,15 @@ body {
 }
 .alpha { float: left; }
 .omega { float: right; }
+
+// ICONS /////////////////
+.fc-icon {
+
+}
+.fc-icon-logo-rotated {
+    @include position-absolute($top: 3px, $left: 3px, $z-index: 1);
+    @include font($size: 54px);
+}
 
 // GRID //////////////////
 #grid {
@@ -102,7 +112,7 @@ body {
         @include single-transition(bottom, 0.25s, $ease-out-quad);
         @include position-absolute($bottom: -34px, $left: 50%, $z-index: 3);
         @include size-centered(68px, 34px);
-        background: url(/img/selected.png) no-repeat;
+        background: url(/images/selected.png) no-repeat;
     }
     &.animate {
         z-index: 2;
@@ -250,6 +260,9 @@ body {
         &:hover {
             &:before {
                 border-top: 100px solid $lime;
+            }
+            .fc-icon {
+                color: $black;
             }
         }
     }

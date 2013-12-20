@@ -212,8 +212,39 @@ module.exports = function (grunt) {
     usemin: {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+      js: '<%= yeoman.dist %>/{,*/}*.json',
       options: {
-        assetsDirs: ['<%= yeoman.dist %>']
+        assetsDirs: ['<%= yeoman.dist %>','<%= yeoman.dist %>/images'],
+        patterns: {
+          // this is annoying, but apparently there is no reliable way to parse js, so we have to define images manually here
+          // so this has to change whenever the json changes
+          // https://github.com/yeoman/grunt-usemin/issues/244#issuecomment-29633005
+          js: [
+            [/(pathbrite_1.jpg)/g, ''],
+            [/(pathbrite_2.jpg)/g, ''],
+            [/(pathbrite_3.jpg)/g, ''],
+            [/(luxahoy_1.jpg)/g, ''],
+            [/(luxahoy_2.jpg)/g, ''],
+            [/(whatif_1.jpg)/g, ''],
+            [/(whatif_2.jpg)/g, ''],
+            [/(whatif_3.jpg)/g, ''],
+            [/(soupstories_1.jpg)/g, ''],
+            [/(soupstories_2.jpg)/g, ''],
+            [/(soupstories_3.jpg)/g, ''],
+            [/(lced_1.jpg)/g, ''],
+            [/(lced_2.jpg)/g, ''],
+            [/(lced_3.jpg)/g, ''],
+            [/(lced_4.jpg)/g, ''],
+            [/(luxanimals_1.jpg)/g, ''],
+            [/(luxanimals_2.jpg)/g, ''],
+            [/(got_1.jpg)/g, ''],
+            [/(got_2.jpg)/g, ''],
+            [/(lunchables_1.jpg)/g, ''],
+            [/(lunchables_2.jpg)/g, ''],
+            [/(cdw_1.jpg)/g, ''],
+            [/(cdw_2.jpg)/g, '']
+          ]
+        }
       }
     },
 
@@ -288,9 +319,14 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>',
           dest: '<%= yeoman.dist %>',
           src: [
-            '*.{ico,png,txt}',
+            '*.{ico,png,txt,json}',
             '.htaccess',
-            'bower_components/**/*',
+            '.htpasswd',
+            'bower_components/modernizr/modernizr_custom.js',
+            'bower_components/jquery/jquery.min.js',
+            'bower_components/es5-shim/es5-shim.js',
+            'bower_components/json3/lib/json3.min.js',
+            'fontcustom/{,*/}*.{woff,ttf,svg,eot}',
             'images/{,*/}*.{webp}',
             'fonts/*'
           ]

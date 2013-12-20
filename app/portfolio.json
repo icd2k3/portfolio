@@ -1,5 +1,4 @@
 {
-	"version": 0.1,
 	"about": {
 		"name": "Justin Schrader",
 		"profession": "Interactive Developer",
@@ -28,9 +27,9 @@
 			"descriptionShort": "A large scale education technology web application.",
 			"description": "Pathbrite is a large scale education technology web application. Features incude e-portfolio creation, courses, assignments, student grading, and enterprise level community tools. During my time with this company I was responsible for developing several new features as well as improving old ones. I also assisted in making the site more mobile & touch friendly. If you would like a demo of the platform, please contact me at me@justin-schrader.com.",
 			"images": [
-				{"src": "/img/projects/pathbrite/1.jpg", "loaded": false},
-				{"src": "/img/projects/pathbrite/2.jpg", "loaded": false},
-				{"src": "/img/projects/pathbrite/3.jpg", "loaded": false}
+				{"src": "/images/pathbrite_1.jpg", "loaded": false},
+				{"src": "/images/pathbrite_2.jpg", "loaded": false},
+				{"src": "/images/pathbrite_3.jpg", "loaded": false}
 			]
 		},
 		{
@@ -39,8 +38,8 @@
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
-				{"src": "/img/projects/luxahoy/1.jpg", "loaded": false},
-				{"src": "/img/projects/luxahoy/2.jpg", "loaded": false}
+				{"src": "/images/luxahoy_1.jpg", "loaded": false},
+				{"src": "/images/luxahoy_2.jpg", "loaded": false}
 			]
 		},
 		{
@@ -50,9 +49,9 @@
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
-				{"src": "/img/projects/what_if/1.jpg", "loaded": false},
-				{"src": "/img/projects/what_if/2.jpg", "loaded": false},
-				{"src": "/img/projects/what_if/3.jpg", "loaded": false}
+				{"src": "/images/whatif_1.jpg", "loaded": false},
+				{"src": "/images/whatif_2.jpg", "loaded": false},
+				{"src": "/images/whatif_3.jpg", "loaded": false}
 			]
 		},
 		{
@@ -62,9 +61,9 @@
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
-				{"src": "/img/projects/soup_stories/1.jpg", "loaded": false},
-				{"src": "/img/projects/soup_stories/2.jpg", "loaded": false},
-				{"src": "/img/projects/soup_stories/3.jpg", "loaded": false}
+				{"src": "/images/soupstories_1.jpg", "loaded": false},
+				{"src": "/images/soupstories_2.jpg", "loaded": false},
+				{"src": "/images/soupstories_3.jpg", "loaded": false}
 			]
 		},
 		{
@@ -74,10 +73,10 @@
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
-				{"src": "/img/projects/lced/1.jpg", "loaded": false},
-				{"src": "/img/projects/lced/2.jpg", "loaded": false},
-				{"src": "/img/projects/lced/3.jpg", "loaded": false},
-				{"src": "/img/projects/lced/4.jpg", "loaded": false}
+				{"src": "/images/lced_1.jpg", "loaded": false},
+				{"src": "/images/lced_2.jpg", "loaded": false},
+				{"src": "/images/lced_3.jpg", "loaded": false},
+				{"src": "/images/lced_4.jpg", "loaded": false}
 			]
 		},
 		{
@@ -86,8 +85,8 @@
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
-				{"src": "/img/projects/lux_animals/1.jpg", "loaded": false},
-				{"src": "/img/projects/lux_animals/2.jpg", "loaded": false}
+				{"src": "/images/luxanimals_1.jpg", "loaded": false},
+				{"src": "/images/luxanimals_2.jpg", "loaded": false}
 			]
 		},
 		{
@@ -97,8 +96,8 @@
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
-				{"src": "/img/projects/got/1.jpg", "loaded": false},
-				{"src": "/img/projects/got/2.jpg", "loaded": false}
+				{"src": "/images/got_1.jpg", "loaded": false},
+				{"src": "/images/got_2.jpg", "loaded": false}
 			]
 		},
 		{
@@ -108,8 +107,8 @@
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
-				{"src": "/img/projects/lunchables/1.jpg", "loaded": false},
-				{"src": "/img/projects/lunchables/2.jpg", "loaded": false}
+				{"src": "/images/lunchables_1.jpg", "loaded": false},
+				{"src": "/images/lunchables_2.jpg", "loaded": false}
 			]
 		},
 		{
@@ -119,8 +118,8 @@
 			"descShort": "",
 			"descLong": "erfoqpwef",
 			"images": [
-				{"src": "/img/projects/cdw/1.jpg", "loaded": false},
-				{"src": "/img/projects/cdw/2.jpg", "loaded": false}
+				{"src": "/images/cdw_1.jpg", "loaded": false},
+				{"src": "/images/cdw_2.jpg", "loaded": false}
 			]
 		}
 	]

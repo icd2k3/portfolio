@@ -22,8 +22,8 @@ function($rootScope, $scope, $state, $stateParams, data, aboutService, Convert) 
 		rows: []
 	};
 	$scope.templates = {
-		about: '/views/partials/about.html',
-		item: '/views/partials/item.html'
+		about: '/views/about.html',
+		item: '/views/item.html'
 	};
 
 	// assign class for grid (one-up, two-up, three-up, etc)

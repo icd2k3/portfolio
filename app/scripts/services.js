@@ -1,7 +1,7 @@
 'use strict';
 // Load portfolio JSON data
 angular.module('Portfolio').factory('data', ['$http', function($http){
-	var path    = '/data/portfolio.json',
+	var path    = '/portfolio.json',
 		factory = {},
 		data    = $http.get(path).then(function(response){
 			for(var i=0; i<response.data.projects.length; i++) {

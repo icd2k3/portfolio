@@ -1,7 +1,7 @@
 
 <div id="about-details" class="about-animation" ng-if="about().active" ng-include="templates.about"></div>
 <div id="logo" class="logo-animation" ng-if="!about().active">
-	<a ng-click="about().active = !about().active"></a>
+	<a ng-click="about().active = !about().active"><i class="fc-icon fc-icon-logo-rotated"></i></a>
 </div>
 <div id="grid" grid grid-resize class="{{gridClass(grid.projectsPerRow)}}">
 	<div class="grid-row-container" ng-repeat="row in grid.rows track by $index">

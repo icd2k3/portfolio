@@ -28,6 +28,6 @@ angular.module('Portfolio').config(['$stateProvider', '$urlRouterProvider', '$lo
 		})
 		.state('index.project', {
 			url: 'project/:id',
-			templateUrl: '/views/partials/project.html'
+			templateUrl: '/views/project.html'
 		});
 }]);

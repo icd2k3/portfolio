@@ -1,5 +1,11 @@
 # Apache Configuration File
 
+AuthName "Restricted" 
+AuthType Basic 
+AuthUserFile /home/180199/domains/justin-schrader.com/html/.htpasswd
+AuthGroupFile /dev/null
+require valid-user
+
 # (!) Using `.htaccess` files slows down Apache, therefore, if you have access
 # to the main server config file (usually called `httpd.conf`), you should add
 # this logic there: http://httpd.apache.org/docs/current/howto/htaccess.html.
@@ -208,12 +214,14 @@ AddDefaultCharset utf-8
 # Also, some cloud hosting services require `RewriteBase` to be set:
 # http://www.rackspace.com/knowledge_center/frequently-asked-question/why-is-mod-rewrite-not-working-on-my-site
 
-<IfModule mod_rewrite.c>
-    Options +FollowSymlinks
-  # Options +SymLinksIfOwnerMatch
-    RewriteEngine On
-  # RewriteBase /
-</IfModule>
+<ifModule mod_rewrite.c>
+  Options +FollowSymLinks
+  IndexIgnore */*
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule (.*) index.html
+</ifModule>
 
 # ------------------------------------------------------------------------------
 # | Suppressing / Forcing the "www." at the beginning of URLs                  |
