@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-        <!-- build:css({.tmp,app}) styles/main.css -->
+        <!-- build:css({.tmp,app}) /styles/portfolio.css -->
         <link rel="stylesheet" href="/styles/main.css">
         <!-- endbuild -->
 
@@ -47,7 +47,7 @@
     <!-- Modernizr -->
     <script type="text/javascript">
       // Load jquery if user's browser doesn't support css3 animation/transitions
-      Modernizr.csstransitions = false;
+      //Modernizr.csstransitions = false;
       Modernizr.load([{
         test: Modernizr.csstransitions,
         nope: '/bower_components/jquery/jquery.min.js'
@@ -55,13 +55,13 @@
     </script>
     <!-- End Modernizr -->
 
-    <!-- build:js scripts/modules.js -->
+    <!-- build:js /scripts/angular-compiled.js -->
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-animate/angular-animate.js"></script>
     <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <!-- build:js({.tmp,app}) /scripts/scripts.js -->
     <script src="/scripts/app.js"></script>
     <script src="/scripts/services.js"></script>
     <script src="/scripts/directives.js"></script>

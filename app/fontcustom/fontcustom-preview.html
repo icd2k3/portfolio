@@ -141,11 +141,11 @@
 
       @font-face {
         font-family: "fontcustom";
-        src: url("./fontcustom_d8de6d7151d9d79513f7324a66e2ddaf.eot");
-        src: url("./fontcustom_d8de6d7151d9d79513f7324a66e2ddaf.eot?#iefix") format("embedded-opentype"),
-             url("./fontcustom_d8de6d7151d9d79513f7324a66e2ddaf.woff") format("woff"),
-             url("./fontcustom_d8de6d7151d9d79513f7324a66e2ddaf.ttf") format("truetype"),
-             url("./fontcustom_d8de6d7151d9d79513f7324a66e2ddaf.svg#fontcustom") format("svg");
+        src: url("./fontcustom_07adde895b81ce2436cf677a3fddccfe.eot");
+        src: url("./fontcustom_07adde895b81ce2436cf677a3fddccfe.eot?#iefix") format("embedded-opentype"),
+             url("./fontcustom_07adde895b81ce2436cf677a3fddccfe.woff") format("woff"),
+             url("./fontcustom_07adde895b81ce2436cf677a3fddccfe.ttf") format("truetype"),
+             url("./fontcustom_07adde895b81ce2436cf677a3fddccfe.svg#fontcustom") format("svg");
         font-weight: normal;
         font-style: normal;
       }
@@ -153,8 +153,10 @@
       [data-icon]:before { content: attr(data-icon); }
 
       [data-icon]:before,
-      .fc-icon-logo-rotated:before,
-.fc-icon-logo:before {
+      .fc-icon-close:before,
+.fc-icon-logo-rotated:before,
+.fc-icon-logo:before,
+.fc-icon-plus:before {
         font-family: "fontcustom";
         font-style: normal;
         font-weight: normal;
@@ -166,8 +168,10 @@
         text-decoration: inherit;
       }
       
-      .fc-icon-logo-rotated:before { content: "\f100"; }
-      .fc-icon-logo:before { content: "\f101"; }
+      .fc-icon-close:before { content: "\f100"; }
+      .fc-icon-logo-rotated:before { content: "\f101"; }
+      .fc-icon-logo:before { content: "\f102"; }
+      .fc-icon-plus:before { content: "\f103"; }
     </style>
 
     <!--[if lte IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -183,10 +187,23 @@
   <body class="characters-off">
     <div id="page" class="container">
       <header>
-        <h1>fontcustom contains 2 glyphs:</h1>
+        <h1>fontcustom contains 4 glyphs:</h1>
         <a onclick="toggleCharacters(); return false;" href="#">Toggle Preview Characters</a>
       </header>
 
+      
+      <div class="glyph">
+        <div class="preview-glyphs">
+          <span class="step size-12"><span class="letters">Pp</span><i class="fc-icon-close"></i></span><span class="step size-14"><span class="letters">Pp</span><i class="fc-icon-close"></i></span><span class="step size-16"><span class="letters">Pp</span><i class="fc-icon-close"></i></span><span class="step size-18"><span class="letters">Pp</span><i class="fc-icon-close"></i></span><span class="step size-21"><span class="letters">Pp</span><i class="fc-icon-close"></i></span><span class="step size-24"><span class="letters">Pp</span><i class="fc-icon-close"></i></span><span class="step size-36"><span class="letters">Pp</span><i class="fc-icon-close"></i></span><span class="step size-48"><span class="letters">Pp</span><i class="fc-icon-close"></i></span><span class="step size-60"><span class="letters">Pp</span><i class="fc-icon-close"></i></span><span class="step size-72"><span class="letters">Pp</span><i class="fc-icon-close"></i></span>
+        </div>
+        <div class="preview-scale">
+          <span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">36</span><span class="step">48</span><span class="step">60</span><span class="step">72</span>
+        </div>
+        <div class="usage">
+          <input class="class" type="text" readonly="readonly" onClick="this.select();" value=".fc-icon-close" />
+          <input class="point" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf100;" />
+        </div>
+      </div>
       
       <div class="glyph">
         <div class="preview-glyphs">
@@ -197,7 +214,7 @@
         </div>
         <div class="usage">
           <input class="class" type="text" readonly="readonly" onClick="this.select();" value=".fc-icon-logo-rotated" />
-          <input class="point" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf100;" />
+          <input class="point" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf101;" />
         </div>
       </div>
       
@@ -210,7 +227,20 @@
         </div>
         <div class="usage">
           <input class="class" type="text" readonly="readonly" onClick="this.select();" value=".fc-icon-logo" />
-          <input class="point" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf101;" />
+          <input class="point" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf102;" />
+        </div>
+      </div>
+      
+      <div class="glyph">
+        <div class="preview-glyphs">
+          <span class="step size-12"><span class="letters">Pp</span><i class="fc-icon-plus"></i></span><span class="step size-14"><span class="letters">Pp</span><i class="fc-icon-plus"></i></span><span class="step size-16"><span class="letters">Pp</span><i class="fc-icon-plus"></i></span><span class="step size-18"><span class="letters">Pp</span><i class="fc-icon-plus"></i></span><span class="step size-21"><span class="letters">Pp</span><i class="fc-icon-plus"></i></span><span class="step size-24"><span class="letters">Pp</span><i class="fc-icon-plus"></i></span><span class="step size-36"><span class="letters">Pp</span><i class="fc-icon-plus"></i></span><span class="step size-48"><span class="letters">Pp</span><i class="fc-icon-plus"></i></span><span class="step size-60"><span class="letters">Pp</span><i class="fc-icon-plus"></i></span><span class="step size-72"><span class="letters">Pp</span><i class="fc-icon-plus"></i></span>
+        </div>
+        <div class="preview-scale">
+          <span class="step">12</span><span class="step">14</span><span class="step">16</span><span class="step">18</span><span class="step">21</span><span class="step">24</span><span class="step">36</span><span class="step">48</span><span class="step">60</span><span class="step">72</span>
+        </div>
+        <div class="usage">
+          <input class="class" type="text" readonly="readonly" onClick="this.select();" value=".fc-icon-plus" />
+          <input class="point" type="text" readonly="readonly" onClick="this.select();" value="&amp;#xf103;" />
         </div>
       </div>
       

@@ -14,6 +14,7 @@ function($rootScope, $scope, $state, $stateParams, data, aboutService, Convert) 
 	// set scope vars
 	$scope.projects    = data.projects;
 	$scope.about       = aboutService.get;
+	$scope.aboutData   = data.about;
 	$scope.projectDetails = {
 		projectId: null
 	};
@@ -54,12 +55,12 @@ function($rootScope, $scope, $state, $stateParams, data, aboutService, Convert) 
 	});
 }]);
 
-angular.module('Portfolio').controller('AboutCtrl',
+/*angular.module('Portfolio').controller('AboutCtrl',
 ['$rootScope', '$scope', 'aboutService',
 function($rootScope, $scope, aboutService) {
 	$scope.about = aboutService.get; // allow for grabbing dynamic data between controllers ex: "about().active"
 	$scope.aboutData = aboutService.get();  // use static data
-}]);
+}]);*/
 
 // Grid item controller
 angular.module('Portfolio').controller('ItemCtrl',

@@ -53,14 +53,31 @@ body {
 }
 .alpha { float: left; }
 .omega { float: right; }
+.close-button {
+    cursor: pointer;
+    &:hover {
+        .fc-icon-close {
+            @include font($color: $lime);
+            @include scale(-1,1);
+        }
+    }
+}
 
 // ICONS /////////////////
 .fc-icon {
-
+    @include font($size: 54px, $color: #FFF);
+    display: inline-block;
 }
 .fc-icon-logo-rotated {
-    @include position-absolute($top: 3px, $left: 3px, $z-index: 1);
-    @include font($size: 54px);
+    //@include position-absolute($top: 3px, $left: 3px, $z-index: 1);
+}
+.fc-icon-close {
+    @include single-transition(all, 0.2s, $ease-out-quad);
+    @include scale(1,1);
+    @include font($size: 47px);
+}
+.fc-icon-plus {
+    @include font($color: #000, $size: 32px);
 }
 
 // GRID //////////////////
@@ -124,7 +141,7 @@ body {
         .gradient, .info {
             opacity: 0 !important;
         }
-        .more-info:before {
+        .more-info:before, .fc-icon-plus {
             right: -100px !important;
             bottom: -100px !important;
         }
@@ -165,6 +182,10 @@ body {
         }
     }
     .more-info {
+        .fc-icon-plus {
+            @include transition(bottom 0.25s $ease-out-quad, right 0.25s $ease-out-quad);
+            @include position-absolute($bottom: -100px, $right: -100px, $z-index: 3);
+        }
         &:before {
             @include single-transition(all, 0.15s, $ease-out-quad);
             @include position-absolute($right: -100px, $bottom: -100px, $z-index: 2);
@@ -177,6 +198,9 @@ body {
             &:before {
                 border-right: 100px solid $black;
             }
+            .fc-icon-plus {
+                color: #FFF;
+            }
         }
     }
     &:hover, &:focus {
@@ -185,6 +209,10 @@ body {
         }
         .more-info:before {
             @include position-absolute($right: 0px, $bottom: 0px);
+        }
+        .fc-icon-plus {
+            bottom: 10px;
+            right: 12px;
         }
     }
 }
@@ -240,7 +268,7 @@ body {
         @include font($color: $lime, $weight: normal);
         margin: 0 0 15px;
     }
-    .close {
+    .close-button {
         @include position-absolute($top: $padding, $right: $padding);
     }
 }
@@ -266,41 +294,64 @@ body {
             }
         }
     }
+    .fc-icon-logo-rotated {
+        @include position-absolute($top: 3px, $left: 3px, $z-index: 1);
+    }
+}
+
+// ABOUT ////////////////////
+
+#about-details {
+    .close-button {
+        @include position-absolute($right: $padding);
+        margin-top: 12px;
+    }
+    .fc-icon-logo-rotated {
+        @include position-absolute();
+        font-size: 74px;
+    }
+    .column {
+        width: 25%;
+        float: left;
+    }
 }
 
 // ANIMATIONS ////////////////
 // TODO: create mixin for angular animations?
-.about-animation {
-    height: 100px;
-    &.ng-enter, &.ng-leave {
-        @include single-transition(height, 0.25s, $ease-out-quad);
+.csstransitions {
+    .about-animation {
+        height: 120px;
+        overflow: hidden;
+        &.ng-enter, &.ng-leave {
+            @include single-transition(height, 0.5s, $ease-out-quad);
+        }
+        &.ng-enter { height: 0px; }
+        &.ng-enter-active { height: 120px; }
+        &.ng-leave { height: 120px; }
+        &.ng-leave-active { height: 0px; }
     }
-    &.ng-enter { height: 0px; }
-    &.ng-enter-active { height: 100px; }
-    &.ng-leave { height: 100px; }
-    &.ng-leave-active { height: 0px; }
-}
 
-.project-animation {
-    max-height: 500px;
-    &.ng-enter, &.ng-leave {
-        @include single-transition(max-height, 0.5s, $ease-out-quad);
+    .project-animation {
+        max-height: 500px;
+        &.ng-enter, &.ng-leave {
+            @include single-transition(max-height, 0.5s, $ease-out-quad);
+        }
+        &.ng-enter { max-height: 0px; }
+        &.ng-enter-active { max-height: 500px; }
+        &.ng-leave { max-height: 500px; }
+        &.ng-leave-active { max-height: 0px; }
     }
-    &.ng-enter { max-height: 0px; }
-    &.ng-enter-active { max-height: 500px; }
-    &.ng-leave { max-height: 500px; }
-    &.ng-leave-active { max-height: 0px; }
-}
 
-.logo-animation {
-    top: 0;
-    left: 0;
-    &.ng-enter, &.ng-leave {
-        @include single-transition(top, 0.25s, $ease-out-quad);
-        @include single-transition(left, 0.25s, $ease-out-quad);
+    .logo-animation {
+        top: 0;
+        left: 0;
+        &.ng-enter, &.ng-leave {
+            @include single-transition(top, 0.25s, $ease-out-quad);
+            @include single-transition(left, 0.25s, $ease-out-quad);
+        }
+        &.ng-enter { top: -50px; left: -50px; }
+        &.ng-enter-active { top: 0; left: 0; }
+        &.ng-leave { top: 0; left: 0; }
+        &.ng-leave-active { top: -50px; left: -50px; }
     }
-    &.ng-enter { top: -50px; left: -50px; }
-    &.ng-enter-active { top: 0; left: 0; }
-    &.ng-leave { top: 0; left: 0; }
-    &.ng-leave-active { top: -50px; left: -50px; }
 }

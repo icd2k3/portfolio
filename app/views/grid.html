@@ -1,5 +1,21 @@
 
-<div id="about-details" class="about-animation" ng-if="about().active" ng-include="templates.about"></div>
+<div id="about-details" class="about-animation" ng-if="about().active">
+	<div class="column">
+		<i class="fc-icon fc-icon-logo-rotated"></i>
+		Name: {{aboutData.data.name}}<br/>
+		Title: {{aboutData.data.profession}}
+	</div>
+	<div class="column">
+		Resume
+	</div>
+	<div class="column">
+		Contact
+	</div>
+	<div class="column">
+		View Source
+	</div>
+	<a class="close-button" ng-click="about().active = !about().active"><i class="fc-icon fc-icon-close"></i></a>
+</div>
 <div id="logo" class="logo-animation" ng-if="!about().active">
 	<a ng-click="about().active = !about().active"><i class="fc-icon fc-icon-logo-rotated"></i></a>
 </div>
@@ -9,7 +25,7 @@
 			<div class="grid-project" ng-repeat="project in projects | filter:{row: $index}" grid-project ng-class="{active : project.cube.transition, selected : project.selected}" ng-include="templates.item" data-index="{{$index}}"></div>
 		 </div>
 		 <div class="project-details project-animation" ng-if="projectDetails.row == $index">
-		 	<a class="close" ui-sref="index.grid">CLOSE</a>
+		 	<a class="close-button" ui-sref="index.grid"><i class="fc-icon fc-icon-close"></i></a>
 		 	<div class="alpha">
 		 		<h1>{{projectDetails.title}}</h1>
 		 		<p>{{projectDetails.description}}</p>

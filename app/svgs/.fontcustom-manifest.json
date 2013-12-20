@@ -1,16 +1,18 @@
 {
   "fonts": [
-    "/Users/justin/Documents/Portfolio/site/app/svgs/fontcustom/fontcustom_d8de6d7151d9d79513f7324a66e2ddaf.ttf",
-    "/Users/justin/Documents/Portfolio/site/app/svgs/fontcustom/fontcustom_d8de6d7151d9d79513f7324a66e2ddaf.woff",
-    "/Users/justin/Documents/Portfolio/site/app/svgs/fontcustom/fontcustom_d8de6d7151d9d79513f7324a66e2ddaf.eot",
-    "/Users/justin/Documents/Portfolio/site/app/svgs/fontcustom/fontcustom_d8de6d7151d9d79513f7324a66e2ddaf.svg"
+    "/Users/justin/Documents/Portfolio/site/app/svgs/fontcustom/fontcustom_07adde895b81ce2436cf677a3fddccfe.ttf",
+    "/Users/justin/Documents/Portfolio/site/app/svgs/fontcustom/fontcustom_07adde895b81ce2436cf677a3fddccfe.woff",
+    "/Users/justin/Documents/Portfolio/site/app/svgs/fontcustom/fontcustom_07adde895b81ce2436cf677a3fddccfe.eot",
+    "/Users/justin/Documents/Portfolio/site/app/svgs/fontcustom/fontcustom_07adde895b81ce2436cf677a3fddccfe.svg"
   ],
   "templates": [
     "/Users/justin/Documents/Portfolio/site/app/svgs/fontcustom/_fontcustom.scss",
     "/Users/justin/Documents/Portfolio/site/app/svgs/fontcustom/fontcustom-preview.html"
   ],
   "glyphs": [
+    "close",
     "logo-rotated",
-    "logo"
+    "logo",
+    "plus"
   ]
 }
