@@ -14,7 +14,7 @@
 // BODY & CONTAINER //////
 html, body { @include size(100%, 100%); padding: 0; margin: 0; }
 body {
-    @include font($family: $font-source-sans-pro, $color: $white);
+    @include font($family: $font-source-sans-pro, $color: $white, $size: 14px, $line-height: 24px);
     background: url(/images/background.png) repeat #000;
     background-color: $white;
 }
@@ -31,22 +31,23 @@ body {
     color: $lime;
     background: $black;
 }
-/* Let's get this party started */
 ::-webkit-scrollbar {
     width: 12px;
 }
- 
-/* Track */
 ::-webkit-scrollbar-track {
     background: $black;
 }
- 
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: $lime;
 }
 ::-webkit-scrollbar-thumb:window-inactive {
     background: $lime;
+}
+a {
+    @include font($color: $lime, $text-decoration: none);
+    &:hover, &:focus {
+        text-decoration: underline;
+    }
 }
 .alpha, .omega {
     width: 50%;
@@ -67,9 +68,6 @@ body {
 .fc-icon {
     @include font($size: 54px, $color: #FFF);
     display: inline-block;
-}
-.fc-icon-logo-rotated {
-    //@include position-absolute($top: 3px, $left: 3px, $z-index: 1);
 }
 .fc-icon-close {
     @include single-transition(all, 0.2s, $ease-out-quad);
@@ -304,15 +302,17 @@ body {
 #about-details {
     .close-button {
         @include position-absolute($right: $padding);
-        margin-top: 12px;
+        margin-top: 31px;
     }
     .fc-icon-logo-rotated {
-        @include position-absolute();
+        float: left;
         font-size: 74px;
+        margin: -9px 7px 0 $padding;
     }
     .column {
         width: 25%;
         float: left;
+        padding-top: $padding;
     }
 }
 

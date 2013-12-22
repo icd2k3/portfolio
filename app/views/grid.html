@@ -2,17 +2,20 @@
 <div id="about-details" class="about-animation" ng-if="about().active">
 	<div class="column">
 		<i class="fc-icon fc-icon-logo-rotated"></i>
-		Name: {{aboutData.data.name}}<br/>
-		Title: {{aboutData.data.profession}}
+		{{aboutData.name}}<br/>
+		{{aboutData.profession}}
 	</div>
 	<div class="column">
-		Resume
+		{{aboutData.resume.title}}<br/>
+		<a href="{{aboutData.resume.link.url}}" target="_blank">{{aboutData.resume.link.title}}</a>
 	</div>
 	<div class="column">
-		Contact
+		{{aboutData.contact.title}}<br/>
+		<a href="mailto:{{aboutData.contact.email}}" target="_blank">{{aboutData.contact.email}}</a>
 	</div>
 	<div class="column">
-		View Source
+		{{aboutData.source.title}}<br/>
+		<a href="{{aboutData.source.link.url}}" target="_blank">{{aboutData.source.link.title}}</a>
 	</div>
 	<a class="close-button" ng-click="about().active = !about().active"><i class="fc-icon fc-icon-close"></i></a>
 </div>
