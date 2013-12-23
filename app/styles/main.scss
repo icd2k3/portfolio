@@ -11,6 +11,7 @@
 @import '_common';
 @import '_fontcustom';
 @import '_mediaqueries';
+@import '_fallbacks';
 
 // BODY & CONTAINER //////
 html, body { @include size(100%, 100%); padding: 0; margin: 0; -webkit-overflow-scrolling: touch; }
@@ -159,7 +160,7 @@ a {
     }
 }
 .item-link {
-    @include position-absolute($z-index: 1);
+    @include position-absolute($z-index: 3);
     @include size(100%, 100%);
     display: block;
     overflow: hidden;
@@ -225,14 +226,7 @@ a {
     }
 }
 .item-content {
-    @include single-transition(all, 0.6s, $ease-out-quad, 0.1s);
-    @include scale(0, 0);
-    opacity: 0;
     position: relative;
-    &.loaded {
-        @include scale(1, 1);
-        opacity: 1;
-    }
 }
 
 // ITEM CUBE ////////////////
@@ -352,7 +346,6 @@ a {
         &.ng-leave { height: 110px; }
         &.ng-leave-active { height: 0px; }
     }
-
     .project-animation {
         max-height: 500px;
         &.ng-enter, &.ng-leave {
@@ -363,7 +356,6 @@ a {
         &.ng-leave { max-height: 500px; }
         &.ng-leave-active { max-height: 0px; }
     }
-
     .logo-animation {
         top: 0;
         left: 0;
@@ -375,5 +367,15 @@ a {
         &.ng-enter-active { top: 0; left: 0; }
         &.ng-leave { top: 0; left: 0; }
         &.ng-leave-active { top: -50px; left: -50px; }
+    }
+    .item-load-animation {
+        @include single-transition(all, 0.5s, $ease-out-quad);
+        @include scale(1, 1);
+        opacity: 1;
+        &.ng-hide-add, &.ng-hide-remove {
+            display: block !important;
+        }
+        &.ng-hide { @include scale(0,0); opacity: 0; }
+        &.ng-show { @include scale(1,1); opacity: 1; }
     }
 }

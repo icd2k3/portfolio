@@ -43,9 +43,9 @@ angular.module('Portfolio').directive('gridResize', function($window, gridServic
 
 // handles all cube switching functionality
 // TODO:
-// - don't show cube until both sides are rendered on first page load
 // - 3d transitions should stop when user focus leaves window
 // - fallback transition for older browsers
+// - fallback for item hover animation
 angular.module('Portfolio').directive('cube', function($timeout, $animate, gridService, cubeCSS, Helpers){
 	return {
 		link: function(scope, element, attrs) {
@@ -74,6 +74,10 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 					// NOTE: we have to manually apply css here as 3d translates don't support percentages
 					scope.project.cube.transitionWaitTimer = $timeout(function(){
 						if(scope.project.cube.pause) return;
+						if(!Modernizr.csstransforms3d) {
+							// TODO: fallback animation here
+							return;
+						}
 						var translateDistance = gridService.getHalfItemWidth();
 						scope.project.cube.direction = Helpers.getRandomDirection();
 						scope.project.cube.transition = true;

@@ -24,6 +24,26 @@ angular.module('Portfolio').animation('.about-animation', function(){
 	};
 });
 
+angular.module('Portfolio').animation('.item-load-animation', function(){
+	return {
+    	removeClass: function(element, className, done) {
+    		if(className === 'ng-hide' && !Modernizr.csstransitions) {
+    			$(element).css({
+    				'opacity': 0,
+    				'width': '0%',
+    				'height': '0%'
+    			}).animate({
+    				'opacity': 1,
+    				'width': '100%',
+    				'height': '100%'
+    			}, 500, function(){
+    				done();
+    			});
+    		}
+    	}
+	};
+});
+
 angular.module('Portfolio').animation('.project-details', function(){
 	return {
 		enter: function(element, done) {

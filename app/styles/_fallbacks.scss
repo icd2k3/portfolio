@@ -1,0 +1,9 @@
+@import '_common';
+
+.no-cssgradients {
+	.grid-project {
+		.gradient {
+			background: url(/images/gradient.png) repeat-x 0 100%;
+		}
+	}
+}

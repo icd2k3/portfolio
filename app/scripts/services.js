@@ -59,11 +59,11 @@ angular.module('Portfolio').service('Helpers', function(){
 	var animateScroll = function(to, duration){
 		// animates scrollTop without jQuery
 		if (duration <= 0) return;
-	    var difference = to - window.scrollY,
-	    	perTick    = difference / duration * 10;
+	    var	scrollTop = window.pageYOffset,
+	    	difference = to - scrollTop,
+	    	perTick    = (difference / duration) * 10;
 	    setTimeout(function() {
-	    	window.scroll(0, window.scrollY + perTick);
-	        //scrollElement.scrollTop = scrollElement.scrollTop + perTick;
+	    	window.scroll(0, window.pageYOffset + perTick);
 	        animateScroll(to, duration - 10);
 	    }, 10);
 	};

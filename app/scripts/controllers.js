@@ -94,8 +94,12 @@ function($scope, $http, $timeout, Helpers) {
 	};
 
 	// user is hovering over this project cube
-	$scope.onMouseOver = function() { $scope.project.cube.pause = true; };
-	$scope.onMouseOut = function() { if(!$scope.project.selected) { $scope.project.cube.pause = false; } };
+	$scope.onMouseOver = function() {
+		$scope.project.cube.pause = true;
+	};
+	$scope.onMouseOut = function() {
+		if(!$scope.project.selected) { $scope.project.cube.pause = false; }
+	};
 }]);
 
 // Logo was clicked and about info was opened
