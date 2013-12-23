@@ -18,12 +18,11 @@ body {
     @include font($family: $font-source-sans-pro, $color: $white, $size: 14px, $line-height: 24px);
     background: url(/images/background.png) repeat #000;
     background-color: $white;
-}
-#container {
-    @include size(inherit, inherit);
+    background-attachment: fixed;
 }
 
 // GLOBAL ///////////////
+// overall styles across all sections & elements
 ::selection {
     color: $lime;
     background: $black;
@@ -33,7 +32,7 @@ body {
     background: $black;
 }
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 8px;
 }
 ::-webkit-scrollbar-track {
     background: $black;
@@ -66,6 +65,7 @@ a {
 }
 
 // ICONS /////////////////
+// icon styles for fontcustom
 .fc-icon {
     @include font($size: 54px, $color: #FFF);
     display: inline-block;
@@ -79,17 +79,10 @@ a {
     @include font($color: #000, $size: 32px);
 }
 
-// GRID //////////////////
-#grid {
+// CONTAINER /////////////
+// holds everything. grid, about, project details, etc
+#container {
     @include size(inherit, inherit);
-    position: relative;
-    .grid-project {
-        position: relative;
-        z-index: 1;
-        &.active {
-            z-index: 2;
-        }
-    }
     &.four-up {
         .grid-project { width: 25%; }
     }
@@ -101,6 +94,19 @@ a {
     }
     &.one-up {
         .grid-project { width: 100%; }
+    }
+}
+
+// GRID //////////////////
+#grid {
+    @include size(inherit, inherit);
+    position: relative;
+    .grid-project {
+        position: relative;
+        z-index: 1;
+        &.active {
+            z-index: 2;
+        }
     }
 }
 .grid-row-container {
@@ -156,7 +162,7 @@ a {
     overflow: hidden;
     .gradient {
         @include single-transition(opacity, 0.15s, linear);
-        @include background-image(linear-gradient(transparent 50%, #000 100%));
+        @include background-image(linear-gradient(transparent 25%, #000 100%));
         @include size(100%, 100%);
         @include position-absolute($z-index: 1);
         opacity: 0;
@@ -204,7 +210,7 @@ a {
     }
     &:hover, &:focus {
         .gradient, .info {
-            opacity: 0.95;
+            opacity: 1;
         }
         .more-info:before {
             @include position-absolute($right: 0px, $bottom: 0px);
@@ -309,18 +315,23 @@ a {
 
 #about-details {
     .close-button {
-        @include position-absolute($right: $padding);
-        margin-top: 31px;
+        @include position-absolute($right: $padding, $top: $padding);
     }
     .fc-icon-logo-rotated {
+        @include position-absolute($left: $padding, $top: 18px);
         float: left;
         font-size: 74px;
-        margin: -9px 7px 0 $padding;
     }
     .column {
         width: 25%;
         float: left;
         padding-top: $padding;
+    }
+    #name {
+        span {
+            display: inline-block;
+            margin-left: 130px;
+        }
     }
 }
 
@@ -328,14 +339,14 @@ a {
 // TODO: create mixin for angular animations?
 .csstransitions {
     .about-animation {
-        height: 120px;
+        height: 110px;
         overflow: hidden;
         &.ng-enter, &.ng-leave {
             @include single-transition(height, 0.5s, $ease-out-quad);
         }
         &.ng-enter { height: 0px; }
-        &.ng-enter-active { height: 120px; }
-        &.ng-leave { height: 120px; }
+        &.ng-enter-active { height: 110px; }
+        &.ng-leave { height: 110px; }
         &.ng-leave-active { height: 0px; }
     }
 

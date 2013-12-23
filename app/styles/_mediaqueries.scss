@@ -1,0 +1,79 @@
+@import '_common';
+
+@media screen and (max-width: 1440px) {  // 3-up grid
+	#container {
+		#about-details {
+			.column {
+				width: 33.33%;
+			}
+			#source {
+				position: absolute;
+				right: 0%;
+				width: 20%;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 960px) {  // 2-up grid
+	#container {
+		#about-details {
+			.column {
+				width: 50%;
+			}
+			#source {
+				position: static;
+			}
+			#resume {
+				span {
+		            display: inline-block;
+		            margin-left: 130px;
+		        }
+			}
+			.fc-icon-logo-rotated {
+				top: 54px;
+			}
+		}
+		.about-animation {
+	        height: 183px;
+	        &.ng-enter-active { height: 183px; }
+	        &.ng-leave { height: 183px; }
+	    }
+	}
+}
+
+@media screen and (max-width: 620px) {
+	#container {
+		#about-details {
+			.fc-icon-logo-rotated { display: none; }
+			.column {
+				float: none;
+				width: 100%;
+				padding-top: $padding;
+				span {
+					margin-left: 0 !important;
+					padding-left: $padding;
+				}
+				&#contact a {
+					margin-left: $padding;
+				}
+			}
+			#resume, #source {
+				float: left;
+				width: 50%;
+			}
+			#source span {
+				padding-left: 0;
+			}
+		}
+		.about-animation {
+	        height: 270px;
+	        &.ng-enter-active { height: 270px; }
+	        &.ng-leave { height: 270px; }
+	    }
+	}
+}
+
+@media screen and (max-width: 321px) { // 1-up grid
+	
+}

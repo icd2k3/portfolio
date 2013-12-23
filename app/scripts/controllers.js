@@ -99,10 +99,16 @@ function($scope, $http, $timeout, Helpers) {
 }]);
 
 // Logo was clicked and about info was opened
-angular.module('Portfolio').controller('AboutCtrl', ['$scope', 'data', 'Helpers', function($scope, data, Helpers) {
+angular.module('Portfolio').controller('AboutCtrl', ['$scope', 'Helpers', function($scope, Helpers) {
 	// when about is active, scroll to top
 	Helpers.animateScroll(0, 200);
-}]);	
+}]);
+
+// Project was opened
+angular.module('Portfolio').controller('ProjectCtrl', ['$scope', 'Helpers', function($scope, Helpers) {
+	// figure out where project is located on the page and scroll to it
+	
+}]);
 
 // Cube controller
 // TODO: move cube logic out of item controller into here

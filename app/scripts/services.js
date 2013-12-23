@@ -22,15 +22,23 @@ angular.module('Portfolio').factory('data', ['$http', function($http){
 angular.module('Portfolio').service('gridService', function(){
 	var sharedData = {
 		windowWidth: 0,
-		projectsPerRow: 0
+		projectsPerRow: 0,
+		rowHeight: 0
 	};
 	return {
 		getHalfItemWidth: function() {
 			return Math.round((sharedData.windowWidth / sharedData.projectsPerRow) * 0.5);
 		},
+		getProjectsPerRow: function(){
+			return sharedData.projectsPerRow;
+		},
+		getRowHeight: function(){
+			return sharedData.rowHeight;
+		},
 		set: function(obj) {
 			if(obj.windowWidth) { sharedData.windowWidth = obj.windowWidth; }
 			if(obj.projectsPerRow) { sharedData.projectsPerRow = obj.projectsPerRow; }
+			if(obj.rowHeight) { sharedData.rowHeight = obj.rowHeight; }
 		}
 	};
 });

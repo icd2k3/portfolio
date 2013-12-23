@@ -32,7 +32,7 @@ angular.module('Portfolio').directive('gridResize', function($window, gridServic
 					});
 				}
 				// set vars in gridService so other directives can use the data
-				gridService.set({windowWidth: windowWidth, projectsPerRow: projectsPerRow});
+				gridService.set({windowWidth: windowWidth, projectsPerRow: projectsPerRow, rowHeight: newRowHeight});
 			};
 			angular.element($window).bind('resize', windowResize);
 			// trigger initial resize on first render
@@ -256,10 +256,20 @@ angular.module('Portfolio').directive('gridRowDirective', function(){
 });
 
 // project details directive for applying template
-angular.module('Portfolio').directive('projectDetailsDirective', function(){
+angular.module('Portfolio').directive('projectDetailsDirective', function(Helpers, gridService){
 	return {
 		link: function(scope, element, attrs) {
-			console.log('project details');
+			var scrollToProject = function() {
+				// use the current project index & the grid data to find out where we should auto-scroll to
+				var index          = attrs.projectIndex,
+					projectsPerRow = gridService.getProjectsPerRow(),
+					rowHeight      = gridService.getRowHeight(),
+					yPos           = Math.round((index / projectsPerRow) * rowHeight);  // 100px gives space for the logo
+
+				Helpers.animateScroll(yPos, 200);
+			};
+			// this is on a delay so on initial page load (if the user links to a project) the grid data has time to set
+			setTimeout(scrollToProject, 1);
 		}
 	};
 });
