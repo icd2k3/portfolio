@@ -42,7 +42,7 @@
 	}
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 620px) { // random size for style adjustments in between 2-up and 1-up grid
 	#container {
 		#about-details {
 			.fc-icon-logo-rotated { display: none; }
@@ -76,4 +76,19 @@
 
 @media screen and (max-width: 321px) { // 1-up grid
 	
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { // retina displays
+	body {
+		background: url(/images/background_@2X.png) repeat #000 !important;
+		background-size: 50% 50% !important;
+	}
+	#container {
+	    .grid-project {
+	    	.selected-tip {
+	    		background: url(/images/selected_@2X.png) no-repeat;
+	    		background-size: 111px 66px !important;
+	    	}
+	    }
+	}
 }

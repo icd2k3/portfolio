@@ -35,7 +35,7 @@
 			<div class="grid-row" grid-row-directive data-row-height="{{rowHeight}}">
 				<div class="grid-project" ng-repeat="project in projects | filter:{row: $index}" grid-project ng-class="{active : project.cube.transition, selected : project.selected}" ng-include="templates.item" data-index="{{$index}}"></div>
 			 </div>
-			 <div project-details-directive class="project-details project-animation" ng-if="projectDetails.row == $index" ng-controller="ProjectCtrl" data-project-index="{{projectDetails.index}}">
+			 <div project-details-directive class="project-details project-animation" ng-if="projectDetails.row == $index" data-project-index="{{projectDetails.index}}">
 			 	<a class="close-button" ui-sref="index.grid"><i class="fc-icon fc-icon-close"></i></a>
 			 	<div class="alpha">
 			 		<h1>{{projectDetails.title}}</h1>

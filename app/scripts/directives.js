@@ -264,7 +264,8 @@ angular.module('Portfolio').directive('projectDetailsDirective', function(Helper
 				var index          = attrs.projectIndex,
 					projectsPerRow = gridService.getProjectsPerRow(),
 					rowHeight      = gridService.getRowHeight(),
-					yPos           = Math.round((index / projectsPerRow) * rowHeight);  // 100px gives space for the logo
+					currentRow     = scope.projectDetails.row,
+					yPos           = Math.round(currentRow * rowHeight + (rowHeight * 0.5));
 
 				Helpers.animateScroll(yPos, 200);
 			};

@@ -18,7 +18,7 @@ angular.module('Portfolio').factory('data', ['$http', function($http){
 	return factory;
 }]);
 
-// Since 3d transforms don't support percentages, we have to let the cube know what dimensions it should be manually
+// For sharing data about the grid between directives & controllers
 angular.module('Portfolio').service('gridService', function(){
 	var sharedData = {
 		windowWidth: 0,
@@ -77,7 +77,7 @@ angular.module('Portfolio').service('Helpers', function(){
 	};
 });
 
-// this service returns a css 3d object for the cube/sides based on direction of the current animation
+// This service returns a css 3d object for the cube/sides based on direction of the current animation
 angular.module('Portfolio').service('cubeCSS', function(gridService){
 	return {
 		cube: function(direction, transitionSpeed) {
@@ -151,14 +151,3 @@ angular.module('Portfolio').service('cubeCSS', function(gridService){
 		}
 	}
 });
-
-/*angular.module('Portfolio').service('aboutService', function(){
-	var sharedData = {
-		active: false,
-		data: {}
-	};
-	return {
-		get: function(){ return sharedData; },
-		set: function(d){ sharedData.data = d; }
-	};
-});*/

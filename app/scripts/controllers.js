@@ -104,12 +104,6 @@ angular.module('Portfolio').controller('AboutCtrl', ['$scope', 'Helpers', functi
 	Helpers.animateScroll(0, 200);
 }]);
 
-// Project was opened
-angular.module('Portfolio').controller('ProjectCtrl', ['$scope', 'Helpers', function($scope, Helpers) {
-	// figure out where project is located on the page and scroll to it
-	
-}]);
-
 // Cube controller
 // TODO: move cube logic out of item controller into here
 angular.module('Portfolio').controller('CubeCtrl',

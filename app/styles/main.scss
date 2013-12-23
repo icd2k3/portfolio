@@ -6,14 +6,14 @@
 @import "compass/css3/transition";
 @import "compass/css3/transform";
 @import "compass/css3/images";
-@import "compass/css3/box-shadow";
+@import "compass/css3/text-shadow";
 @import '_mixins';
 @import '_common';
 @import '_fontcustom';
 @import '_mediaqueries';
 
 // BODY & CONTAINER //////
-html, body { @include size(100%, 100%); padding: 0; margin: 0; }
+html, body { @include size(100%, 100%); padding: 0; margin: 0; -webkit-overflow-scrolling: touch; }
 body {
     @include font($family: $font-source-sans-pro, $color: $white, $size: 14px, $line-height: 24px);
     background: url(/images/background.png) repeat #000;
@@ -132,9 +132,12 @@ a {
     }
     .selected-tip {
         @include single-transition(bottom, 0.25s, $ease-out-quad);
-        @include position-absolute($bottom: -34px, $left: 50%, $z-index: 3);
-        @include size-centered(68px, 34px);
+        @include position-absolute($bottom: -64px, $left: 50%, $z-index: 3);
+        @include size-centered(111px, 66px);
         background: url(/images/selected.png) no-repeat;
+    }
+    .info {
+        @include single-text-shadow(1px, 1px, 7px, false, $black);
     }
     &.animate {
         z-index: 2;
@@ -151,7 +154,7 @@ a {
             bottom: -100px !important;
         }
         .selected-tip {
-            bottom: 0px;
+            bottom: -18px;
         }
     }
 }
@@ -307,7 +310,7 @@ a {
         }
     }
     .fc-icon-logo-rotated {
-        @include position-absolute($top: 3px, $left: 3px, $z-index: 1);
+        @include position-absolute($top: 4px, $left: 4px, $z-index: 1);
     }
 }
 
