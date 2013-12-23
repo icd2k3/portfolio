@@ -55,18 +55,10 @@ function($rootScope, $scope, $state, $stateParams, data, aboutService, Convert) 
 	});
 }]);
 
-/*angular.module('Portfolio').controller('AboutCtrl',
-['$rootScope', '$scope', 'aboutService',
-function($rootScope, $scope, aboutService) {
-	$scope.about = aboutService.get; // allow for grabbing dynamic data between controllers ex: "about().active"
-	$scope.aboutData = aboutService.get();  // use static data
-}]);*/
-
 // Grid item controller
 angular.module('Portfolio').controller('ItemCtrl',
-['$rootScope', '$scope', '$http', '$timeout',
-function($rootScope, $scope, $http, $timeout) {
-	console.log('item ctrl')
+['$scope', '$http', '$timeout', 'Helpers',
+function($scope, $http, $timeout, Helpers) {
 	// clear both transition timers on the project cube
 	var clearTimers = function() {
 		if($scope.project.cube) {
@@ -81,33 +73,37 @@ function($rootScope, $scope, $http, $timeout) {
 	// cube model might already exist (for example, if user resized the grid) so we need to clear any active timers before restting the model
 	clearTimers();
 
-	// TODO: move to a service
-	$scope.getRandomDirection = function() {
-		var directions = ['left', 'right', 'up', 'down'];
-		return directions[Math.floor(Math.random()*directions.length)];
-	};
-
-	// Set cube & project item vars
+	// Set cube stuff
 	var index = Math.floor(Math.random()*$scope.project.images.length), nextIndex;
 	if(index === $scope.project.images.length - 1) {
 		nextIndex = 0;
 	} else {
 		nextIndex = index + 1;
 	}
+	// TODO: move timers to array?
 	$scope.project.cube = {
 		index                : index,			// used for tracking the current image
 		nextIndex            : nextIndex,		// used for tracking the next image in queue
 		sidesLoaded          : 0,				// used for knowing when both sides of the cube are loaded
+		firstLoad            : false,			// initial load of the first cube side (site load init)
 		sideArchive          : [],				// used for storing sides that have already been loaded for less network calls
 		transition           : false,			// cube is in transition
 		transitionComplete   : false,			// cube has completed transition
 		pause                : false,			// pause the cube if user is hovering on it or it's currently selected
 		transitionWaitTimer  : null,			// random ammount of time the cube waits before animating to the next side
 		transitionTimer      : null,			// full timer that includes the random wait delay above ^,
-		direction            : $scope.getRandomDirection()
+		direction            : Helpers.getRandomDirection()
 	};
 
 	// user is hovering over this project cube
 	$scope.onMouseOver = function() { $scope.project.cube.pause = true; };
 	$scope.onMouseOut = function() { if(!$scope.project.selected) { $scope.project.cube.pause = false; } };
 }]);
+
+// Cube controller
+// TODO: move cube logic out of item controller into here
+angular.module('Portfolio').controller('CubeCtrl',
+['$scope', '$http', '$timeout', 'Helpers',
+function($scope, $http, $timeout, Helpers) {
+
+}]);	

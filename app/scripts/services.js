@@ -45,6 +45,17 @@ angular.module('Portfolio').service('Convert', function(){
 	};
 });
 
+// Random helper functions
+angular.module('Portfolio').service('Helpers', function(){
+	return {
+		getRandomDirection: function(){
+			// returns a random direction string (up, left, right, or down)
+			var directions = ['left', 'right', 'up', 'down'];
+			return directions[Math.floor(Math.random()*directions.length)];	
+		}
+	};
+});
+
 // this service returns a css 3d object for the cube/sides based on direction of the current animation
 angular.module('Portfolio').service('cubeCSS', function(gridService){
 	return {

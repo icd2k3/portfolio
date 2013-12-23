@@ -1,7 +1,7 @@
 <div class="selected-container">
 	<div class="selected-tip"></div>
 </div>
-<div class="item-content" ng-controller="ItemCtrl">
+<div class="item-content" ng-controller="ItemCtrl" ng-class="{loaded : project.cube.firstLoad}">
 	<a class="item-link" ng-mouseenter="onMouseOver()" ng-mouseleave="onMouseOut()" ui-sref="index.project({id: project.id})">
 		<div class="info">
 			<span class="title">{{project.title}}</span>
@@ -11,7 +11,7 @@
 		<div class="more-info"><i class="fc-icon fc-icon-plus"></i></div>
 		<div class="gradient"></div>
 	</a>
-	<div class="item-cube-container" ng-if="project.cube">
+	<div class="item-cube-container">
 		<div class="item-cube" cube>
 			<div class="side one" cube-side></div>
 			<div class="side two" cube-side></div>

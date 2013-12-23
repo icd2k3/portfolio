@@ -46,7 +46,7 @@ angular.module('Portfolio').directive('gridResize', function($window, gridServic
 // - don't show cube until both sides are rendered on first page load
 // - 3d transitions should stop when user focus leaves window
 // - fallback transition for older browsers
-angular.module('Portfolio').directive('cube', function($timeout, $animate, gridService, cubeCSS){
+angular.module('Portfolio').directive('cube', function($timeout, $animate, gridService, cubeCSS, Helpers){
 	return {
 		link: function(scope, element, attrs) {
 			var transitionSpeed = 0.7,
@@ -75,7 +75,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 					scope.project.cube.transitionWaitTimer = $timeout(function(){
 						if(scope.project.cube.pause) return;
 						var translateDistance = gridService.getHalfItemWidth();
-						scope.project.cube.direction = scope.getRandomDirection();
+						scope.project.cube.direction = Helpers.getRandomDirection();
 						scope.project.cube.transition = true;
 						element.css({
 							'-webkit-transform' : 'translate3d(0, 0, -'+translateDistance+'px)',
@@ -169,6 +169,9 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 						// set sides loaded on cube
 						scope.project.cube.sidesLoaded++;
 						if(scope.project.cube.sidesLoaded === 2) {
+							if(!scope.project.cube.firstLoad) {
+								scope.project.cube.firstLoad = true;
+							}
 							scope.$apply();
 						}
 					};
