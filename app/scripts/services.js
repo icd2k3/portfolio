@@ -47,12 +47,25 @@ angular.module('Portfolio').service('Convert', function(){
 
 // Random helper functions
 angular.module('Portfolio').service('Helpers', function(){
+	var scrollElement = document.body;
+	var animateScroll = function(to, duration){
+		// animates scrollTop without jQuery
+		if (duration <= 0) return;
+	    var difference = to - window.scrollY,
+	    	perTick    = difference / duration * 10;
+	    setTimeout(function() {
+	    	window.scroll(0, window.scrollY + perTick);
+	        //scrollElement.scrollTop = scrollElement.scrollTop + perTick;
+	        animateScroll(to, duration - 10);
+	    }, 10);
+	};
 	return {
 		getRandomDirection: function(){
 			// returns a random direction string (up, left, right, or down)
 			var directions = ['left', 'right', 'up', 'down'];
 			return directions[Math.floor(Math.random()*directions.length)];	
-		}
+		},
+		animateScroll: animateScroll
 	};
 });
 
@@ -131,7 +144,7 @@ angular.module('Portfolio').service('cubeCSS', function(gridService){
 	}
 });
 
-angular.module('Portfolio').service('aboutService', function(){
+/*angular.module('Portfolio').service('aboutService', function(){
 	var sharedData = {
 		active: false,
 		data: {}
@@ -140,4 +153,4 @@ angular.module('Portfolio').service('aboutService', function(){
 		get: function(){ return sharedData; },
 		set: function(d){ sharedData.data = d; }
 	};
-});
+});*/

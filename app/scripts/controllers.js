@@ -6,15 +6,10 @@
 
 // Main grid controller
 angular.module('Portfolio').controller('GridCtrl',
-['$rootScope', '$scope', '$state', '$stateParams', 'data', 'aboutService', 'Convert',
-function($rootScope, $scope, $state, $stateParams, data, aboutService, Convert) {
-	// set shared vars
-	aboutService.set(data.about);
-
-	// set scope vars
+['$rootScope', '$scope', '$state', '$stateParams', 'data', 'Convert',
+function($rootScope, $scope, $state, $stateParams, data, Convert) {
+	// set overall scope vars
 	$scope.projects    = data.projects;
-	$scope.about       = aboutService.get;
-	$scope.aboutData   = data.about;
 	$scope.projectDetails = {
 		projectId: null
 	};
@@ -22,13 +17,16 @@ function($rootScope, $scope, $state, $stateParams, data, aboutService, Convert) 
 		projectsPerRow: 0,
 		rows: []
 	};
+	$scope.about = {
+		active: false,
+		data: data.about
+	};
 	$scope.templates = {
 		about: '/views/about.html',
 		item: '/views/item.html'
 	};
 
 	// assign class for grid (one-up, two-up, three-up, etc)
-	// TODO: move this to a service or into the grid resize directive
 	$scope.gridClass = function(projectsPerRow) {
 		return Convert.numToString(projectsPerRow)+'-up';
 	};
@@ -99,6 +97,12 @@ function($scope, $http, $timeout, Helpers) {
 	$scope.onMouseOver = function() { $scope.project.cube.pause = true; };
 	$scope.onMouseOut = function() { if(!$scope.project.selected) { $scope.project.cube.pause = false; } };
 }]);
+
+// Logo was clicked and about info was opened
+angular.module('Portfolio').controller('AboutCtrl', ['$scope', 'data', 'Helpers', function($scope, data, Helpers) {
+	// when about is active, scroll to top
+	Helpers.animateScroll(0, 200);
+}]);	
 
 // Cube controller
 // TODO: move cube logic out of item controller into here
