@@ -1,4 +1,4 @@
-This project makes use of the following tools:
+This project makes use of the following tools & frameworks:
 - Yeoman
 - Compass
 - SASS
@@ -6,3 +6,7 @@ This project makes use of the following tools:
 - Angular UI-Router
 - Angular Animate
 - Fontcustom
+- Modernizr
+
+Conditional tools & frameworks:
+- jQuery (if browser doesn't support css3 transitions)
