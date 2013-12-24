@@ -34,10 +34,32 @@
 				top: 54px;
 			}
 		}
+		.project-details {
+			.awards {
+				clear: both;
+				margin-top: $padding;
+			}
+		}
 		.about-animation {
 	        height: 183px;
+	        overflow: hidden;
+	        &.ng-enter, &.ng-leave {
+	            @include single-transition(height, 0.5s, $ease-out-quad);
+	        }
+	        &.ng-enter { height: 0px; }
 	        &.ng-enter-active { height: 183px; }
 	        &.ng-leave { height: 183px; }
+	        &.ng-leave-active { height: 0px; }
+    	}
+	    .project-animation {
+	        max-height: 700px;
+	        &.ng-enter, &.ng-leave {
+	            @include single-transition(max-height, 0.5s, $ease-out-quad);
+	        }
+	        &.ng-enter { max-height: 0px; }
+	        &.ng-enter-active { max-height: 700px; }
+	        &.ng-leave { max-height: 700px; }
+	        &.ng-leave-active { max-height: 0px; }
 	    }
 	}
 }
@@ -68,14 +90,49 @@
 		}
 		.about-animation {
 	        height: 270px;
+	        overflow: hidden;
+	        &.ng-enter, &.ng-leave {
+	            @include single-transition(height, 0.5s, $ease-out-quad);
+	        }
+	        &.ng-enter { height: 0px; }
 	        &.ng-enter-active { height: 270px; }
 	        &.ng-leave { height: 270px; }
+	        &.ng-leave-active { height: 0px; }
+    	}
+	    .project-details {
+	    	.alpha, .omega {
+	    		float: none;
+	    		width: 100%;
+	    		.project-details-inner {
+	    			padding: $padding;
+	    		}
+	    	}
+	    	.omega .project-details-inner {
+	    		padding-top: 0;
+	    	}
+	    }
+	    .project-animation {
+	        max-height: 900px;
+	        &.ng-enter, &.ng-leave {
+	            @include single-transition(max-height, 0.5s, $ease-out-quad);
+	        }
+	        &.ng-enter { max-height: 0px; }
+	        &.ng-enter-active { max-height: 900px; }
+	        &.ng-leave { max-height: 900px; }
+	        &.ng-leave-active { max-height: 0px; }
 	    }
 	}
 }
 
 @media screen and (max-width: 321px) { // 1-up grid
-	
+	#container {
+		.project-details {
+			.company {
+				clear: both;
+				margin-top: $padding;
+			}
+		}
+	}
 }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { // retina displays

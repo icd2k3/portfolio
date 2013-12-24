@@ -41,7 +41,6 @@ function($rootScope, $scope, $state, $stateParams, data, Convert) {
 				if($scope.projects[i].id === toParams.id) {
 					$scope.projectDetails = $scope.projects[i];
 					$scope.projects[i].selected = true;
-					//break;
 				}
 			}
 		} else if(toState.name === 'index.grid') {
@@ -69,25 +68,36 @@ function($scope, $http, $timeout, Helpers) {
 		}
 	};
 	// cube model might already exist (for example, if user resized the grid) so we need to clear any active timers before restting the model
-	clearTimers();
-
-	// Set cube stuff
-	var index = Math.floor(Math.random()*$scope.project.images.length), nextIndex;
-	if(index === $scope.project.images.length - 1) {
-		nextIndex = 0;
+	var index, nextIndex, paused, firstLoad;
+	if($scope.project.cube) {
+		// cube already exists, we need to carry over some vars to the new cube object
+		clearTimers();
+		index = $scope.project.cube.index;
+		nextIndex = $scope.project.cube.nextIndex;
+		paused = $scope.project.cube.pause;
+		if(paused) {
+			firstLoad = true;
+		}
+		delete $scope.project.cube;
 	} else {
-		nextIndex = index + 1;
+		// cube doesn't exist, we'll create a brand new one
+		index = Math.floor(Math.random()*$scope.project.images.length);
+		if(index === $scope.project.images.length - 1) {
+			nextIndex = 0;
+		} else {
+			nextIndex = index + 1;
+		}
+		paused = firstLoad = false;
 	}
-	// TODO: move timers to array?
 	$scope.project.cube = {
 		index                : index,			// used for tracking the current image
 		nextIndex            : nextIndex,		// used for tracking the next image in queue
 		sidesLoaded          : 0,				// used for knowing when both sides of the cube are loaded
-		firstLoad            : false,			// initial load of the first cube side (site load init)
+		firstLoad            : firstLoad,		// initial load of the first cube side (site load init)
 		sideArchive          : [],				// used for storing sides that have already been loaded for less network calls
 		transition           : false,			// cube is in transition
 		transitionComplete   : false,			// cube has completed transition
-		pause                : false,			// pause the cube if user is hovering on it or it's currently selected
+		pause                : paused,			// pause the cube if user is hovering on it or it's currently selected
 		transitionWaitTimer  : null,			// random ammount of time the cube waits before animating to the next side
 		transitionTimer      : null,			// full timer that includes the random wait delay above ^,
 		direction            : Helpers.getRandomDirection()

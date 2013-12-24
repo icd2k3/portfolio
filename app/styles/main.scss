@@ -160,7 +160,7 @@ a {
     }
 }
 .item-link {
-    @include position-absolute($z-index: 3);
+    @include position-absolute($z-index: 10);
     @include size(100%, 100%);
     display: block;
     overflow: hidden;
@@ -254,6 +254,13 @@ a {
         @include backface-visibility(hidden);
         &.one { z-index: 2; }
         &.two { z-index: 1; }
+        &.archive, &.inactive {
+            display: none;
+        }
+        &.archive, &.archive-active {
+            &.one { z-index: 4; }
+            &.two { z-index: 3; }
+        }
     }
     &.animate {
         @include enable-fast-image-rendering();
@@ -268,17 +275,37 @@ a {
     overflow: hidden;
     position: relative;
     .alpha, .omega {
-        padding: $padding;
+        .project-details-inner {
+            padding: $padding;
+        }
+    }
+    .omega .project-details-inner {
+        padding-left: 0px;
     }
     p {
         @include font($size: 16px, $line-height: 32px);
+        margin: 0;
     }
     h1 {
         @include font($color: $lime, $weight: normal);
-        margin: 0 0 15px;
+        margin: $padding $padding * 2 0 $padding;
+    }
+    h2 {
+        @include font($color: $lime, $weight: normal, $size: 14px);
+        margin: 0;
+    }
+    .top-row {
+        div {
+            float: left;
+            margin-right: 30px;
+        }
+    }
+    .tools {
+        clear: both;
+        padding-top: $padding;
     }
     .close-button {
-        @include position-absolute($top: $padding, $right: $padding);
+        @include position-absolute($top: $padding - 10, $right: $padding - 10);
     }
 }
 

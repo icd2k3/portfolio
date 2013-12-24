@@ -68,19 +68,24 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 				transitionInit = function(){
 					if(scope.project.cube.pause) return;
 					scope.project.cube.transitionComplete = false;
-					var transitionDelay = Math.round(Math.random()*15000)+2000;
+					var transitionDelay = Math.round(Math.random()*10000)+2000;
 
 					// transition the cube to the next side
 					// NOTE: we have to manually apply css here as 3d translates don't support percentages
 					scope.project.cube.transitionWaitTimer = $timeout(function(){
 						if(scope.project.cube.pause) return;
+
+						scope.project.cube.transition = true;
+						scope.project.cube.transitionTimer = $timeout(transitionComplete, (transitionSpeed * 1000) + 100);
+
+						// if browser doesn't support 3D transforms, this is as far as we get
 						if(!Modernizr.csstransforms3d) {
-							// TODO: fallback animation here
 							return;
 						}
+
+						// browser supports 3d transforms, so get on with it
 						var translateDistance = gridService.getHalfItemWidth();
 						scope.project.cube.direction = Helpers.getRandomDirection();
-						scope.project.cube.transition = true;
 						element.css({
 							'-webkit-transform' : 'translate3d(0, 0, -'+translateDistance+'px)',
 							'transform'         : 'translate3d(0, 0, -'+translateDistance+'px)',
@@ -92,8 +97,6 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 							element.addClass('animate');
 							element.css(cubeCSS.cube(scope.project.cube.direction, transitionSpeed));
 						}, 100);
-
-						scope.project.cube.transitionTimer = $timeout(transitionComplete, (transitionSpeed * 1000) + 100);
 					}, transitionDelay);
 				};
 
@@ -164,6 +167,11 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 							element.parent().append($archiveSide)
 							scope.project.cube.sideArchive.push({index: index, side: $archiveSide});
 						} else {
+							if(!element.hasClass('archive') && !element.hasClass('archive-active')) {
+								// element is one of the original non-archived sides and thus is no longer needed (we'll be using the archived version from here on out to reduce network calls)
+								element.remove();
+							}
+							// switch element to the current archive side
 							element = $archiveSide;
 							element.removeClass('archive').addClass('archive-active');
 						}
@@ -193,16 +201,32 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 			// cube is transitioning, apply 3d rules to the sides
 			scope.$watch(function(){ return scope.project.cube.transition }, function(val){
 				if(!val) return;
-				element.css(cubeCSS.side(scope.project.cube.direction, isNextSide));
+				if(Modernizr.csstransforms3d) {
+					element.css(cubeCSS.side(scope.project.cube.direction, isNextSide));
+				} else {
+					// browser doesn't support 3dtransforms, so instead just fade side 1 to reveal side 2
+					if(!isNextSide) {
+						$(element).animate({'opacity': 0}, 700, function(){});
+					}
+				}
 			});
 
 			// swap cube sides: side 2 becomes side 1, and the new side 2 renders the next image of the cube
 			scope.$watch(function(){ return scope.project.cube.transitionComplete }, function(val){
 				if(!val) return;
-				element.css({
-					'-webkit-transform' : 'none',
-					'transform'         : 'none'
-				});
+				if(Modernizr.csstransforms3d) {
+					element.css({
+						'-webkit-transform' : 'none',
+						'transform'         : 'none'
+					});
+				} else {
+					//if(!isNextSide) {
+					//console.log('coimpleeeeeeee');
+						element.css({
+							'opacity': 1
+						});
+					//}
+				}
 				if(isNextSide) {
 					isNextSide = false;
 					element.removeClass('two').addClass('one');
@@ -210,7 +234,7 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 					element.removeClass('one').addClass('two');
 					// if this was an archived side, send it back to the archive
 					if(element.hasClass('archive-active')) {
-						element.addClass('archive');
+						element.removeClass('archive-active').addClass('archive');
 					}
 					isNextSide = true;
 					preloadImage();

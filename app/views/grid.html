@@ -37,12 +37,27 @@
 			 </div>
 			 <div project-details-directive class="project-details project-animation" ng-if="projectDetails.row == $index" data-project-index="{{projectDetails.index}}">
 			 	<a class="close-button" ui-sref="index.grid"><i class="fc-icon fc-icon-close"></i></a>
+			 	<h1>{{projectDetails.title}}</h1>
 			 	<div class="alpha">
-			 		<h1>{{projectDetails.title}}</h1>
-			 		<p>{{projectDetails.description}}</p>
+			 		<div class="project-details-inner">
+			 			<p>{{projectDetails.description}}</p>
+			 		</div>
 			 	</div>
 			 	<div class="omega">
-
+			 		<div class="project-details-inner">
+			 			<div class="top-row">
+			 				<div class="client" ng-if="projectDetails.client"><h2>CLIENT</h2>{{projectDetails.client}}</div>
+			 				<div class="company" ng-if="projectDetails.company"><h2>COMPANY</h2>{{projectDetails.company}}</div>
+			 				<div class="awards" ng-if="projectDetails.awards">
+			 					<h2>AWARDS</h2>
+			 					<span class="award" ng-repeat="award in projectDetails.awards"><span ng-if="$index !== 0">, </span>{{award}}</span>
+			 				</div>
+			 			</div>
+			 			<div class="tools" ng-if="projectDetails.tools">
+			 				<h2>TOOLS</h2>
+			 				<span class="tool" ng-repeat="tool in projectDetails.tools"><span ng-if="$index !== 0">, </span>{{tool}}</span>
+			 			</div>
+			 		</div>
 			 	</div>
 			 </div>
 		 </div>

@@ -24,24 +24,27 @@
 	"projects":[
 		{
 			"title": "Pathbrite",
+			"client": "Pathbrite",
 			"descriptionShort": "A large scale education technology web application.",
 			"description": "Pathbrite is a large scale education technology web application. Features incude e-portfolio creation, courses, assignments, student grading, and enterprise level community tools. During my time with this company I was responsible for developing several new features as well as improving old ones. I also assisted in making the site more mobile & touch friendly. If you would like a demo of the platform, please contact me at me@justin-schrader.com.",
 			"images": [
 				{"src": "/images/pathbrite_1.jpg", "loaded": false},
 				{"src": "/images/pathbrite_2.jpg", "loaded": false},
 				{"src": "/images/pathbrite_3.jpg", "loaded": false}
-			]
+			],
+			"tools": ["JavaScript", "BackboneJS", "HTML5", "CSS3", "SASS", "jQuery", "Underscore", "Fontcustom", "Jake"]
 		},
 		{
 			"title": "Lux Ahoy",
-			"company": "Luxurious Animals",
+			"client": "Luxurious Animals",
 			"descriptionShort": "An HTML5 physics-based mayhem game.",
 			"description": "Lux Ahoy started as mostly a challenge to see just how much HTML5 could behave like Flash. Leveraging the canvas tag, a handful of javascript frameworks, and spritesheets I helped to create a highly engaging and interactive game. Features include three fully destructible environments, wind, bouyancy, and character animations.",
 			"images": [
 				{"src": "/images/luxahoy_1.jpg", "loaded": false},
 				{"src": "/images/luxahoy_2.jpg", "loaded": false}
 			],
-			"awards":["FWA"]
+			"awards": ["FWA"],
+			"tools": ["JavaScript", "jQuery", "CreateJS", "Box2D", "HTML5", "CSS3", "SASS", "Canvas", "Yeoman"]
 		},
 		{
 			"title": "What If",
@@ -54,11 +57,12 @@
 				{"src": "/images/whatif_2.jpg", "loaded": false},
 				{"src": "/images/whatif_3.jpg", "loaded": false}
 			],
-			"awards":["FWA"]
+			"awards": ["FWA"],
+			"tools": ["JavaScript", "jQuery", "Backbone", "HTML5", "CSS3", "SASS", "Yeoman"]
 		},
 		{
 			"title": "Soup Stories",
-			"client": "Panera",
+			"client": "Panera Bread",
 			"company": "Luxurious Animals",
 			"descriptionShort": "A top-down table site showcasing some information (and ingredients) from Panera Bread",
 			"description": "This HTML5 tablet friendly site features a navigatiable butcher's block full of tasty ingredients and information about Panera Bread. I worked on the main top-down animated navigation as well as the video, menu, and panera cares sections. My favorite task, however, was the programatic steam that rises off the soup bowls.",
@@ -66,11 +70,12 @@
 				{"src": "/images/soupstories_1.jpg", "loaded": false},
 				{"src": "/images/soupstories_2.jpg", "loaded": false},
 				{"src": "/images/soupstories_3.jpg", "loaded": false}
-			]
+			],
+			"tools": ["JavaScript", "jQuery", "Backbone", "HTML5", "CSS3", "SASS", "Yeoman"]
 		},
 		{
 			"title": "Live Consciously",
-			"client": "Panera",
+			"client": "Panera Bread",
 			"company": "Luxurious Animals",
 			"descriptionShort": "A Rube Goldberg inspired interactive site.",
 			"description": "erfoqpwef",
@@ -80,7 +85,8 @@
 				{"src": "/images/lced_3.jpg", "loaded": false},
 				{"src": "/images/lced_4.jpg", "loaded": false}
 			],
-			"awards":["Awwward","FWA"]
+			"awards":["Awwward", "FWA"],
+			"tools": ["JavaScript", "jQuery", "Backbone", "HTML5", "CSS3", "SASS", "Yeoman"]
 		},
 		{
 			"title": "Luxurious Animals",
@@ -91,7 +97,8 @@
 			"images": [
 				{"src": "/images/luxanimals_1.jpg", "loaded": false},
 				{"src": "/images/luxanimals_2.jpg", "loaded": false}
-			]
+			],
+			"tools": ["JavaScript", "ExpressionEngine", "jQuery", "HTML5", "CSS3"]
 		},
 		{
 			"title": "The Maester's Path",
@@ -102,7 +109,8 @@
 			"images": [
 				{"src": "/images/got_1.jpg", "loaded": false},
 				{"src": "/images/got_2.jpg", "loaded": false}
-			]
+			],
+			"tools": ["AS3", "GAIA", "Flash"]
 		},
 		{
 			"title": "Dream Hangout",
@@ -113,7 +121,8 @@
 			"images": [
 				{"src": "/images/lunchables_1.jpg", "loaded": false},
 				{"src": "/images/lunchables_2.jpg", "loaded": false}
-			]
+			],
+			"tools": ["AS3", "RobotLegs", "Flash"]
 		},
 		{
 			"title": "Winning On The Road",
@@ -124,7 +133,8 @@
 			"images": [
 				{"src": "/images/cdw_1.jpg", "loaded": false},
 				{"src": "/images/cdw_2.jpg", "loaded": false}
-			]
+			],
+			"tools": ["JavaScript", "jQuery", "HTML5", "CSS3", "Fontcustom", "SVG"]
 		}
 	]
 }
