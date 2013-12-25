@@ -9,8 +9,8 @@ angular.module('Portfolio').controller('GridCtrl',
 ['$rootScope', '$scope', '$state', '$stateParams', 'data', 'Convert',
 function($rootScope, $scope, $state, $stateParams, data, Convert) {
 	// set overall scope vars
-	$scope.projects    = data.projects;
-	$scope.projectDetails = {
+	$scope.projects = data.projects;	// all project data
+	$scope.projectDetails = {			// used to store the currently selected project's data 
 		projectId: null
 	};
 	$scope.grid = {
@@ -31,7 +31,14 @@ function($rootScope, $scope, $state, $stateParams, data, Convert) {
 		return Convert.numToString(projectsPerRow)+'-up';
 	};
 
-	// handle route changes
+	// watch for changes in initialCubesLoaded and broadcast changes to child scopes (so cube sides know what to do)
+	$scope.$watch('initialCubesLoaded', function(newVal, oldVal){
+    	if(newVal !== oldVal) {
+        	$scope.$broadcast('cubeLoaded', {"val": newVal});
+        }
+	});
+
+	// handle project url route changes
 	$scope.$on('$stateChangeSuccess', function(evt, toState, toParams, fromState, fromParams) {
 		evt.preventDefault();
 		// find the correct project if user has routed to one
@@ -75,7 +82,7 @@ function($scope, $http, $timeout, Helpers) {
 		index = $scope.project.cube.index;
 		nextIndex = $scope.project.cube.nextIndex;
 		paused = $scope.project.cube.pause;
-		if(paused) {
+		if($scope.project.cube.firstLoad) {
 			firstLoad = true;
 		}
 		delete $scope.project.cube;

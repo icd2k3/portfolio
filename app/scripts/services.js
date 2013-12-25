@@ -23,7 +23,8 @@ angular.module('Portfolio').service('gridService', function(){
 	var sharedData = {
 		windowWidth: 0,
 		projectsPerRow: 0,
-		rowHeight: 0
+		rowHeight: 0,
+		initialCubesLoaded: 0   // used for sequential loading of cubes on first site init (so they don't all try loading their sides at once)
 	};
 	return {
 		getHalfItemWidth: function() {
@@ -35,10 +36,14 @@ angular.module('Portfolio').service('gridService', function(){
 		getRowHeight: function(){
 			return sharedData.rowHeight;
 		},
+		getInitialCubesLoaded: function(){
+			return sharedData.initialCubesLoaded;
+		},
 		set: function(obj) {
 			if(obj.windowWidth) { sharedData.windowWidth = obj.windowWidth; }
 			if(obj.projectsPerRow) { sharedData.projectsPerRow = obj.projectsPerRow; }
 			if(obj.rowHeight) { sharedData.rowHeight = obj.rowHeight; }
+			if(obj.initialCubesLoaded) { sharedData.initialCubesLoaded = obj.initialCubesLoaded; }
 		}
 	};
 });
@@ -78,6 +83,7 @@ angular.module('Portfolio').service('Helpers', function(){
 });
 
 // This service returns a css 3d object for the cube/sides based on direction of the current animation
+// because 3d transforms don't support percentages unfortunately, we have to create them here based on the dimensions of the grid
 angular.module('Portfolio').service('cubeCSS', function(gridService){
 	return {
 		cube: function(direction, transitionSpeed) {

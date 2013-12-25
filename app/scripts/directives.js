@@ -168,10 +168,12 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 							scope.project.cube.sideArchive.push({index: index, side: $archiveSide});
 						} else {
 							if(!element.hasClass('archive') && !element.hasClass('archive-active')) {
-								// element is one of the original non-archived sides and thus is no longer needed (we'll be using the archived version from here on out to reduce network calls)
+								// element is one of the original non-archived sides and thus is no longer needed.
+								// we'll be using the archived version from here on out to reduce network calls
 								element.remove();
 							}
-							// switch element to the current archive side
+							// switch element to the archived version
+							// TODO: if element has already been switched to the archived version (images cycled twice or more) no need for this
 							element = $archiveSide;
 							element.removeClass('archive').addClass('archive-active');
 						}
@@ -182,6 +184,7 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 						scope.project.cube.sidesLoaded++;
 						if(scope.project.cube.sidesLoaded === 2) {
 							if(!scope.project.cube.firstLoad) {
+								gridService.set({initialCubesLoaded: gridService.getInitialCubesLoaded() + 1});
 								scope.project.cube.firstLoad = true;
 							}
 							scope.$apply();
@@ -196,7 +199,18 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 					$img.bind('error', function() { console.warn('IMAGE ERROR'); });
 				}
 			};
-			preloadImage();
+			
+			if(scope.project.cube.firstLoad) {
+				// cube sides have already been loaded (user must have resized the screen to change the grid)
+				preloadImage();
+			}
+
+			scope.$watch(function(){ return gridService.getInitialCubesLoaded() }, function(val){
+				// sequentially load cube sides in order from first to last on initial site load
+				if(val === scope.project.index && !scope.project.cube.firstLoad) {
+					preloadImage();
+				}
+			});
 
 			// cube is transitioning, apply 3d rules to the sides
 			scope.$watch(function(){ return scope.project.cube.transition }, function(val){
@@ -220,12 +234,9 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 						'transform'         : 'none'
 					});
 				} else {
-					//if(!isNextSide) {
-					//console.log('coimpleeeeeeee');
-						element.css({
-							'opacity': 1
-						});
-					//}
+					element.css({
+						'opacity': 1
+					});
 				}
 				if(isNextSide) {
 					isNextSide = false;

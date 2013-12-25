@@ -20,6 +20,8 @@ body {
     background: url(/images/background.png) repeat #000;
     background-color: $white;
     background-attachment: fixed;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 // GLOBAL ///////////////
