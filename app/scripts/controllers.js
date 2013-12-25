@@ -31,28 +31,22 @@ function($rootScope, $scope, $state, $stateParams, data, Convert) {
 		return Convert.numToString(projectsPerRow)+'-up';
 	};
 
-	// watch for changes in initialCubesLoaded and broadcast changes to child scopes (so cube sides know what to do)
-	$scope.$watch('initialCubesLoaded', function(newVal, oldVal){
-    	if(newVal !== oldVal) {
-        	$scope.$broadcast('cubeLoaded', {"val": newVal});
-        }
-	});
-
 	// handle project url route changes
-	$scope.$on('$stateChangeSuccess', function(evt, toState, toParams, fromState, fromParams) {
+	$scope.$on('$stateChangeSuccess', function(evt, toState, toParams) { //, fromState, fromParams
 		evt.preventDefault();
+		var i;
 		// find the correct project if user has routed to one
 		if(toState.name === 'index.project' && $scope.projectsPerRow !== 0) {
-			for(var i=0; i<$scope.projects.length; i++) {
-				if($scope.projects[i].selected) $scope.projects[i].selected = false;
+			for(i=0; i<$scope.projects.length; i++) {
+				if($scope.projects[i].selected) { $scope.projects[i].selected = false; }
 				if($scope.projects[i].id === toParams.id) {
 					$scope.projectDetails = $scope.projects[i];
 					$scope.projects[i].selected = true;
 				}
 			}
 		} else if(toState.name === 'index.grid') {
-			for(var i=0; i<$scope.projects.length; i++) {
-				if($scope.projects[i].selected) $scope.projects[i].selected = false;
+			for(i=0; i<$scope.projects.length; i++) {
+				if($scope.projects[i].selected) { $scope.projects[i].selected = false; }
 			}
 			$scope.projectDetails = null;
 		}
@@ -124,11 +118,3 @@ angular.module('Portfolio').controller('AboutCtrl', ['$scope', 'Helpers', functi
 	// when about is active, scroll to top
 	Helpers.animateScroll(0, 200);
 }]);
-
-// Cube controller
-// TODO: move cube logic out of item controller into here
-angular.module('Portfolio').controller('CubeCtrl',
-['$scope', '$http', '$timeout', 'Helpers',
-function($scope, $http, $timeout, Helpers) {
-
-}]);	

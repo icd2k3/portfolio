@@ -1,9 +1,11 @@
 'use strict';
+/*global $:false */
+/*global Modernizr:false */
 
 // handles the main grid layout, projects per row, window resize etc
 angular.module('Portfolio').directive('gridResize', function($window, gridService) {
 	return {
-		link: function(scope, element, attrs) {
+		link: function(scope) {
 			// resize row height to make projects perfect squares
 			var windowResize = function(){
 				var windowWidth = $window.innerWidth,
@@ -48,7 +50,7 @@ angular.module('Portfolio').directive('gridResize', function($window, gridServic
 // - fallback for item hover animation
 angular.module('Portfolio').directive('cube', function($timeout, $animate, gridService, cubeCSS, Helpers){
 	return {
-		link: function(scope, element, attrs) {
+		link: function(scope, element) {
 			var transitionSpeed = 0.7,
 				transitionComplete = function(){
 					element.removeClass('animate');
@@ -66,22 +68,20 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 					scope.project.cube.transitionComplete = true;
 				},
 				transitionInit = function(){
-					if(scope.project.cube.pause) return;
+					if(scope.project.cube.pause) { return; }
 					scope.project.cube.transitionComplete = false;
 					var transitionDelay = Math.round(Math.random()*10000)+2000;
 
 					// transition the cube to the next side
 					// NOTE: we have to manually apply css here as 3d translates don't support percentages
 					scope.project.cube.transitionWaitTimer = $timeout(function(){
-						if(scope.project.cube.pause) return;
+						if(scope.project.cube.pause) { return; }
 
 						scope.project.cube.transition = true;
 						scope.project.cube.transitionTimer = $timeout(transitionComplete, (transitionSpeed * 1000) + 100);
 
 						// if browser doesn't support 3D transforms, this is as far as we get
-						if(!Modernizr.csstransforms3d) {
-							return;
-						}
+						if(!Modernizr.csstransforms3d) { return; }
 
 						// browser supports 3d transforms, so get on with it
 						var translateDistance = gridService.getHalfItemWidth();
@@ -93,7 +93,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 
 						// this timeout makes sure that the css set above takes effect before the transition starts (mostly a FF problem)
 						setTimeout(function(){
-							if(scope.project.cube.pause) return;
+							if(scope.project.cube.pause) { return; }
 							element.addClass('animate');
 							element.css(cubeCSS.cube(scope.project.cube.direction, transitionSpeed));
 						}, 100);
@@ -101,7 +101,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 				};
 
 			// watch for both sides of the cube to be loaded
-			scope.$watch(function(){ return scope.project.cube.sidesLoaded }, function(val){
+			scope.$watch(function(){ return scope.project.cube.sidesLoaded; }, function(val){
 				if(val === 2) {
 					transitionInit();
 				} else {
@@ -109,7 +109,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 				}
 			});
 
-			scope.$watch(function(){ return scope.project.selected; }, function(newVal, oldVal){
+			scope.$watch(function(){ return scope.project.selected; }, function(newVal){
 				if(newVal) {
 					scope.project.cube.pause = true;
 				} else {
@@ -118,7 +118,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 			});
 
 			scope.$watch(function(){ return scope.project.cube.pause; }, function(newVal, oldVal){
-				if(oldVal === newVal) return;
+				if(oldVal === newVal) { return; }
 				if(newVal) {
 					// clear animation timer on hover
 					if(scope.project.cube.transitionWaitTimer) { $timeout.cancel(scope.project.cube.transitionWaitTimer); }
@@ -139,7 +139,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 // TODO: keep previous sides and make them invisible, then pull them back in if cube index resets
 angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, gridService, cubeCSS){
 	return {
-		link: function(scope, element, attrs) {
+		link: function(scope, element) {
 			var isNextSide    = element.hasClass('two');
 
 			// adds an img tag into the div so it can preload the cube side image
@@ -164,7 +164,7 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 							// archive the side to use later (no extra network calls)
 							$archiveSide = element.clone();
 							$archiveSide.removeClass('one two').addClass('archive');
-							element.parent().append($archiveSide)
+							element.parent().append($archiveSide);
 							scope.project.cube.sideArchive.push({index: index, side: $archiveSide});
 						} else {
 							if(!element.hasClass('archive') && !element.hasClass('archive-active')) {
@@ -199,13 +199,13 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 					$img.bind('error', function() { console.warn('IMAGE ERROR'); });
 				}
 			};
-			
+
 			if(scope.project.cube.firstLoad) {
 				// cube sides have already been loaded (user must have resized the screen to change the grid)
 				preloadImage();
 			}
 
-			scope.$watch(function(){ return gridService.getInitialCubesLoaded() }, function(val){
+			scope.$watch(function(){ return gridService.getInitialCubesLoaded(); }, function(val){
 				// sequentially load cube sides in order from first to last on initial site load
 				if(val === scope.project.index && !scope.project.cube.firstLoad) {
 					preloadImage();
@@ -213,8 +213,8 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 			});
 
 			// cube is transitioning, apply 3d rules to the sides
-			scope.$watch(function(){ return scope.project.cube.transition }, function(val){
-				if(!val) return;
+			scope.$watch(function(){ return scope.project.cube.transition; }, function(val){
+				if(!val) { return; }
 				if(Modernizr.csstransforms3d) {
 					element.css(cubeCSS.side(scope.project.cube.direction, isNextSide));
 				} else {
@@ -226,8 +226,8 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 			});
 
 			// swap cube sides: side 2 becomes side 1, and the new side 2 renders the next image of the cube
-			scope.$watch(function(){ return scope.project.cube.transitionComplete }, function(val){
-				if(!val) return;
+			scope.$watch(function(){ return scope.project.cube.transitionComplete; }, function(val){
+				if(!val) { return; }
 				if(Modernizr.csstransforms3d) {
 					element.css({
 						'-webkit-transform' : 'none',
@@ -251,22 +251,22 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 					preloadImage();
 				}
 			});
-	    }
+		}
 	};
 });
 
 // handles setting grid-row-container to be active so we can adjust z-index to top (helps with the cube illusion)
 angular.module('Portfolio').directive('gridProject', function(){
 	return {
-		link: function(scope, element, attrs) {
-			scope.$watch(function(){ return scope.project.cube.transition }, function(val) {
+		link: function(scope, element) {
+			scope.$watch(function(){ return scope.project.cube.transition; }, function(val) {
 				if(val) {
 					element.parent().parent().addClass('active');
 				} else {
 					element.parent().parent().removeClass('active');
 				}
 			});
-	    }
+		}
 	};
 });
 
@@ -274,12 +274,12 @@ angular.module('Portfolio').directive('gridProject', function(){
 angular.module('Portfolio').directive('bgImageDirective', function(){
 	return {
 		link: function(scope, element, attrs) {
-			attrs.$observe('image', function(val) {
+			attrs.$observe('image', function() {
 				element.css({
 					'background-image': 'url('+attrs.image+')'
 				});
 			});
-	    }
+		}
 	};
 });
 
@@ -297,12 +297,10 @@ angular.module('Portfolio').directive('gridRowDirective', function(){
 // project details directive for applying template
 angular.module('Portfolio').directive('projectDetailsDirective', function(Helpers, gridService){
 	return {
-		link: function(scope, element, attrs) {
+		link: function(scope) {
 			var scrollToProject = function() {
 				// use the current project index & the grid data to find out where we should auto-scroll to
-				var index          = attrs.projectIndex,
-					projectsPerRow = gridService.getProjectsPerRow(),
-					rowHeight      = gridService.getRowHeight(),
+				var rowHeight      = gridService.getRowHeight(),
 					currentRow     = scope.projectDetails.row,
 					yPos           = Math.round(currentRow * rowHeight + (rowHeight * 0.5));
 

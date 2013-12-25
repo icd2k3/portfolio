@@ -59,24 +59,23 @@ angular.module('Portfolio').service('Convert', function(){
 });
 
 // Random helper functions
-angular.module('Portfolio').service('Helpers', function(){
-	var scrollElement = document.body;
-	var animateScroll = function(to, duration){
+angular.module('Portfolio').service('Helpers', function() {
+	var animateScroll = function(to, duration) {
 		// animates scrollTop without jQuery
-		if (duration <= 0) return;
-	    var	scrollTop = window.pageYOffset,
-	    	difference = to - scrollTop,
-	    	perTick    = (difference / duration) * 10;
-	    setTimeout(function() {
-	    	window.scroll(0, window.pageYOffset + perTick);
-	        animateScroll(to, duration - 10);
-	    }, 10);
+		if (duration <= 0) { return; }
+		var	scrollTop  = window.pageYOffset,
+			difference = to - scrollTop,
+			perTick    = (difference / duration) * 10;
+		setTimeout(function() {
+			window.scroll(0, window.pageYOffset + perTick);
+			animateScroll(to, duration - 10);
+		}, 10);
 	};
 	return {
-		getRandomDirection: function(){
+		getRandomDirection: function() {
 			// returns a random direction string (up, left, right, or down)
 			var directions = ['left', 'right', 'up', 'down'];
-			return directions[Math.floor(Math.random()*directions.length)];	
+			return directions[Math.floor(Math.random()*directions.length)];
 		},
 		animateScroll: animateScroll
 	};
@@ -87,73 +86,77 @@ angular.module('Portfolio').service('Helpers', function(){
 angular.module('Portfolio').service('cubeCSS', function(gridService){
 	return {
 		cube: function(direction, transitionSpeed) {
-			var translateDistance = gridService.getHalfItemWidth();
+			var translateDistance = gridService.getHalfItemWidth(),
+				returnObj;
 			switch(direction) {
 				case 'right':
-					return {
+					returnObj = {
 						'transition'        : 'all '+transitionSpeed+'s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
 						'-webkit-transform' : 'rotateY(90deg) translate3d('+translateDistance+'px, 0, 0)',
 						'transform'         : 'rotateY(90deg) translate3d('+translateDistance+'px, 0, 0)'
 					};
-				break;
+					break;
 				case 'left':
-					return {
+					returnObj = {
 						'transition'        : 'all '+transitionSpeed+'s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
 						'-webkit-transform' : 'rotateY(-90deg) translate3d(-'+translateDistance+'px, 0, 0)',
 						'transform'         : 'rotateY(-90deg) translate3d(-'+translateDistance+'px, 0, 0)'
 					};
-				break;
+					break;
 				case 'up':
-					return {
+					returnObj = {
 						'transition'        : 'all '+transitionSpeed+'s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
 						'-webkit-transform' : 'rotateX(90deg) translate3d(0, -'+translateDistance+'px, 0)',
 						'transform'         : 'rotateX(90deg) translate3d(0, -'+translateDistance+'px, 0)'
 					};
-				break;
+					break;
 				case 'down':
-					return {
+					returnObj = {
 						'transition'        : 'all '+transitionSpeed+'s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
 						'-webkit-transform' : 'rotateX(-90deg) translate3d(0, '+translateDistance+'px, 0)',
 						'transform'         : 'rotateX(-90deg) translate3d(0, '+translateDistance+'px, 0)'
 					};
-				break;
+					break;
 			}
+			return returnObj;
 		},
 		side: function(direction, isNextSide){
-			var translateDistance = gridService.getHalfItemWidth();
+			var translateDistance = gridService.getHalfItemWidth(),
+				returnObj;
 			if(isNextSide) {
 				switch(direction) {
 					case 'right':
-						return {
+						returnObj = {
 							'-webkit-transform' : 'rotateY(-90deg) translate3d(0, 0, '+translateDistance+'px)',
 							'transform'         : 'rotateY(-90deg) translate3d(0, 0, '+translateDistance+'px)'
 						};
-					break;
+						break;
 					case 'left':
-						return {
+						returnObj = {
 							'-webkit-transform' : 'rotateY(90deg) translate3d(0, 0, '+translateDistance+'px)',
 							'transform'         : 'rotateY(90deg) translate3d(0, 0, '+translateDistance+'px)'
 						};
-					break;
+						break;
 					case 'up':
-						return {
+						returnObj = {
 							'-webkit-transform' : 'rotateX(-90deg) translate3d(0, 0, '+translateDistance+'px)',
 							'transform'         : 'rotateX(-90deg) translate3d(0, 0, '+translateDistance+'px)'
 						};
-					break;
+						break;
 					case 'down':
-						return {
+						returnObj = {
 							'-webkit-transform' : 'rotateX(90deg) translate3d(0, 0, '+translateDistance+'px)',
 							'transform'         : 'rotateX(90deg) translate3d(0, 0, '+translateDistance+'px)'
 						};
-					break;
+						break;
 				}
 			} else {
-				return {
+				returnObj = {
 					'-webkit-transform' : 'translate3d(0, 0, '+translateDistance+'px)',
 					'transform'         : 'translate3d(0, 0, '+translateDistance+'px)'
 				};
 			}
+			return returnObj;
 		}
-	}
+	};
 });
