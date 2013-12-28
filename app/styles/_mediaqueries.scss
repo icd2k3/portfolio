@@ -40,6 +40,14 @@
 				margin-top: $padding;
 			}
 		}
+		#grid.about-active {
+            padding-top: 183px;
+        }
+        .item-link {
+        	p {
+        		line-height: 20px;
+        	}
+        }
 		.about-animation {
 	        height: 183px;
 	        overflow: hidden;
@@ -88,6 +96,9 @@
 				padding-left: 0;
 			}
 		}
+		#grid.about-active {
+            padding-top: 270px;
+        }
 		.about-animation {
 	        height: 270px;
 	        overflow: hidden;
@@ -136,7 +147,7 @@
 }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { // retina displays
-	body {
+	body, #about-details {
 		background: url(/images/background_@2X.png) repeat #000 !important;
 		background-size: 50% 50% !important;
 	}

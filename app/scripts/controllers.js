@@ -112,9 +112,3 @@ function($scope, $http, $timeout, Helpers) {
 		if(!$scope.project.selected) { $scope.project.cube.pause = false; }
 	};
 }]);
-
-// Logo was clicked and about info was opened
-angular.module('Portfolio').controller('AboutCtrl', ['$scope', 'Helpers', function($scope, Helpers) {
-	// when about is active, scroll to top
-	Helpers.animateScroll(0, 200);
-}]);

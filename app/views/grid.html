@@ -1,5 +1,5 @@
 <div id="container" class="{{gridClass(grid.projectsPerRow)}}">
-	<div id="about-details" class="about-animation" ng-if="about.active" ng-controller="AboutCtrl">
+	<div id="about-details" class="about-animation" ng-if="about.active">
 		<i class="fc-icon fc-icon-logo-rotated"></i>
 		<div id="name" class="column">
 			<span>
@@ -30,7 +30,7 @@
 	<div id="logo" class="logo-animation" ng-if="!about.active">
 		<a ng-click="about.active = !about.active"><i class="fc-icon fc-icon-logo-rotated"></i></a>
 	</div>
-	<div id="grid" grid grid-resize>
+	<div id="grid" grid grid-resize watch-about-directive>
 		<div class="grid-row-container" ng-repeat="row in grid.rows track by $index">
 			<div class="grid-row" grid-row-directive data-row-height="{{rowHeight}}">
 				<div class="grid-project" ng-repeat="project in projects | filter:{row: $index}" grid-project ng-class="{active : project.cube.transition, selected : project.selected}" ng-include="templates.item" data-index="{{$index}}"></div>
@@ -46,15 +46,15 @@
 			 	<div class="omega">
 			 		<div class="project-details-inner">
 			 			<div class="top-row">
-			 				<div class="client" ng-if="projectDetails.client"><h2>CLIENT</h2>{{projectDetails.client}}</div>
-			 				<div class="company" ng-if="projectDetails.company"><h2>COMPANY</h2>{{projectDetails.company}}</div>
+			 				<div class="client" ng-if="projectDetails.client"><h2>Client</h2>{{projectDetails.client}}</div>
+			 				<div class="company" ng-if="projectDetails.company"><h2>Company</h2>{{projectDetails.company}}</div>
 			 				<div class="awards" ng-if="projectDetails.awards">
-			 					<h2>AWARDS</h2>
+			 					<h2>Awards</h2>
 			 					<span class="award" ng-repeat="award in projectDetails.awards"><span ng-if="$index !== 0">, </span>{{award}}</span>
 			 				</div>
 			 			</div>
 			 			<div class="tools" ng-if="projectDetails.tools">
-			 				<h2>TOOLS</h2>
+			 				<h2>Tools</h2>
 			 				<span class="tool" ng-repeat="tool in projectDetails.tools"><span ng-if="$index !== 0">, </span>{{tool}}</span>
 			 			</div>
 			 		</div>

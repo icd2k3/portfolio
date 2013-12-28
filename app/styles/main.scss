@@ -16,7 +16,7 @@
 // BODY & CONTAINER //////
 html, body { @include size(100%, 100%); padding: 0; margin: 0; -webkit-overflow-scrolling: touch; }
 body {
-    @include font($family: $font-source-sans-pro, $color: $white, $size: 14px, $line-height: 24px);
+    @include font($family: $font-museo-sans, $color: $white, $size: 14px, $line-height: 24px, $weight: 300, $letter-spacing: 1px);
     background: url(/images/background.png) repeat #000;
     background-color: $white;
     background-attachment: fixed;
@@ -45,6 +45,14 @@ body {
 }
 ::-webkit-scrollbar-thumb:window-inactive {
     background: $lime;
+}
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 a {
     @include font($color: $lime, $text-decoration: none);
@@ -168,7 +176,7 @@ a {
     overflow: hidden;
     .gradient {
         @include single-transition(opacity, 0.15s, linear);
-        @include background-image(linear-gradient(transparent 25%, #000 100%));
+        @include background-image(linear-gradient(transparent 40%, #000 100%));
         @include size(100%, 100%);
         @include position-absolute($z-index: 1);
         opacity: 0;
@@ -215,8 +223,11 @@ a {
         }
     }
     &:hover, &:focus {
-        .gradient, .info {
+        .info {
             opacity: 1;
+        }
+        .gradient {
+            opacity: 0.85;
         }
         .more-info:before {
             @include position-absolute($right: 0px, $bottom: 0px);
@@ -289,11 +300,11 @@ a {
         margin: 0;
     }
     h1 {
-        @include font($color: $lime, $weight: normal);
+        @include font($color: $lime, $weight: 500);
         margin: $padding $padding * 2 0 $padding;
     }
     h2 {
-        @include font($color: $lime, $weight: normal, $size: 14px);
+        @include font($color: $lime, $weight: 300, $size: 14px);
         margin: 0;
     }
     .top-row {
@@ -340,6 +351,9 @@ a {
 // ABOUT ////////////////////
 
 #about-details {
+    @include position-fixed($z-index: 3);
+    width: 100%;
+    background: url(/images/background.png) repeat #000;
     .close-button {
         @include position-absolute($right: $padding, $top: $padding);
     }
@@ -364,6 +378,15 @@ a {
 // ANIMATIONS ////////////////
 // TODO: create mixin for angular animations?
 .csstransitions {
+    #grid {
+        @include single-transition(padding-top, 0.51s, $ease-out-quad);
+        padding-top: 0px;
+        &.about-active {
+            padding-top: 110px;
+        }
+    }
+
+    // angular animations
     .about-animation {
         height: 110px;
         overflow: hidden;

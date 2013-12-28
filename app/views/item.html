@@ -2,7 +2,7 @@
 	<div class="selected-container">
 		<div class="selected-tip"></div>
 	</div>
-	<a class="item-link" ng-mouseenter="onMouseOver()" ng-mouseleave="onMouseOut()" ui-sref="index.project({id: project.id})">
+	<a class="item-link no-select" ng-mouseenter="onMouseOver()" ng-mouseleave="onMouseOut()" ui-sref="index.project({id: project.id})">
 		<div class="info">
 			<span class="title">{{project.title}}</span>
 			<span class="client" ng-if="project.client">Client: {{project.client}}</span>

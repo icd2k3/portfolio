@@ -43,6 +43,21 @@ angular.module('Portfolio').directive('gridResize', function($window, gridServic
 	};
 });
 
+// this directive handles watching if the about section is open or not so we can animate the grid down to accomodate
+angular.module('Portfolio').directive('watchAboutDirective', function(){
+	return {
+		link: function(scope, element) {
+			scope.$watch(function(){ return scope.about.active; }, function(val){
+				if(val) {
+					element.addClass('about-active');
+				} else {
+					element.removeClass('about-active');
+				}
+			});
+		}
+	};
+});
+
 // handles all cube switching functionality
 // TODO:
 // - 3d transitions should stop when user focus leaves window
@@ -70,7 +85,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 				transitionInit = function(){
 					if(scope.project.cube.pause) { return; }
 					scope.project.cube.transitionComplete = false;
-					var transitionDelay = Math.round(Math.random()*10000)+2000;
+					var transitionDelay = Math.round(Math.random()*12000)+2000;
 
 					// transition the cube to the next side
 					// NOTE: we have to manually apply css here as 3d translates don't support percentages
@@ -154,10 +169,7 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 						}
 						// set cube side background to the image after it's finished loading
 						if(!$archiveSide) {
-							element.css({
-								'background-image' : 'url('+scope.project.images[index].src+')',
-								'background-size'  : 'cover'
-							});
+							element.attr('style', 'background: url('+scope.project.images[index].src+') no-repeat 0 0; background-size: cover');
 							// remove the img tag as it's no longer needed
 							if($img) { $img.unbind().remove(); }
 
@@ -276,7 +288,7 @@ angular.module('Portfolio').directive('bgImageDirective', function(){
 		link: function(scope, element, attrs) {
 			attrs.$observe('image', function() {
 				element.css({
-					'background-image': 'url('+attrs.image+')'
+					'background': 'url('+attrs.image+') no-repeat 0 0'
 				});
 			});
 		}
