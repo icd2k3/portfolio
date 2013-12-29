@@ -10,7 +10,7 @@
 		<div id="contact" class="column">
 			<span>
 				{{about.data.contact.title}}<br/>
-				<a href="mailto:{{about.data.contact.email}}" target="_blank">{{about.data.contact.email}}</a>
+				<a class="email" href="mailto:{{about.data.contact.contacts[0].url}}" target="_blank">{{about.data.contact.contacts[0].title}}</a> or <a href="{{about.data.contact.contacts[1].url}}" target="_blank">{{about.data.contact.contacts[1].title}}</a>
 			</span>
 		</div>
 		<div id="resume" class="column">

@@ -7,6 +7,7 @@
 @import "compass/css3/transform";
 @import "compass/css3/images";
 @import "compass/css3/text-shadow";
+@import "compass/css3/box-shadow";
 @import '_mixins';
 @import '_common';
 @import '_fontcustom';
@@ -16,7 +17,7 @@
 // BODY & CONTAINER //////
 html, body { @include size(100%, 100%); padding: 0; margin: 0; -webkit-overflow-scrolling: touch; }
 body {
-    @include font($family: $font-museo-sans, $color: $white, $size: 14px, $line-height: 24px, $weight: 300, $letter-spacing: 1px);
+    @include font($family: $font-museo-sans, $color: $white, $size: 14px, $line-height: 24px, $weight: 400, $letter-spacing: 1px);
     background: url(/images/background.png) repeat #000;
     background-color: $white;
     background-attachment: fixed;
@@ -300,11 +301,11 @@ a {
         margin: 0;
     }
     h1 {
-        @include font($color: $lime, $weight: 500);
+        @include font($color: $lime, $weight: 600);
         margin: $padding $padding * 2 0 $padding;
     }
     h2 {
-        @include font($color: $lime, $weight: 300, $size: 14px);
+        @include font($color: $lime, $weight: 400, $size: 14px);
         margin: 0;
     }
     .top-row {
@@ -352,6 +353,7 @@ a {
 
 #about-details {
     @include position-fixed($z-index: 3);
+    @include single-box-shadow(rgba(0, 0, 0, 0.8), 0px, 10px, 25px);
     width: 100%;
     background: url(/images/background.png) repeat #000;
     .close-button {

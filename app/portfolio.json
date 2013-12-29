@@ -11,7 +11,16 @@
 		},
 		"contact": {
 			"title": "Contact",
-			"email": "me@justin-schrader.com"
+			"contacts": [
+				{
+					"title": "Email",
+					"url": "me@justin-schrader.com"
+				},
+				{
+					"title": "LinkedIn",
+					"url": "http://www.linkedin.com/profile/view?id=13289506"
+				}
+			]
 		},
 		"source": {
 			"title": "Code Sample",

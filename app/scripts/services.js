@@ -48,6 +48,19 @@ angular.module('Portfolio').service('gridService', function(){
 	};
 });
 
+// Used for setting/getting when browser tab is inactive (used for pausing cube anims)
+angular.module('Portfolio').service('WindowFocus', function(){
+	var focused = true;
+	return {
+		get: function() {
+			return focused;
+		},
+		set: function(bool) {
+			focused = bool;
+		}
+	};
+});
+
 // Unit conversion helpers
 angular.module('Portfolio').service('Convert', function(){
 	var textNums = ['zero','one','two','three','four','five','six','seven','eight','nine','ten'];

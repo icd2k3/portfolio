@@ -3,7 +3,7 @@
 /*global Modernizr:false */
 
 // handles the main grid layout, projects per row, window resize etc
-angular.module('Portfolio').directive('gridResize', function($window, gridService) {
+angular.module('Portfolio').directive('gridResize', function($window, gridService, WindowFocus) {
 	return {
 		link: function(scope) {
 			// resize row height to make projects perfect squares
@@ -36,7 +36,11 @@ angular.module('Portfolio').directive('gridResize', function($window, gridServic
 				// set vars in gridService so other directives can use the data
 				gridService.set({windowWidth: windowWidth, projectsPerRow: projectsPerRow, rowHeight: newRowHeight});
 			};
+			var windowBlur = function() { WindowFocus.set(false); };
+			var windowFocus = function() { WindowFocus.set(true); };
 			angular.element($window).bind('resize', windowResize);
+			angular.element($window).bind('focus', windowFocus);
+			angular.element($window).bind('blur', windowBlur);
 			// trigger initial resize on first render
 			setTimeout(function(){ windowResize(); }, 1);
 		}
@@ -63,7 +67,7 @@ angular.module('Portfolio').directive('watchAboutDirective', function(){
 // - 3d transitions should stop when user focus leaves window
 // - fallback transition for older browsers
 // - fallback for item hover animation
-angular.module('Portfolio').directive('cube', function($timeout, $animate, gridService, cubeCSS, Helpers){
+angular.module('Portfolio').directive('cube', function($timeout, $animate, gridService, cubeCSS, Helpers, WindowFocus){
 	return {
 		link: function(scope, element) {
 			var transitionSpeed = 0.7,
@@ -84,6 +88,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 				},
 				transitionInit = function(){
 					if(scope.project.cube.pause) { return; }
+					console.log('trannssss');
 					scope.project.cube.transitionComplete = false;
 					var transitionDelay = Math.round(Math.random()*12000)+2000;
 
@@ -125,6 +130,15 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 			});
 
 			scope.$watch(function(){ return scope.project.selected; }, function(newVal){
+				if(newVal) {
+					scope.project.cube.pause = true;
+				} else {
+					scope.project.cube.pause = false;
+				}
+			});
+
+			scope.$watch(WindowFocus.get, function(newVal, oldVal){
+				if(newVal === oldVal) { return; }
 				if(newVal) {
 					scope.project.cube.pause = true;
 				} else {
@@ -232,7 +246,7 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 				} else {
 					// browser doesn't support 3dtransforms, so instead just fade side 1 to reveal side 2
 					if(!isNextSide) {
-						$(element).animate({'opacity': 0}, 700, function(){});
+						$(element).animate({'opacity': 0}, 700);
 					}
 				}
 			});
