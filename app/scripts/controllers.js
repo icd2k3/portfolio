@@ -41,8 +41,10 @@ function($rootScope, $scope, $state, $stateParams, data, Convert) {
 				if($scope.projects[i].selected) { $scope.projects[i].selected = false; }
 				if($scope.projects[i].id === toParams.id) {
 					$scope.projectDetails = $scope.projects[i];
+					//$scope.projects[i].url = '/';
 					$scope.projects[i].selected = true;
 				}
+				//$scope.projects[i].url = '/project/'+$scope.project.id;
 			}
 		} else if(toState.name === 'index.grid') {
 			for(i=0; i<$scope.projects.length; i++) {
@@ -55,8 +57,8 @@ function($rootScope, $scope, $state, $stateParams, data, Convert) {
 
 // Grid item controller
 angular.module('Portfolio').controller('ItemCtrl',
-['$scope', '$http', '$timeout', 'Helpers',
-function($scope, $http, $timeout, Helpers) {
+['$scope', '$http', '$timeout', 'Helpers', 'WindowFocus',
+function($scope, $http, $timeout, Helpers, WindowFocus) {
 	// clear both transition timers on the project cube
 	var clearTimers = function() {
 		if($scope.project.cube) {
@@ -111,4 +113,23 @@ function($scope, $http, $timeout, Helpers) {
 	$scope.onMouseOut = function() {
 		if(!$scope.project.selected) { $scope.project.cube.pause = false; }
 	};
+
+	$scope.$watch(function(){ return $scope.project.selected; }, function(newVal, oldVal){
+		if(newVal === oldVal) { return; }
+		if(newVal) {
+			$scope.project.cube.pause = true;
+		} else {
+			$scope.project.cube.pause = false;
+		}
+	});
+
+	// pause all cubes when user has left the window/tab (causes issues with transitions etc)
+	$scope.$watch(WindowFocus.get, function(newVal, oldVal) {
+		if(newVal === oldVal) { return; }
+		if(newVal) {
+			$scope.project.cube.pause = false;
+		} else {
+			$scope.project.cube.pause = true;
+		}
+	});
 }]);

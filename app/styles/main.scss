@@ -17,7 +17,7 @@
 // BODY & CONTAINER //////
 html, body { @include size(100%, 100%); padding: 0; margin: 0; -webkit-overflow-scrolling: touch; }
 body {
-    @include font($family: $font-museo-sans, $color: $white, $size: 14px, $line-height: 24px, $weight: 400, $letter-spacing: 1px);
+    @include font($family: $font-myriad-pro, $color: $white, $size: 14px, $line-height: 24px, $weight: 400, $letter-spacing: 1px);
     background: url(/images/background.png) repeat #000;
     background-color: $white;
     background-attachment: fixed;
@@ -95,6 +95,19 @@ a {
 // holds everything. grid, about, project details, etc
 #container {
     @include size(inherit, inherit);
+    &.blurred {
+        // change styles if user leaves the window/tab in browser
+        .item-cube {
+            //@include single-transition(all, 0s);
+            /*transition: none !important;
+            -webkit-transform: none !important;
+            transform: none !important;
+            .side {
+                -webkit-transform: none !important;
+                transform: none !important;
+            }*/
+        }
+    }
     &.four-up {
         .grid-project { width: 25%; }
     }

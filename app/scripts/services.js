@@ -9,6 +9,7 @@ angular.module('Portfolio').factory('data', ['$http', function($http){
 				project.index = i;
 				// set id as title url slug
 				project.id = project.title.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
+				project.url = '/project/'+project.id;
 			}
 			return response.data;
 		});
@@ -49,10 +50,16 @@ angular.module('Portfolio').service('gridService', function(){
 });
 
 // Used for setting/getting when browser tab is inactive (used for pausing cube anims)
-angular.module('Portfolio').service('WindowFocus', function(){
-	var focused = true;
+angular.module('Portfolio').service('WindowFocus', function($window){
+	console.log('focus init');
+	var focused = true,
+		windowFocus = function() { focused = true; },
+		windowBlur = function() { focused = false; };
+	angular.element($window).bind('focus', windowFocus);
+	angular.element($window).bind('blur', windowBlur);
 	return {
 		get: function() {
+			//console.log(focused);
 			return focused;
 		},
 		set: function(bool) {

@@ -3,7 +3,7 @@
 /*global Modernizr:false */
 
 // handles the main grid layout, projects per row, window resize etc
-angular.module('Portfolio').directive('gridResize', function($window, gridService, WindowFocus) {
+angular.module('Portfolio').directive('gridResize', function($window, gridService) {
 	return {
 		link: function(scope) {
 			// resize row height to make projects perfect squares
@@ -36,11 +36,7 @@ angular.module('Portfolio').directive('gridResize', function($window, gridServic
 				// set vars in gridService so other directives can use the data
 				gridService.set({windowWidth: windowWidth, projectsPerRow: projectsPerRow, rowHeight: newRowHeight});
 			};
-			var windowBlur = function() { WindowFocus.set(false); };
-			var windowFocus = function() { WindowFocus.set(true); };
 			angular.element($window).bind('resize', windowResize);
-			angular.element($window).bind('focus', windowFocus);
-			angular.element($window).bind('blur', windowBlur);
 			// trigger initial resize on first render
 			setTimeout(function(){ windowResize(); }, 1);
 		}
@@ -51,8 +47,9 @@ angular.module('Portfolio').directive('gridResize', function($window, gridServic
 angular.module('Portfolio').directive('watchAboutDirective', function(){
 	return {
 		link: function(scope, element) {
-			scope.$watch(function(){ return scope.about.active; }, function(val){
-				if(val) {
+			scope.$watch(function(){ return scope.about.active; }, function(newVal, oldVal) {
+				if(newVal === oldVal) { return; }
+				if(newVal) {
 					element.addClass('about-active');
 				} else {
 					element.removeClass('about-active');
@@ -67,7 +64,7 @@ angular.module('Portfolio').directive('watchAboutDirective', function(){
 // - 3d transitions should stop when user focus leaves window
 // - fallback transition for older browsers
 // - fallback for item hover animation
-angular.module('Portfolio').directive('cube', function($timeout, $animate, gridService, cubeCSS, Helpers, WindowFocus){
+angular.module('Portfolio').directive('cube', function($timeout, $animate, gridService, cubeCSS, Helpers){
 	return {
 		link: function(scope, element) {
 			var transitionSpeed = 0.7,
@@ -88,9 +85,8 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 				},
 				transitionInit = function(){
 					if(scope.project.cube.pause) { return; }
-					console.log('trannssss');
 					scope.project.cube.transitionComplete = false;
-					var transitionDelay = Math.round(Math.random()*12000)+2000;
+					var transitionDelay = Math.round(Math.random()*13000)+2000;
 
 					// transition the cube to the next side
 					// NOTE: we have to manually apply css here as 3d translates don't support percentages
@@ -129,23 +125,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 				}
 			});
 
-			scope.$watch(function(){ return scope.project.selected; }, function(newVal){
-				if(newVal) {
-					scope.project.cube.pause = true;
-				} else {
-					scope.project.cube.pause = false;
-				}
-			});
-
-			scope.$watch(WindowFocus.get, function(newVal, oldVal){
-				if(newVal === oldVal) { return; }
-				if(newVal) {
-					scope.project.cube.pause = true;
-				} else {
-					scope.project.cube.pause = false;
-				}
-			});
-
+			// cube transitions pause/resume
 			scope.$watch(function(){ return scope.project.cube.pause; }, function(newVal, oldVal){
 				if(oldVal === newVal) { return; }
 				if(newVal) {
@@ -291,19 +271,6 @@ angular.module('Portfolio').directive('gridProject', function(){
 				} else {
 					element.parent().parent().removeClass('active');
 				}
-			});
-		}
-	};
-});
-
-// set background image of div based on data-image attribute
-angular.module('Portfolio').directive('bgImageDirective', function(){
-	return {
-		link: function(scope, element, attrs) {
-			attrs.$observe('image', function() {
-				element.css({
-					'background': 'url('+attrs.image+') no-repeat 0 0'
-				});
 			});
 		}
 	};
