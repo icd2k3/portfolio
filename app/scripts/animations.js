@@ -1,7 +1,11 @@
 'use strict';
 /*global $:false */
 /*global Modernizr:false */
-// Fallback animations for browsers that don't support CSS3
+
+// ANIMATIONS //////////////////////
+/*
+	- Fallback animations for browsers that don't support css3 transitions and animation
+*/
 
 angular.module('Portfolio').animation('.about-animation', function(){
 	return {

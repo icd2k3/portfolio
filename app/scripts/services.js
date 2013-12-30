@@ -91,11 +91,28 @@ angular.module('Portfolio').service('Helpers', function() {
 			animateScroll(to, duration - 10);
 		}, 10);
 	};
+	var usrAgent = navigator.userAgent || navigator.vendor;
+	var browser = {
+		isMobile  : /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(usrAgent),
+		isTablet  : /android \d|ipad|playbook|silk|tablet|kindle/i.test(usrAgent),
+		isAndroid : /android (?!.*(chrome|kindle))/i.test(usrAgent),
+		isFirefox : /firefox/i.test(usrAgent),
+		isWindows : /windows nt/i.test(usrAgent),
+		isOpera   : /Opera/i.test(usrAgent),
+		isiPad    : /ipad/i.test(usrAgent),
+		isiPhone  : /iphone/i.test(usrAgent),
+		isiOS     : /iPhone|iPad|iPod/i.test(usrAgent),
+		isIE9     : /msie 9/i.test(usrAgent),
+		isIE8     : /msie 8/i.test(usrAgent)
+	};
 	return {
 		getRandomDirection: function() {
 			// returns a random direction string (up, left, right, or down)
 			var directions = ['left', 'right', 'up', 'down'];
 			return directions[Math.floor(Math.random()*directions.length)];
+		},
+		browser: function() {
+			return browser;
 		},
 		animateScroll: animateScroll
 	};

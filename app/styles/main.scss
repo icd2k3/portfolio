@@ -392,15 +392,14 @@ a {
 
 // ANIMATIONS ////////////////
 // TODO: create mixin for angular animations?
-.csstransitions {
-    #grid {
-        @include single-transition(padding-top, 0.51s, $ease-out-quad);
-        padding-top: 0px;
-        &.about-active {
-            padding-top: 110px;
-        }
+#grid {
+    @include single-transition(padding-top, 0.51s, $ease-out-quad);
+    padding-top: 0px;
+    &.about-active {
+        padding-top: 110px;
     }
-
+}
+.csstransitions {
     // angular animations
     .about-animation {
         height: 110px;

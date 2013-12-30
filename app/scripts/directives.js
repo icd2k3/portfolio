@@ -135,7 +135,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 					if(scope.project.cube.transition) {
 						transitionComplete();
 					}
-				} else {
+				} else if(!scope.project.selected) {
 					// reset the transition
 					transitionInit();
 				}
