@@ -15,7 +15,7 @@
 @import '_fallbacks';
 
 // BODY & CONTAINER //////
-html, body { @include size(100%, 100%); padding: 0; margin: 0; -webkit-overflow-scrolling: touch; }
+html, body { @include size(100%, 100%); padding: 0; margin: 0; -webkit-overflow-scrolling: touch; -webkit-text-size-adjust: none; }
 body {
     @include font($family: $font-myriad-pro, $color: $white, $size: 14px, $line-height: 24px, $weight: 400, $letter-spacing: 1px);
     background: url(/images/background.png) repeat #000;
