@@ -1,6 +1,6 @@
 'use strict';
 
-var Portfolio = angular.module('Portfolio', ['ui.router', 'ngAnimate']);
+var Portfolio = angular.module('Portfolio', ['ui.router', 'ngAnimate', 'ngSanitize']);
 
 Portfolio.run(['$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
     $rootScope.$state = $state;

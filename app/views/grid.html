@@ -40,7 +40,7 @@
 			 	<h1>{{projectDetails.title}}</h1>
 			 	<div class="alpha">
 			 		<div class="project-details-inner">
-			 			<p>{{projectDetails.description}}</p>
+			 			<p ng-bind-html="projectDetails.description"></p>
 			 			<ul>
 			 				<li ng-repeat="link in projectDetails.links"><a href="{{link.url}}" target="_blank">{{link.title}}</a></li>
 			 			</ul>
