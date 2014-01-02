@@ -156,16 +156,17 @@
 				{"src": "/images/got_3.jpg", "loaded": false},
 				{"src": "/images/got_4.jpg", "loaded": false}
 			],
-			"tools": ["AS3", "GAIA", "Flash"]
+			"tools": ["Flash", "AS3", "GAIA"]
 		},
 		{
 			"title": "Design Your Dream Hangout",
 			"company": "Luxurious Animals",
 			"client": "Lunchables",
 			"descriptionShort": "A site for kids to design and create their dream hangout spot.",
-			"description": "Full description coming soon.",
+			"description": "Lunchables' Design Your Dream Hangout site gives kids the opportunity to create, save, and share their ultimate hangout spot. Each of the three environments features a plethora of objects, creatures, and patterns to ensure no two hangouts are alike. Users also have the ability to rotate and colorize any object they drop into a scene. This site also features a gallery section so users can see what other people have created.<br/><br/>Links below are courtesy of Luxurious Animals LLC.",
 			"links": [
-				{"title": "Visit the Archived Site", "url": "http://archive.luxanimals.com/lunchables/dydh/"}
+				{"title": "Visit the Archived Site", "url": "http://archive.luxanimals.com/lunchables/dydh/"},
+				{"title": "Watch the Video", "url": "http://vimeo.com/49954229"}
 			],
 			"images": [
 				{"src": "/images/lunchables_1.jpg", "loaded": false},
@@ -179,7 +180,7 @@
 			"company": "Luxurious Animals",
 			"client": "CDW",
 			"descriptionShort": "A zooming 3D HTML5 parallax scrolling site.",
-			"description": "Full description coming soon.",
+			"description": "This 3D zooming parallax site showcases CDW's experience in providing large-scale technology solutions. I helped to set up some of the scene layering as well as the mobile version of the site.<br/><br/>Link below is courtesy of Luxurious Animals LLC.",
 			"links": [
 				{"title": "Visit the Site", "url": "http://www.winningontheroad.com/"}
 			],
@@ -194,15 +195,16 @@
 			"client": "CMT",
 			"company": "Luxurious Animals",
 			"descriptionShort": "A Flash site featuring an interactive virtual city within a postcard.",
-			"description": "Full description coming soon.",
+			"description": "This Flash site features a living interactive city within a postcard for the purpose of introducing two new original reality shows on CMT. Users can watch the action & rescues unfold, explore the city to find hidden artifacts, or watch trailer videos for the new shows.<br/><br/>Link below is courtesy of Luxurious Animals LLC.",
 			"images": [
 				{"src": "/images/cmt_1.jpg", "loaded": false},
 				{"src": "/images/cmt_2.jpg", "loaded": false}
 			],
 			"links": [
-				{"title": "Visit the Archived Site", "url": "http://archive.luxanimals.com/cmt/adventure_country/"}
+				{"title": "Visit the Archived Site", "url": "http://archive.luxanimals.com/cmt/adventure_country/"},
+				{"title": "Watch the Video", "url": "http://vimeo.com/11536863"}
 			],
-			"tools": ["JavaScript", "jQuery", "HTML5", "CSS3", "Fontcustom", "SVG"]
+			"tools": ["Flash", "AS3"]
 		},
 		{
 			"title": "Previous Portfolio",
