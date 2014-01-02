@@ -41,10 +41,8 @@ function($rootScope, $scope, $state, $stateParams, data, Convert) {
 				if($scope.projects[i].selected) { $scope.projects[i].selected = false; }
 				if($scope.projects[i].id === toParams.id) {
 					$scope.projectDetails = $scope.projects[i];
-					//$scope.projects[i].url = '/';
 					$scope.projects[i].selected = true;
 				}
-				//$scope.projects[i].url = '/project/'+$scope.project.id;
 			}
 		} else if(toState.name === 'index.grid') {
 			for(i=0; i<$scope.projects.length; i++) {
@@ -91,6 +89,9 @@ function($scope, $http, $timeout, Helpers, WindowFocus) {
 			nextIndex = index + 1;
 		}
 		paused = firstLoad = false;
+	}
+	if($scope.project.selected) {
+		paused = true;
 	}
 	$scope.project.cube = {
 		index                : index,			// used for tracking the current image

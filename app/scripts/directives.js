@@ -86,7 +86,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 				transitionInit = function(){
 					if(scope.project.cube.pause) { return; }
 					scope.project.cube.transitionComplete = false;
-					var transitionDelay = Math.round(Math.random()*13000)+2000;
+					var transitionDelay = Math.round(Math.random()*11000)+2000;
 
 					// transition the cube to the next side
 					// NOTE: we have to manually apply css here as 3d translates don't support percentages
@@ -97,7 +97,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 						scope.project.cube.transitionTimer = $timeout(transitionComplete, (transitionSpeed * 1000) + 100);
 
 						// if browser doesn't support 3D transforms, this is as far as we get
-						if(!Modernizr.csstransforms3d) { return; }
+						if(!Modernizr.csstransforms3d || !Helpers.browser().cubeSupported) { return; }
 
 						// browser supports 3d transforms, so get on with it
 						var translateDistance = gridService.getHalfItemWidth();
@@ -146,7 +146,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 
 // handles loading of cube side images and setting next & current side elements for the cube directive to use
 // TODO: keep previous sides and make them invisible, then pull them back in if cube index resets
-angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, gridService, cubeCSS){
+angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, gridService, cubeCSS, Helpers){
 	return {
 		link: function(scope, element) {
 			var isNextSide    = element.hasClass('two');
@@ -221,12 +221,19 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 			// cube is transitioning, apply 3d rules to the sides
 			scope.$watch(function(){ return scope.project.cube.transition; }, function(val){
 				if(!val) { return; }
-				if(Modernizr.csstransforms3d) {
+				if(Modernizr.csstransforms3d && Helpers.browser().cubeSupported) {
 					element.css(cubeCSS.side(scope.project.cube.direction, isNextSide));
 				} else {
 					// browser doesn't support 3dtransforms, so instead just fade side 1 to reveal side 2
 					if(!isNextSide) {
-						$(element).animate({'opacity': 0}, 700);
+						if(!Modernizr.csstransitions) {
+							$(element).animate({'opacity': 0}, 700);
+						} else {
+							element.css({
+								'transition': 'all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+								'opacity': '0'
+							});
+						}
 					}
 				}
 			});
@@ -234,15 +241,17 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 			// swap cube sides: side 2 becomes side 1, and the new side 2 renders the next image of the cube
 			scope.$watch(function(){ return scope.project.cube.transitionComplete; }, function(val){
 				if(!val) { return; }
-				if(Modernizr.csstransforms3d) {
+				if(Modernizr.csstransforms3d && Helpers.browser().cubeSupported) {
 					element.css({
 						'-webkit-transform' : 'none',
 						'transform'         : 'none'
 					});
 				} else {
-					element.css({
-						'opacity': 1
-					});
+					setTimeout(function(){
+						element.css({
+							'opacity': 1
+						});
+					}, 666); // >8-D
 				}
 				if(isNextSide) {
 					isNextSide = false;

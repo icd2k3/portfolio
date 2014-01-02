@@ -1,4 +1,5 @@
 'use strict';
+
 // Load portfolio JSON data
 angular.module('Portfolio').factory('data', ['$http', function($http){
 	var path    = '/portfolio.json',
@@ -51,7 +52,6 @@ angular.module('Portfolio').service('gridService', function(){
 
 // Used for setting/getting when browser tab is inactive (used for pausing cube anims)
 angular.module('Portfolio').service('WindowFocus', function($window){
-	console.log('focus init');
 	var focused = true,
 		windowFocus = function() { focused = true; },
 		windowBlur = function() { focused = false; };
@@ -59,7 +59,6 @@ angular.module('Portfolio').service('WindowFocus', function($window){
 	angular.element($window).bind('blur', windowBlur);
 	return {
 		get: function() {
-			//console.log(focused);
 			return focused;
 		},
 		set: function(bool) {
@@ -94,17 +93,24 @@ angular.module('Portfolio').service('Helpers', function() {
 	var usrAgent = navigator.userAgent || navigator.vendor;
 	var browser = {
 		isMobile  : /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(usrAgent),
-		isTablet  : /android \d|ipad|playbook|silk|tablet|kindle/i.test(usrAgent),
-		isAndroid : /android (?!.*(chrome|kindle))/i.test(usrAgent),
-		isFirefox : /firefox/i.test(usrAgent),
-		isWindows : /windows nt/i.test(usrAgent),
+		//isTablet  : /android \d|ipad|playbook|silk|tablet|kindle/i.test(usrAgent),
+		//isAndroid : /android (?!.*(chrome|kindle))/i.test(usrAgent),
+		//isFirefox : /firefox/i.test(usrAgent),
+		//isWindows : /windows nt/i.test(usrAgent),
 		isOpera   : /Opera/i.test(usrAgent),
-		isiPad    : /ipad/i.test(usrAgent),
+		//isiPad    : /ipad/i.test(usrAgent),
 		isiPhone  : /iphone/i.test(usrAgent),
 		isiOS     : /iPhone|iPad|iPod/i.test(usrAgent),
-		isIE9     : /msie 9/i.test(usrAgent),
-		isIE8     : /msie 8/i.test(usrAgent)
+		isIE      : /msie/i.test(usrAgent),
+		//isIE10    : /msie 10/i.test(usrAgent),
+		//isIE9     : /msie 9/i.test(usrAgent),
+		//isIE8     : /msie 8/i.test(usrAgent)
 	};
+	// TODO: IE10 & 11 should be able to display a cube animation, but they don't support preserve3d
+	// this means eventually I'll have to change around the cube & transitions to have the sides individually
+	// animate instead of the entire cube... but until then, we'll just disable for IE.
+	// this should be used in conjunction with Modernizr.csstransforms3d
+	browser.cubeSupported = !browser.isIE && !browser.isMobile;
 	return {
 		getRandomDirection: function() {
 			// returns a random direction string (up, left, right, or down)

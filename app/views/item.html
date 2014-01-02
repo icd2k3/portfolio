@@ -5,7 +5,7 @@
 	<a href="{{project.selected ? '/' : project.url}}" class="item-link no-select" ng-mouseenter="onMouseOver()" ng-mouseleave="onMouseOut()">
 		<div class="info">
 			<span class="title">{{project.title}}</span>
-			<span class="client" ng-if="project.client">Client: {{project.client}}</span>
+			<span class="client" ng-if="project.client">{{project.client}}</span>
 			<p>{{project.descriptionShort}}</p>
 		</div>
 		<div class="more-info"><i class="fc-icon fc-icon-plus"></i></div>

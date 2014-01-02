@@ -68,7 +68,7 @@ a {
 .omega { float: right; }
 .close-button {
     cursor: pointer;
-    &:hover {
+    &:hover, &:focus {
         .fc-icon-close {
             @include font($color: $lime);
             @include scale(-1,1);
@@ -95,19 +95,6 @@ a {
 // holds everything. grid, about, project details, etc
 #container {
     @include size(inherit, inherit);
-    &.blurred {
-        // change styles if user leaves the window/tab in browser
-        .item-cube {
-            //@include single-transition(all, 0s);
-            /*transition: none !important;
-            -webkit-transform: none !important;
-            transform: none !important;
-            .side {
-                -webkit-transform: none !important;
-                transform: none !important;
-            }*/
-        }
-    }
     &.four-up {
         .grid-project { width: 25%; }
     }
@@ -190,7 +177,7 @@ a {
     overflow: hidden;
     .gradient {
         @include single-transition(opacity, 0.15s, linear);
-        @include background-image(linear-gradient(transparent 40%, #000 100%));
+        @include background-image(linear-gradient(transparent 50%, #000 100%));
         @include size(100%, 100%);
         @include position-absolute($z-index: 1);
         opacity: 0;
@@ -210,7 +197,7 @@ a {
             @include font($size: 12px, $color: #CCC);
         }
         p {
-            @include font($size: 14px);
+            @include font($size: 14px, $weight: 300);
             margin: 0;
         }
     }
@@ -227,7 +214,7 @@ a {
             width: 0;
             content: '';
         }
-        &:hover {
+        &:hover, &:focus {
             &:before {
                 border-right: 100px solid $black;
             }
@@ -236,24 +223,28 @@ a {
             }
         }
     }
-    &:hover, &:focus {
-        .info {
-            opacity: 1;
-        }
-        .gradient {
-            opacity: 0.85;
-        }
-        .more-info:before {
-            @include position-absolute($right: 0px, $bottom: 0px);
-        }
-        .fc-icon-plus {
-            bottom: 10px;
-            right: 12px;
-        }
-    }
 }
 .item-content {
     position: relative;
+}
+.no-touch {
+    .item-link {
+        &:hover, &:focus {
+            .info {
+                opacity: 1;
+            }
+            .gradient {
+                opacity: 0.9;
+            }
+            .more-info:before {
+                @include position-absolute($right: 0px, $bottom: 0px);
+            }
+            .fc-icon-plus {
+                bottom: 10px;
+                right: 12px;
+            }
+        }
+    }
 }
 
 // ITEM CUBE ////////////////
@@ -429,10 +420,10 @@ a {
             @include single-transition(top, 0.25s, $ease-out-quad);
             @include single-transition(left, 0.25s, $ease-out-quad);
         }
-        &.ng-enter { top: -50px; left: -50px; }
+        &.ng-enter { left: -100px; }
         &.ng-enter-active { top: 0; left: 0; }
         &.ng-leave { top: 0; left: 0; }
-        &.ng-leave-active { top: -50px; left: -50px; }
+        &.ng-leave-active { left: -100px; }
     }
     .item-load-animation {
         @include single-transition(all, 0.5s, $ease-out-quad);
