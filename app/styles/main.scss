@@ -55,6 +55,12 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
+ul {
+    padding: 0;
+}
+ul li {
+    list-style: none;
+}
 a {
     @include font($color: $lime, $text-decoration: none);
     &:hover, &:focus {

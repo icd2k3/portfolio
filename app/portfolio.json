@@ -35,11 +35,16 @@
 			"title": "Pathbrite",
 			"client": "Pathbrite",
 			"descriptionShort": "A large scale education technology web application.",
-			"description": "Pathbrite is a large scale education technology web application. Features incude e-portfolio creation, courses, assignments, student grading, and enterprise level community tools. During my time with this company I was responsible for developing several new features as well as improving old ones. I also assisted in making the site more mobile & touch friendly. If you would like a demo of the platform, please contact me at me@justin-schrader.com.",
+			"description": "Pathbrite is a large scale education technology web application. Features incude e-portfolio creation, courses, assignments, student grading, and enterprise level community tools. During my time with this company I was responsible for developing several new features as well as improving old ones. I also assisted in making the site more mobile & touch friendly.",
+			"links": [
+				{"title": "View Pathbrite's Youtube Channel", "url": "http://www.youtube.com/pathbrite"}
+			],
 			"images": [
 				{"src": "/images/pathbrite_1.jpg", "loaded": false},
 				{"src": "/images/pathbrite_2.jpg", "loaded": false},
-				{"src": "/images/pathbrite_3.jpg", "loaded": false}
+				{"src": "/images/pathbrite_3.jpg", "loaded": false},
+				{"src": "/images/pathbrite_4.jpg", "loaded": false},
+				{"src": "/images/pathbrite_5.jpg", "loaded": false}
 			],
 			"tools": ["JavaScript", "BackboneJS", "HTML5", "CSS3", "SASS", "jQuery", "Underscore", "Fontcustom", "Jake"]
 		},
@@ -48,9 +53,16 @@
 			"client": "Luxurious Animals",
 			"descriptionShort": "An HTML5 physics-based mayhem game.",
 			"description": "Lux Ahoy started as mostly a challenge to see just how much HTML5 could behave like Flash. Leveraging the canvas tag, a handful of javascript frameworks, and spritesheets I helped to create a highly engaging and interactive game. Features include three fully destructible environments, wind, bouyancy, and character animations.",
+			"links": [
+				{"title": "Play the Game", "url": "http://www.luxahoy.com"},
+				{"title": "Watch the Video", "url": "http://vimeo.com/56039533"}
+			],
 			"images": [
 				{"src": "/images/luxahoy_1.jpg", "loaded": false},
-				{"src": "/images/luxahoy_2.jpg", "loaded": false}
+				{"src": "/images/luxahoy_2.jpg", "loaded": false},
+				{"src": "/images/luxahoy_3.jpg", "loaded": false},
+				{"src": "/images/luxahoy_4.jpg", "loaded": false},
+				{"src": "/images/luxahoy_5.jpg", "loaded": false}
 			],
 			"awards": ["FWA"],
 			"tools": ["JavaScript", "jQuery", "CreateJS", "Box2D", "HTML5", "CSS3", "SASS", "Canvas", "Yeoman"]
@@ -61,10 +73,14 @@
 			"company": "Luxurious Animals",
 			"descriptionShort": "A layered parallax scrolling HTML5 site.",
 			"description": "A layered parallax HTML5 scrolling site for Morgan Stanley to match a print & video campaign they were running.",
+			"links": [
+				{"title": "Visit the Archived Site", "url": "http://whoismorganstanley.luxanimals.com/"}
+			],
 			"images": [
 				{"src": "/images/whatif_1.jpg", "loaded": false},
 				{"src": "/images/whatif_2.jpg", "loaded": false},
-				{"src": "/images/whatif_3.jpg", "loaded": false}
+				{"src": "/images/whatif_3.jpg", "loaded": false},
+				{"src": "/images/whatif_4.jpg", "loaded": false}
 			],
 			"awards": ["FWA"],
 			"tools": ["JavaScript", "jQuery", "Backbone", "HTML5", "CSS3", "SASS", "Yeoman"]
@@ -75,10 +91,14 @@
 			"company": "Luxurious Animals",
 			"descriptionShort": "A top-down table site showcasing some information (and ingredients) from Panera Bread",
 			"description": "This HTML5 tablet friendly site features a navigatiable butcher's block full of tasty ingredients and information about Panera Bread. I worked on the main top-down animated navigation as well as the video, menu, and panera cares sections. My favorite task, however, was the programatic steam that rises off the soup bowls.",
+			"links": [
+				{"title": "Visit the Archived Site", "url": "http://panera.luxanimals.com/"}
+			],
 			"images": [
 				{"src": "/images/soupstories_1.jpg", "loaded": false},
 				{"src": "/images/soupstories_2.jpg", "loaded": false},
-				{"src": "/images/soupstories_3.jpg", "loaded": false}
+				{"src": "/images/soupstories_3.jpg", "loaded": false},
+				{"src": "/images/soupstories_4.jpg", "loaded": false}
 			],
 			"tools": ["JavaScript", "jQuery", "Backbone", "HTML5", "CSS3", "SASS", "Yeoman"]
 		},
@@ -88,6 +108,9 @@
 			"company": "Luxurious Animals",
 			"descriptionShort": "A Rube Goldberg inspired interactive site.",
 			"description": "erfoqpwef",
+			"links": [
+				{"title": "Visit the Site", "url": "http://marketing.panerabread.com/liveconsciouslyeatdeliciously/"}
+			],
 			"images": [
 				{"src": "/images/lced_1.jpg", "loaded": false},
 				{"src": "/images/lced_2.jpg", "loaded": false},
@@ -103,9 +126,13 @@
 			"client": "Luxurious Animals",
 			"descriptionShort": "The company CMS website for Luxurious Animals.",
 			"description": "erfoqpwef",
+			"links": [
+				{"title": "Visit the Site", "url": "http://www.luxanimals.com/"}
+			],
 			"images": [
 				{"src": "/images/luxanimals_1.jpg", "loaded": false},
-				{"src": "/images/luxanimals_2.jpg", "loaded": false}
+				{"src": "/images/luxanimals_2.jpg", "loaded": false},
+				{"src": "/images/luxanimals_3.jpg", "loaded": false}
 			],
 			"tools": ["JavaScript", "ExpressionEngine", "jQuery", "HTML5", "CSS3"]
 		},
@@ -115,9 +142,14 @@
 			"client": "HBO",
 			"descriptionShort": "An interactive Flash website for HBO's Game of Thrones.",
 			"description": "erfoqpwef",
+			"links": [
+				{"title": "Visit the Site", "url": "http://got-review.luxanimals.com/"}
+			],
 			"images": [
 				{"src": "/images/got_1.jpg", "loaded": false},
-				{"src": "/images/got_2.jpg", "loaded": false}
+				{"src": "/images/got_2.jpg", "loaded": false},
+				{"src": "/images/got_3.jpg", "loaded": false},
+				{"src": "/images/got_4.jpg", "loaded": false}
 			],
 			"tools": ["AS3", "GAIA", "Flash"]
 		},
@@ -127,9 +159,13 @@
 			"client": "Lunchables",
 			"descriptionShort": "A site for kids to design and create their dream hangout spot.",
 			"description": "erfoqpwef",
+			"links": [
+				{"title": "Visit the Archived Site", "url": "http://archive.luxanimals.com/lunchables/dydh/"}
+			],
 			"images": [
 				{"src": "/images/lunchables_1.jpg", "loaded": false},
-				{"src": "/images/lunchables_2.jpg", "loaded": false}
+				{"src": "/images/lunchables_2.jpg", "loaded": false},
+				{"src": "/images/lunchables_3.jpg", "loaded": false}
 			],
 			"tools": ["AS3", "RobotLegs", "Flash"]
 		},
@@ -139,9 +175,35 @@
 			"client": "CDW",
 			"descriptionShort": "A zooming 3D HTML5 parallax scrolling site.",
 			"description": "erfoqpwef",
+			"links": [
+				{"title": "Visit the Site", "url": "http://www.winningontheroad.com/"}
+			],
 			"images": [
 				{"src": "/images/cdw_1.jpg", "loaded": false},
 				{"src": "/images/cdw_2.jpg", "loaded": false}
+			],
+			"tools": ["JavaScript", "jQuery", "HTML5", "CSS3", "Fontcustom", "SVG"]
+		},
+		{
+			"title": "Adventure Country",
+			"client": "CMT",
+			"company": "Luxurious Animals",
+			"descriptionShort": "A Flash site featuring an interactive virtual city within a postcard.",
+			"description": "erfoqpwef",
+			"images": [
+				{"src": "/images/cmt_1.jpg", "loaded": false},
+				{"src": "/images/cmt_2.jpg", "loaded": false}
+			],
+			"tools": ["JavaScript", "jQuery", "HTML5", "CSS3", "Fontcustom", "SVG"]
+		},
+		{
+			"title": "Previous Portfolio",
+			"client": "Me",
+			"descriptionShort": "My old portfolio site from 2007",
+			"description": "erfoqpwef",
+			"images": [
+				{"src": "/images/old_portfolio_1.jpg", "loaded": false},
+				{"src": "/images/old_portfolio_2.jpg", "loaded": false}
 			],
 			"tools": ["JavaScript", "jQuery", "HTML5", "CSS3", "Fontcustom", "SVG"]
 		}
