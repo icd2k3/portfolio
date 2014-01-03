@@ -79,7 +79,7 @@
 			.column {
 				float: none;
 				width: 100%;
-				padding-top: $padding;
+				padding-top: 20px;
 				span {
 					margin-left: 0 !important;
 					padding-left: $padding;
@@ -97,17 +97,17 @@
 			}
 		}
 		#grid.about-active {
-            padding-top: 270px;
+            padding-top: 230px;
         }
 		.about-animation {
-	        height: 270px;
+	        height: 230px;
 	        overflow: hidden;
 	        &.ng-enter, &.ng-leave {
 	            @include single-transition(height, 0.5s, $ease-out-quad);
 	        }
 	        &.ng-enter { height: 0px; }
-	        &.ng-enter-active { height: 270px; }
-	        &.ng-leave { height: 270px; }
+	        &.ng-enter-active { height: 230px; }
+	        &.ng-leave { height: 230px; }
 	        &.ng-leave-active { height: 0px; }
     	}
 	    .project-details {
@@ -120,6 +120,9 @@
 	    	}
 	    	.omega .project-details-inner {
 	    		padding-top: 0;
+	    	}
+	    	p {
+	    		@include font($size: 14px, $line-height: 25px);
 	    	}
 	    }
 	    .project-animation {

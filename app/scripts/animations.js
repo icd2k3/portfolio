@@ -7,6 +7,11 @@
 	- Fallback animations for browsers that don't support css3 transitions and animation
 */
 
+/*
+	TODOS:
+	- Fallback animation for project details open/close
+*/
+
 angular.module('Portfolio').animation('.about-animation', function(){
 	return {
 		enter: function(element, done) {
@@ -47,11 +52,3 @@ angular.module('Portfolio').animation('.item-load-animation', function(){
 		}
 	};
 });
-
-/*angular.module('Portfolio').animation('.project-details', function(){
-	return {
-		enter: function(element, done) {
-			
-		}
-	};
-});*/

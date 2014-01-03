@@ -311,7 +311,7 @@ a {
         margin: 0;
     }
     h1 {
-        @include font($color: $lime, $weight: 600);
+        @include font($color: $lime, $weight: 300);
         margin: $padding $padding * 2 0 $padding;
     }
     h2 {

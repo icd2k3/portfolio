@@ -1,5 +1,10 @@
 'use strict';
 
+// SERVICES //////////////////////
+/*
+	- Handles data that should be able to be shared across multiple controlles & directives
+*/
+
 // Load portfolio JSON data
 angular.module('Portfolio').factory('data', ['$http', function($http){
 	var path    = '/portfolio.json',

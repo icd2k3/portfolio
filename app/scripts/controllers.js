@@ -1,10 +1,14 @@
 'use strict';
+// CONTROLLERS ///////////////////
 /*
-	GRID CONTROLLER
-	- this handles the rendering of the portfolio projects grid
+	- Handles the overall data structure for the site
 */
 
 // Main grid controller
+/*
+	This root controller handles all the main data for the site (from the json file),
+	router state switching (/project/name), and grid layout.
+*/
 angular.module('Portfolio').controller('GridCtrl',
 ['$rootScope', '$scope', '$state', '$stateParams', 'data', 'Convert',
 function($rootScope, $scope, $state, $stateParams, data, Convert) {
@@ -54,6 +58,16 @@ function($rootScope, $scope, $state, $stateParams, data, Convert) {
 }]);
 
 // Grid item controller
+/*
+	This controller handles each individual item within the grid.
+	Includes initial setup of each item cube and handles things like pausing, selecting, and respawning
+*/
+/*
+	TODOS:
+	- This section can be organized better by breaking the cube out into it's own controller
+	- Avoid using $scope.project.cube - instead, restructure so we can just use $scope.cube
+	- Simplify init of cube (overly complicated if/else statements)
+*/
 angular.module('Portfolio').controller('ItemCtrl',
 ['$scope', '$http', '$timeout', 'Helpers', 'WindowFocus',
 function($scope, $http, $timeout, Helpers, WindowFocus) {
@@ -115,6 +129,7 @@ function($scope, $http, $timeout, Helpers, WindowFocus) {
 		if(!$scope.project.selected) { $scope.project.cube.pause = false; }
 	};
 
+	// watch project select/deselect
 	$scope.$watch(function(){ return $scope.project.selected; }, function(newVal, oldVal){
 		if(newVal === oldVal) { return; }
 		if(newVal) {

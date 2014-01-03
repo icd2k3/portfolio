@@ -2,6 +2,15 @@
 /*global $:false */
 /*global Modernizr:false */
 
+// DIRECTIVES /////////////////
+/*
+	- Handles all dom manipulation, item transitioning, etc
+*/
+/*
+	TODOS:
+		- Add angular restrict tags to all directives
+*/
+
 // handles the main grid layout, projects per row, window resize etc
 angular.module('Portfolio').directive('gridResize', function($window, gridService) {
 	return {
@@ -43,7 +52,7 @@ angular.module('Portfolio').directive('gridResize', function($window, gridServic
 	};
 });
 
-// this directive handles watching if the about section is open or not so we can animate the grid down to accomodate
+// this directive handles watching if the about section is open or not so we can animate the grid down for space
 angular.module('Portfolio').directive('watchAboutDirective', function(){
 	return {
 		link: function(scope, element) {
@@ -60,10 +69,12 @@ angular.module('Portfolio').directive('watchAboutDirective', function(){
 });
 
 // handles all cube switching functionality
-// TODO:
-// - 3d transitions should stop when user focus leaves window
-// - fallback transition for older browsers
-// - fallback for item hover animation
+/* TODOS:
+	- break up into separate directives? especially for pause/resume
+	- transitionSpeed should be set/stored in controller
+	- restructure to use scope.cube instead of scope.project.cube
+	- optimize for speed
+*/
 angular.module('Portfolio').directive('cube', function($timeout, $animate, gridService, cubeCSS, Helpers){
 	return {
 		link: function(scope, element) {
@@ -145,7 +156,10 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 });
 
 // handles loading of cube side images and setting next & current side elements for the cube directive to use
-// TODO: keep previous sides and make them invisible, then pull them back in if cube index resets
+/* TODOS:
+	- Break up into separate directives for organization
+	- Optimize for speed
+*/
 angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, gridService, cubeCSS, Helpers){
 	return {
 		link: function(scope, element) {
@@ -270,7 +284,7 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 	};
 });
 
-// handles setting grid-row-container to be active so we can adjust z-index to top (helps with the cube illusion)
+// handles setting .grid-row-container element z-index to top when a child item is transitioning (helps with the 3D effect)
 angular.module('Portfolio').directive('gridProject', function(){
 	return {
 		link: function(scope, element) {
@@ -286,6 +300,7 @@ angular.module('Portfolio').directive('gridProject', function(){
 });
 
 // update grid row height from gridResize directive
+// TODO: switch this to a watch instead of observe
 angular.module('Portfolio').directive('gridRowDirective', function(){
 	return {
 		link: function(scope, element, attrs) {
