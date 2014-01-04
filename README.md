@@ -20,11 +20,11 @@ Conditional Tools & Frameworks:
 Needs a-fixin:
 - Optimize & re-organize directives & controllers.
 - General organization and consolidation of files & names.
-- Change the about header design so the triangle stays attached to bottom of the block area.
+- Change the about header design so the triangle stays attached to bottom of the block area. (improvement)
+- Rotate & scale initial item animate in instead of just scale. (improvement)
 - Rework cube animation for IE10/11 (no support for preserve-3d).
-- Mobile: rotate cube on project click instead of random interval.
+- Mobile: rotate cube on project click instead of random interval. (improvement)
 - Mobile & Tablet: fix sticky scrolling bug that happens randomly.
-- FB share meta tags.
 - Create page for < IE9.
 - 404.
 

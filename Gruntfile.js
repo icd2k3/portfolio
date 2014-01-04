@@ -342,6 +342,7 @@ module.exports = function (grunt) {
             'bower_components/jquery/jquery.min.js',
             'bower_components/es5-shim/es5-shim.js',
             'bower_components/json3/lib/json3.min.js',
+            'public-images/*',
             'resume/*',
             'fontcustom/{,*/}*.{woff,ttf,svg,eot}',
             'images/{,*/}*.{webp}',
