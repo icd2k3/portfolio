@@ -1,6 +1,6 @@
 <div id="container" class="{{gridClass(grid.projectsPerRow)}}">
 	<div id="about-details" class="about-animation" ng-if="about.active">
-		<i class="fc-icon fc-icon-logo-rotated"></i>
+		<!-- <i class="fc-icon fc-icon-logo-rotated"></i> -->
 		<div id="name" class="column">
 			<span>
 				{{about.data.name}}<br/>
@@ -27,8 +27,8 @@
 		</div>
 		<a class="close-button" ng-click="about.active = !about.active"><i class="fc-icon fc-icon-close"></i></a>
 	</div>
-	<div id="logo" class="logo-animation" ng-if="!about.active">
-		<a ng-click="about.active = !about.active"><i class="fc-icon fc-icon-logo-rotated"></i></a>
+	<div id="logo" class="logo-animation" ng-hide="about.active">
+		<a ng-click="about.active = !about.active"><i class="fc-icon fc-icon-logo"></i></a>
 	</div>
 	<div id="grid" grid grid-resize watch-about-directive>
 		<div class="grid-row-container" ng-repeat="row in grid.rows track by $index">

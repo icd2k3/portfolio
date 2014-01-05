@@ -81,6 +81,14 @@ a {
         }
     }
 }
+.browsehappy {
+	@include position-fixed($z-index: 99);
+	@include size(100%, 48px);
+	@include font($size: 18px, $text-align: center, $weight: 300);
+	background: url(/images/background.png) repeat #000;
+	margin: 0;
+	padding-top: 20px;
+}
 
 // ICONS /////////////////
 // icon styles for fontcustom
@@ -337,25 +345,22 @@ a {
 #logo {
     @include position-fixed($z-index: 3);
     cursor: pointer;
+    width: 0px;
     a {
-        &:before {
-            @include position-absolute($top: 0, $left: 0);
-            border-top: 100px solid $black;
-            border-right: 100px solid transparent;
-            width: 0;
-            content: '';
-        }
+    	@include position-relative($left: -75px, $top: -75px);
+    	@include size(150px, 150px);
+    	@include rotate(-45deg);
+    	display: block;
+    	background: url(/images/background.png) repeat #000;
         &:hover {
-            &:before {
-                border-top: 100px solid $lime;
-            }
+        	//background: $lime;
             .fc-icon {
-                color: $black;
+                color: $lime;
             }
         }
     }
-    .fc-icon-logo-rotated {
-        @include position-absolute($top: 4px, $left: 4px, $z-index: 1);
+    .fc-icon-logo {
+    	@include position-absolute($right: 45px, $top: 90px);
     }
 }
 
@@ -419,17 +424,45 @@ a {
         &.ng-leave { max-height: 500px; }
         &.ng-leave-active { max-height: 0px; }
     }
-    .logo-animation {
-        top: 0;
-        left: 0;
-        &.ng-enter, &.ng-leave {
-            @include single-transition(top, 0.25s, $ease-out-quad);
-            @include single-transition(left, 0.25s, $ease-out-quad);
+    #logo.logo-animation {
+        &.ng-hide-add, &.ng-hide, &.ng-hide-remove {
+            display: block !important;
         }
-        &.ng-enter { left: -100px; }
-        &.ng-enter-active { top: 0; left: 0; }
-        &.ng-leave { top: 0; left: 0; }
-        &.ng-leave-active { left: -100px; }
+        &.ng-animate {
+        	@include single-transition(background, 0.5s, $ease-out-quad);
+	        a {
+	        	@include single-transition(all, 0.6s);
+	        }
+	        a i {
+	        	@include single-transition(all, 0.5s, $ease-out-quad);
+	        }
+        	pointer-events: none !important;
+        	cursor: default;
+        }
+        &.ng-hide-remove {
+        	a i {
+        		top: 90px;
+        		right: 45px;
+        		font-size: 54px;
+        		color: #FFF;
+        	}
+        }
+        &.ng-hide {
+        	a {
+        		background: transparent;
+        		&:hover, &:focus {
+        			i {
+        				color: $lime;
+        			}
+        		}
+        	}
+        	a i {
+        		top: 122px;
+        		right: 36px;
+        		font-size: 64px;
+        		color: #FFF;
+        	}
+        }
     }
     .item-load-animation {
         @include single-transition(all, 0.5s, $ease-out-quad);

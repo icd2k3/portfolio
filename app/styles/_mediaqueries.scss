@@ -69,6 +69,14 @@
 	        &.ng-leave { max-height: 700px; }
 	        &.ng-leave-active { max-height: 0px; }
 	    }
+	    #logo.logo-animation {
+			&.ng-hide {
+				a i {
+					top: 152px;
+					right: 58px;
+				}
+			}
+		}
 	}
 }
 
@@ -135,6 +143,16 @@
 	        &.ng-leave { max-height: 900px; }
 	        &.ng-leave-active { max-height: 0px; }
 	    }
+	    #logo.logo-animation {
+			&.ng-hide {
+				a i {
+					opacity: 0;
+					top: 90px;
+					right: 45px;
+					font-size: 54px;
+				}
+			}
+		}
 	}
 }
 
