@@ -38,7 +38,7 @@
 			"description": "Pathbrite is a large scale education technology web application. Features incude e-portfolio creation, courses, assignments, student grading, and enterprise level community tools. During my time here I was responsible for developing several new key features such as a learning outcomes browser, new student grading options, and assignment submission flow. I also assisted in improving several existing features and helped to make sections of the site more mobile & touch friendly.",
 			"links": [
 				{"title": "Watch feature demo videos", "url": "http://www.youtube.com/pathbrite"},
-				{"title": "Visit the site", "url": "http://www.pathbrite.com"}
+				{"title": "Visit the Pathbrite homepage", "url": "http://www.pathbrite.com"}
 			],
 			"images": [
 				{"src": "/images/pathbrite_1.jpg", "loaded": false},
