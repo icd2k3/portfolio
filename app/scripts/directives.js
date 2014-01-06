@@ -97,7 +97,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 				transitionInit = function(){
 					if(scope.project.cube.pause) { return; }
 					scope.project.cube.transitionComplete = false;
-					var transitionDelay = Math.round(Math.random()*12000)+2000;
+					var transitionDelay = Math.round(Math.random()*13000)+1000;
 
 					// transition the cube to the next side
 					// NOTE: we have to manually apply css here as 3d translates don't support percentages
