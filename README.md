@@ -25,7 +25,5 @@ Needs a-fixin:
 - Rework cube animation for IE10/11 (no support for preserve-3d).
 - Mobile: rotate cube on project click instead of random interval. (improvement)
 - Mobile & Tablet: fix sticky scrolling bug that happens randomly.
-- Create page for < IE9.
-- 404.
 
 Justin Schrader © 2014

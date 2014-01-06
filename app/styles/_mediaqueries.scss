@@ -159,10 +159,17 @@
 @media screen and (max-width: 321px) { // 1-up grid
 	#container {
 		.project-details {
-			.company {
+			.company, .awards {
 				clear: both;
-				margin-top: $padding;
+				margin-top: 10px;
+				padding-top: 0;
 			}
+			.tools {
+				padding-top: 10px;
+			}
+			.disclaimer {
+	    		font-size: 10px;
+	    	}
 		}
 	}
 }

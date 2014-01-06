@@ -57,6 +57,7 @@ body {
 }
 ul {
     padding: 0;
+    margin: 0;
 }
 ul li {
     list-style: none;
@@ -329,8 +330,8 @@ a {
         @include font($color: $lime, $weight: 400, $size: 14px);
         margin: 0;
     }
-    ul {
-    	margin: 0;
+    li {
+    	font-size: 16px;
     }
     .top-row {
         div {

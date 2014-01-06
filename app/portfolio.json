@@ -132,7 +132,6 @@
 		{
 			"title": "Luxurious Animals",
 			"company": "Luxurious Animals",
-			"client": "Luxurious Animals",
 			"descriptionShort": "The company CMS website for Luxurious Animals.",
 			"description": "This is an <a href='http://ellislab.com/expressionengine' target='_blank'>Expression Engine</a> driven CMS website for Luxurious Animals that I helped build during my time there. I made sure each section of the site was very easy to update even without knowing anything about html or front end scripting. Features include a sortable and searchable portfolio, blog, and about sections. I also assisted in the early stages of design.",
 			"links": [
@@ -201,7 +200,7 @@
 			"title": "Adventure Country",
 			"client": "CMT",
 			"company": "Luxurious Animals",
-			"descriptionShort": "A Flash site featuring an interactive virtual city within a postcard.",
+			"descriptionShort": "A Flash site featuring a virtual city within a postcard.",
 			"description": "This Flash site features a living interactive city within a postcard for the purpose of introducing two new original reality shows on CMT. Users can watch the action & rescues unfold, explore the city to find hidden artifacts, or watch trailer videos for the new shows.",
 			"luxDisclaimer": true,
 			"links": [
@@ -216,7 +215,6 @@
 		},
 		{
 			"title": "Previous Portfolio",
-			"client": "Me",
 			"descriptionShort": "My old portfolio site from 2007",
 			"description": "This was my old portfolio site from my college days at the Rochester Institute of Technology in 2007. Unfortunately it is not live anymore, but it featured a very minimalistic design and a draggable center bar for resizing content and project information on the fly.",
 			"images": [
