@@ -60,68 +60,12 @@ function($rootScope, $scope, $state, $stateParams, data, Convert) {
 // Grid item controller
 /*
 	This controller handles each individual item within the grid.
-	Includes initial setup of each item cube and handles things like pausing, selecting, and respawning
-*/
-/*
-	TODOS:
-	- This section can be organized better by breaking the cube out into it's own controller
-	- Avoid using $scope.project.cube - instead, restructure so we can just use $scope.cube
-	- Simplify init of cube (overly complicated if/else statements)
+	Handles things like pausing, selecting, hovering
 */
 angular.module('Portfolio').controller('ItemCtrl',
-['$scope', '$http', '$timeout', 'Helpers', 'WindowFocus',
-function($scope, $http, $timeout, Helpers, WindowFocus) {
-	// clear both transition timers on the project cube
-	var clearTimers = function() {
-		if($scope.project.cube) {
-			if($scope.project.cube.transitionTimer) {
-				$timeout.cancel($scope.project.cube.transitionTimer);
-			}
-			if($scope.project.cube.transitionWaitTimer) {
-				$timeout.cancel($scope.project.cube.transitionWaitTimer);
-			}
-		}
-	};
-	// cube model might already exist (for example, if user resized the grid) so we need to clear any active timers before restting the model
-	var index, nextIndex, paused, firstLoad;
-	if($scope.project.cube) {
-		// cube already exists, we need to carry over some vars to the new cube object
-		clearTimers();
-		index = $scope.project.cube.index;
-		nextIndex = $scope.project.cube.nextIndex;
-		paused = $scope.project.cube.pause;
-		if($scope.project.cube.firstLoad) {
-			firstLoad = true;
-		}
-		delete $scope.project.cube;
-	} else {
-		// cube doesn't exist, we'll create a brand new one
-		index = Math.floor(Math.random()*$scope.project.images.length);
-		if(index === $scope.project.images.length - 1) {
-			nextIndex = 0;
-		} else {
-			nextIndex = index + 1;
-		}
-		paused = firstLoad = false;
-	}
-	if($scope.project.selected) {
-		paused = true;
-	}
-	$scope.project.cube = {
-		index                : index,			// used for tracking the current image
-		nextIndex            : nextIndex,		// used for tracking the next image in queue
-		sidesLoaded          : 0,				// used for knowing when both sides of the cube are loaded
-		firstLoad            : firstLoad,		// initial load of the first cube side (site load init)
-		sideArchive          : [],				// used for storing sides that have already been loaded for less network calls
-		transition           : false,			// cube is in transition
-		transitionComplete   : false,			// cube has completed transition
-		pause                : paused,			// pause the cube if user is hovering on it or it's currently selected
-		transitionWaitTimer  : null,			// random ammount of time the cube waits before animating to the next side
-		transitionTimer      : null,			// full timer that includes the random wait delay above ^,
-		direction            : Helpers.getRandomDirection()
-	};
-
-	// user is hovering over this project cube
+['$scope', '$http', '$timeout', 'WindowFocus',
+function($scope, $http, $timeout, WindowFocus) {
+	// user is hovering over this project block
 	$scope.onMouseOver = function() {
 		$scope.project.cube.pause = true;
 	};
@@ -148,4 +92,48 @@ function($scope, $http, $timeout, Helpers, WindowFocus) {
 			$scope.project.cube.pause = true;
 		}
 	});
+}]);
+
+// Cube controller
+/*
+	This controller handles setting cube data for each grid item
+*/
+angular.module('Portfolio').controller('CubeCtrl',
+['$scope', '$http', '$timeout', 'Helpers',
+function($scope, $http, $timeout, Helpers) {
+	// set cube data if it exists
+	var cube = $scope.project.cube,
+		index, nextIndex,  // index & next index of the project image that should be displayed
+		firstLoad;		   // used for the initial staggered load-in animation for all items
+	// clear both transition timers on the project cube
+	var clearTimers = function() {
+		if(cube && cube.transitionTimer) { $timeout.cancel(cube.transitionTimer); }
+		if(cube && cube.transitionWaitTimer) { $timeout.cancel(cube.transitionWaitTimer); }
+	};
+	if(cube) {
+		// cube data already exists (can happen when user resizes the grid for example)
+		clearTimers();
+		index     = cube.index;
+		nextIndex = cube.nextIndex;
+		firstLoad = cube.firstLoad;
+	} else {
+		// no cube data already exists, this will be the initial cube
+		index = Math.floor(Math.random()*$scope.project.images.length);
+		if(index === $scope.project.images.length - 1) { nextIndex = 0;
+		} else { nextIndex = index + 1; }
+		firstLoad = false;
+	}
+	$scope.project.cube = {
+		index                : index,			// used for tracking the current image
+		nextIndex            : nextIndex,		// used for tracking the next image in queue
+		sidesLoaded          : 0,				// used for knowing when both sides of the cube are loaded
+		firstLoad            : firstLoad,		// initial load of the first cube side (site load init)
+		sideArchive          : [],				// used for storing sides that have already been loaded for less network calls
+		transition           : false,			// cube is in transition
+		transitionComplete   : false,			// cube has completed transition
+		pause                : false,			// pause the cube if user is hovering on it or it's currently selected
+		transitionWaitTimer  : null,			// random ammount of time the cube waits before animating to the next side
+		transitionTimer      : null,			// full timer that includes the random wait delay above ^,
+		direction            : Helpers.getRandomDirection()
+	};
 }]);
