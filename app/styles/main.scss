@@ -18,9 +18,7 @@
 html, body { @include size(100%, 100%); padding: 0; margin: 0; -webkit-overflow-scrolling: touch; -webkit-text-size-adjust: none; }
 body {
     @include font($family: $font-myriad-pro, $color: $white, $size: 14px, $line-height: 24px, $weight: 400, $letter-spacing: 1px);
-    background: url(/images/background.png) repeat #000;
-    background-color: $white;
-    background-attachment: fixed;
+    background: $background-pattern;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -55,7 +53,7 @@ body {
     -ms-user-select: none;
     user-select: none;
 }
-ul {
+ul, li {
     padding: 0;
     margin: 0;
 }
@@ -86,7 +84,7 @@ a {
 	@include position-fixed($z-index: 99);
 	@include size(100%, 48px);
 	@include font($size: 18px, $text-align: center, $weight: 300);
-	background: url(/images/background.png) repeat #000;
+	background: $background-pattern;
 	margin: 0;
 	padding-top: 20px;
 }
@@ -297,6 +295,7 @@ a {
     }
     &.animate {
         @include enable-fast-image-rendering();
+        @include enable-webkit-acceleration();
         .side {
             @include enable-fast-image-rendering();
         }
@@ -358,9 +357,8 @@ a {
     	@include size(150px, 150px);
     	@include rotate(-45deg);
     	display: block;
-    	background: url(/images/background.png) repeat #000;
+    	background: $background-pattern;
         &:hover {
-        	//background: $lime;
             .fc-icon {
                 color: $lime;
             }
@@ -377,7 +375,7 @@ a {
     @include position-fixed($z-index: 3);
     @include single-box-shadow(rgba(0, 0, 0, 0.8), 0px, 10px, 25px);
     width: 100%;
-    background: url(/images/background.png) repeat #000;
+    background: $background-pattern;
     .close-button {
         @include position-absolute($right: $padding, $top: $padding);
     }
@@ -417,8 +415,7 @@ a {
             @include single-transition(height, 0.5s, $ease-out-quad);
         }
         &.ng-enter { height: 0px; }
-        &.ng-enter-active { height: 110px; }
-        &.ng-leave { height: 110px; }
+        &.ng-enter-active, &.ng-leave { height: 110px; }
         &.ng-leave-active { height: 0px; }
     }
     .project-animation {
@@ -427,8 +424,7 @@ a {
             @include single-transition(max-height, 0.5s, $ease-out-quad);
         }
         &.ng-enter { max-height: 0px; }
-        &.ng-enter-active { max-height: 500px; }
-        &.ng-leave { max-height: 500px; }
+        &.ng-enter-active, &.ng-leave { max-height: 500px; }
         &.ng-leave-active { max-height: 0px; }
     }
     #logo.logo-animation {
@@ -437,12 +433,8 @@ a {
         }
         &.ng-animate {
         	@include single-transition(background, 0.5s, $ease-out-quad);
-	        a {
-	        	@include single-transition(all, 0.6s);
-	        }
-	        a i {
-	        	@include single-transition(all, 0.5s, $ease-out-quad);
-	        }
+	        a { @include single-transition(all, 0.6s); }
+	        a i { @include single-transition(all, 0.5s, $ease-out-quad); }
         	pointer-events: none !important;
         	cursor: default;
         }
@@ -458,16 +450,13 @@ a {
         	a {
         		background: transparent;
         		&:hover, &:focus {
-        			i {
-        				color: $lime;
-        			}
+        			i { color: $lime; }
         		}
         	}
         	a i {
+        		@include font($size: 64px, $color: $white);
         		top: 122px;
         		right: 36px;
-        		font-size: 64px;
-        		color: #FFF;
         	}
         }
     }

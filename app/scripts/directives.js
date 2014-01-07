@@ -106,12 +106,10 @@ portfolioDirectives.directive('cube', function($timeout, $animate, GridData, cub
 				};
 
 			// watch for both sides of the cube to be loaded
-			scope.$watch(function(){ return cube.sidesLoaded; }, function(val){
-				if(val === 2) {
-					transitionInit();
-				} else {
-					element.removeAttr('style');
-				}
+			scope.$watch(function(){ return cube.sidesLoaded; }, function(newVal, oldVal){
+				if(oldVal === newVal) { return; }
+				if(newVal === 2) { transitionInit(); }
+				else { element.removeAttr('style'); }
 			});
 
 			// cube transitions pause/resume

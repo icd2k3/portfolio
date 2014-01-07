@@ -24,11 +24,9 @@
 			#source {
 				position: static;
 			}
-			#resume {
-				span {
-		            display: inline-block;
-		            margin-left: 130px;
-		        }
+			#resume span {
+		    	display: inline-block;
+		    	margin-left: 130px;
 			}
 			.fc-icon-logo-rotated {
 				top: 54px;
@@ -43,30 +41,19 @@
 		#grid.about-active {
             padding-top: 183px;
         }
-        .item-link {
-        	p {
-        		line-height: 20px;
-        	}
+        .item-link p {
+        	line-height: 20px;
         }
 		.about-animation {
 	        height: 183px;
-	        overflow: hidden;
-	        &.ng-enter, &.ng-leave {
-	            @include single-transition(height, 0.5s, $ease-out-quad);
-	        }
 	        &.ng-enter { height: 0px; }
-	        &.ng-enter-active { height: 183px; }
-	        &.ng-leave { height: 183px; }
+	        &.ng-enter-active, &.ng-leave { height: 183px; }
 	        &.ng-leave-active { height: 0px; }
     	}
 	    .project-animation {
 	        max-height: 700px;
-	        &.ng-enter, &.ng-leave {
-	            @include single-transition(max-height, 0.5s, $ease-out-quad);
-	        }
 	        &.ng-enter { max-height: 0px; }
-	        &.ng-enter-active { max-height: 700px; }
-	        &.ng-leave { max-height: 700px; }
+	        &.ng-enter-active, &.ng-leave { max-height: 700px; }
 	        &.ng-leave-active { max-height: 0px; }
 	    }
 	    #logo.logo-animation {
@@ -109,13 +96,8 @@
         }
 		.about-animation {
 	        height: 230px;
-	        overflow: hidden;
-	        &.ng-enter, &.ng-leave {
-	            @include single-transition(height, 0.5s, $ease-out-quad);
-	        }
 	        &.ng-enter { height: 0px; }
-	        &.ng-enter-active { height: 230px; }
-	        &.ng-leave { height: 230px; }
+	        &.ng-enter-active, &.ng-leave { height: 230px; }
 	        &.ng-leave-active { height: 0px; }
     	}
 	    .project-details {
@@ -135,12 +117,8 @@
 	    }
 	    .project-animation {
 	        max-height: 900px;
-	        &.ng-enter, &.ng-leave {
-	            @include single-transition(max-height, 0.5s, $ease-out-quad);
-	        }
 	        &.ng-enter { max-height: 0px; }
-	        &.ng-enter-active { max-height: 900px; }
-	        &.ng-leave { max-height: 900px; }
+	        &.ng-enter-active, &.ng-leave { max-height: 900px; }
 	        &.ng-leave-active { max-height: 0px; }
 	    }
 	    #logo.logo-animation {
@@ -176,7 +154,7 @@
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { // retina displays
 	body, #about-details {
-		background: url(/images/background_@2X.png) repeat #000 !important;
+		background: $background-pattern-2x;
 		background-size: 50% 50% !important;
 	}
 	#container {

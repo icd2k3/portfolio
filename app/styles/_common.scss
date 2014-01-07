@@ -16,3 +16,7 @@ $ease-out-circ: cubic-bezier(0.075, 0.820, 0.165, 1.000);
 
 // SPACING /////////
 $padding: 30px;
+
+// IMAGES //////////
+$background-pattern: url(/images/background.png) repeat #000;
+$background-pattern-2x: url(/images/background_@2X.png) repeat #000 !important;
