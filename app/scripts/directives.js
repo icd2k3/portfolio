@@ -6,10 +6,6 @@
 /*
 	- Handles all dom manipulation, item transitioning, etc
 */
-/*
-	TODOS:
-		- Add angular restrict tags to all directives
-*/
 var portfolioDirectives = angular.module('Portfolio.directives', []);
 
 // handles the main grid layout, projects per row, window resize etc
@@ -53,26 +49,8 @@ portfolioDirectives.directive('gridResize', function($window, GridData) {
 	};
 });
 
-// this directive handles watching if the about section is open or not so we can animate the grid down for space
-portfolioDirectives.directive('watchAboutDirective', function(){
-	return {
-		link: function(scope, element) {
-			scope.$watch(function(){ return scope.about.active; }, function(newVal, oldVal) {
-				if(newVal === oldVal) { return; }
-				if(newVal) {
-					element.addClass('about-active');
-				} else {
-					element.removeClass('about-active');
-				}
-			});
-		}
-	};
-});
-
 // handles all cube switching functionality
 /* TODOS:
-	- break up into separate directives? especially for pause/resume
-	- transitionSpeed should be set/stored in controller
 	- optimize for speed
 */
 portfolioDirectives.directive('cube', function($timeout, $animate, GridData, cubeCSS, Helpers){
@@ -290,10 +268,11 @@ portfolioDirectives.directive('gridProject', function(){
 	return {
 		link: function(scope, element) {
 			scope.$watch(function(){ return scope.project.cube.transition; }, function(val) {
+				var gridRowContainer = element.parent().parent();
 				if(val) {
-					element.parent().parent().addClass('active');
+					gridRowContainer.addClass('active');
 				} else {
-					element.parent().parent().removeClass('active');
+					gridRowContainer.removeClass('active');
 				}
 			});
 		}

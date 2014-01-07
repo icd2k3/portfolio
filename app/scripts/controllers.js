@@ -47,6 +47,7 @@ function($rootScope, $scope, $state, $stateParams, data, Helpers) {
 				if($scope.projects[i].id === toParams.id) {
 					$scope.projectDetails = $scope.projects[i];
 					$scope.projects[i].selected = true;
+					Helpers.setTitle('Justin Schrader | Portfolio | '+$scope.projectDetails.title);
 				}
 			}
 		} else if(toState.name === 'index.grid') {
@@ -54,6 +55,7 @@ function($rootScope, $scope, $state, $stateParams, data, Helpers) {
 				if($scope.projects[i].selected) { $scope.projects[i].selected = false; }
 			}
 			$scope.projectDetails = null;
+			Helpers.setTitle('Justin Schrader | Portfolio');
 		}
 	});
 }]);

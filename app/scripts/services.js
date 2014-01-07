@@ -108,6 +108,9 @@ portfolioServices.service('Helpers', function() {
 		browser: function() {
 			return browser;
 		},
+		setTitle: function(title) {
+			document.title = title;
+		},
 		convert: (function() {
 			return {
 				numToString: function(num){
