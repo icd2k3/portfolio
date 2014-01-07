@@ -3,13 +3,14 @@
 /*
 	- Handles the overall data structure for the site
 */
+var portfolioControllers = angular.module('Portfolio.controllers', []);
 
 // Main grid controller
 /*
 	This root controller handles all the main data for the site (from the json file),
 	router state switching (/project/name), and grid layout.
 */
-angular.module('Portfolio').controller('GridCtrl',
+portfolioControllers.controller('GridCtrl',
 ['$rootScope', '$scope', '$state', '$stateParams', 'data', 'Helpers',
 function($rootScope, $scope, $state, $stateParams, data, Helpers) {
 	// set overall scope vars
@@ -62,7 +63,7 @@ function($rootScope, $scope, $state, $stateParams, data, Helpers) {
 	This controller handles each individual item within the grid.
 	Handles things like pausing, selecting, hovering
 */
-angular.module('Portfolio').controller('ItemCtrl',
+portfolioControllers.controller('ItemCtrl',
 ['$scope', '$http', '$timeout', 'WindowFocus',
 function($scope, $http, $timeout, WindowFocus) {
 	// user is hovering over this project block
@@ -98,7 +99,7 @@ function($scope, $http, $timeout, WindowFocus) {
 /*
 	This controller handles setting cube data for each grid item
 */
-angular.module('Portfolio').controller('CubeCtrl',
+portfolioControllers.controller('CubeCtrl',
 ['$scope', '$http', '$timeout', 'Helpers',
 function($scope, $http, $timeout, Helpers) {
 	// set cube data if it exists
@@ -112,7 +113,6 @@ function($scope, $http, $timeout, Helpers) {
 	};
 	if(cube) {
 		// cube data already exists (can happen when user resizes the grid for example)
-		clearTimers();
 		index     = cube.index;
 		nextIndex = cube.nextIndex;
 		firstLoad = cube.firstLoad;
@@ -123,6 +123,7 @@ function($scope, $http, $timeout, Helpers) {
 		} else { nextIndex = index + 1; }
 		firstLoad = false;
 	}
+	// set cube
 	$scope.project.cube = {
 		index                : index,			// used for tracking the current image
 		nextIndex            : nextIndex,		// used for tracking the next image in queue
@@ -137,4 +138,8 @@ function($scope, $http, $timeout, Helpers) {
 		transitionTimer      : null,			// full timer that includes the random wait delay above ^,
 		direction            : Helpers.getRandomDirection()
 	};
+	// controller destroy
+	$scope.$on('$destroy', function(){
+		clearTimers();
+	});
 }]);

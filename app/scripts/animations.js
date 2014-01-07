@@ -6,13 +6,13 @@
 /*
 	- Fallback animations for browsers that don't support css3 transitions and animation
 */
-
 /*
 	TODOS:
 	- Fallback animation for project details open/close
 */
+var portfolioAnimations = angular.module('Portfolio.animations', []);
 
-angular.module('Portfolio').animation('.about-animation', function(){
+portfolioAnimations.animation('.about-animation', function(){
 	return {
 		enter: function(element, done) {
 			if(!Modernizr.csstransitions) {
@@ -33,7 +33,7 @@ angular.module('Portfolio').animation('.about-animation', function(){
 	};
 });
 
-angular.module('Portfolio').animation('.item-load-animation', function(){
+portfolioAnimations.animation('.item-load-animation', function(){
 	return {
 		removeClass: function(element, className, done) {
 			if(className === 'ng-hide' && !Modernizr.csstransitions) {

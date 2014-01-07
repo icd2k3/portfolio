@@ -10,9 +10,10 @@
 	TODOS:
 		- Add angular restrict tags to all directives
 */
+var portfolioDirectives = angular.module('Portfolio.directives', []);
 
 // handles the main grid layout, projects per row, window resize etc
-angular.module('Portfolio').directive('gridResize', function($window, GridData) {
+portfolioDirectives.directive('gridResize', function($window, GridData) {
 	return {
 		link: function(scope) {
 			// resize row height to make projects perfect squares
@@ -53,7 +54,7 @@ angular.module('Portfolio').directive('gridResize', function($window, GridData) 
 });
 
 // this directive handles watching if the about section is open or not so we can animate the grid down for space
-angular.module('Portfolio').directive('watchAboutDirective', function(){
+portfolioDirectives.directive('watchAboutDirective', function(){
 	return {
 		link: function(scope, element) {
 			scope.$watch(function(){ return scope.about.active; }, function(newVal, oldVal) {
@@ -74,7 +75,7 @@ angular.module('Portfolio').directive('watchAboutDirective', function(){
 	- transitionSpeed should be set/stored in controller
 	- optimize for speed
 */
-angular.module('Portfolio').directive('cube', function($timeout, $animate, GridData, cubeCSS, Helpers){
+portfolioDirectives.directive('cube', function($timeout, $animate, GridData, cubeCSS, Helpers){
 	return {
 		link: function(scope, element) {
 			var cube = scope.project.cube,
@@ -159,7 +160,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, GridD
 	- Break up into separate directives for organization
 	- Optimize for speed
 */
-angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, GridData, cubeCSS, Helpers){
+portfolioDirectives.directive('cubeSide', function($timeout, $animate, GridData, cubeCSS, Helpers){
 	return {
 		link: function(scope, element) {
 			var cube = scope.project.cube,
@@ -285,7 +286,7 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, G
 });
 
 // handles setting .grid-row-container element z-index to top when a child item is transitioning (helps with the 3D effect)
-angular.module('Portfolio').directive('gridProject', function(){
+portfolioDirectives.directive('gridProject', function(){
 	return {
 		link: function(scope, element) {
 			scope.$watch(function(){ return scope.project.cube.transition; }, function(val) {
@@ -300,7 +301,7 @@ angular.module('Portfolio').directive('gridProject', function(){
 });
 
 // project details directive for applying template
-angular.module('Portfolio').directive('projectDetailsDirective', function(Helpers, GridData){
+portfolioDirectives.directive('projectDetailsDirective', function(Helpers, GridData){
 	return {
 		link: function(scope) {
 			var scrollToProject = function() {

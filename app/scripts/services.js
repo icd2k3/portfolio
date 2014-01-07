@@ -4,9 +4,10 @@
 /*
 	- Handles data that should be able to be shared across multiple controlles & directives
 */
+var portfolioServices = angular.module('Portfolio.services', []);
 
 // Load portfolio JSON data
-angular.module('Portfolio').factory('data', ['$http', function($http){
+portfolioServices.factory('data', ['$http', function($http){
 	var path    = '/portfolio.json',
 		factory = {},
 		data    = $http.get(path).then(function(response){
@@ -26,7 +27,7 @@ angular.module('Portfolio').factory('data', ['$http', function($http){
 }]);
 
 // For sharing data about the grid between directives & controllers
-angular.module('Portfolio').service('GridData', function(){
+portfolioServices.service('GridData', function(){
 	var sharedData = {
 		windowWidth: 0,
 		projectsPerRow: 0,
@@ -56,7 +57,7 @@ angular.module('Portfolio').service('GridData', function(){
 });
 
 // Used for setting/getting when browser tab is inactive (used for pausing cube anims)
-angular.module('Portfolio').service('WindowFocus', function($window){
+portfolioServices.service('WindowFocus', function($window){
 	var focused = true,
 		windowFocus = function() { focused = true; },
 		windowBlur = function() { focused = false; };
@@ -73,7 +74,7 @@ angular.module('Portfolio').service('WindowFocus', function($window){
 });
 
 // helper functions
-angular.module('Portfolio').service('Helpers', function() {
+portfolioServices.service('Helpers', function() {
 	var animateScroll = function(to, duration) {
 		// animates scrollTop without jQuery
 		if (duration <= 0) { return; }
@@ -121,7 +122,7 @@ angular.module('Portfolio').service('Helpers', function() {
 
 // This service returns a css 3d object for the cube/sides based on direction of the current animation
 // because 3d transforms don't support percentages unfortunately, we have to create them here based on the dimensions of the grid
-angular.module('Portfolio').service('cubeCSS', function(GridData){
+portfolioServices.service('cubeCSS', function(GridData){
 	return {
 		cube: function(direction, transitionSpeed) {
 			var translateDistance = GridData.getHalfItemWidth(),
