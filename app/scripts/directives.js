@@ -72,27 +72,27 @@ angular.module('Portfolio').directive('watchAboutDirective', function(){
 /* TODOS:
 	- break up into separate directives? especially for pause/resume
 	- transitionSpeed should be set/stored in controller
-	- restructure to use scope.cube instead of scope.project.cube
 	- optimize for speed
 */
 angular.module('Portfolio').directive('cube', function($timeout, $animate, gridService, cubeCSS, Helpers){
 	return {
 		link: function(scope, element) {
-			var transitionSpeed = 0.7,
+			var cube = scope.project.cube,
+				transitionSpeed = cube.transitionSpeed,
 				transitionComplete = function(){
 					element.removeClass('animate');
-					scope.project.cube.transition = false;
-					scope.project.cube.sidesLoaded = 1;
+					cube.transition = false;
+					cube.sidesLoaded = 1;
 					// set next cube image index
-					scope.project.cube.index = scope.project.cube.nextIndex;
-					if(scope.project.cube.index === scope.project.images.length - 1) {
-						scope.project.cube.nextIndex = 0;
+					cube.index = cube.nextIndex;
+					if(cube.index === scope.project.images.length - 1) {
+						cube.nextIndex = 0;
 					} else {
-						scope.project.cube.nextIndex = scope.project.cube.index + 1;
+						cube.nextIndex = cube.index + 1;
 					}
 					// clear transition
 					element.removeAttr('style');
-					scope.project.cube.transitionComplete = true;
+					cube.transitionComplete = true;
 				},
 				transitionInit = function(){
 					if(scope.project.cube.pause) { return; }
@@ -101,18 +101,18 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 
 					// transition the cube to the next side
 					// NOTE: we have to manually apply css here as 3d translates don't support percentages
-					scope.project.cube.transitionWaitTimer = $timeout(function(){
-						if(scope.project.cube.pause) { return; }
+					cube.transitionWaitTimer = $timeout(function(){
+						if(cube.pause) { return; }
 
-						scope.project.cube.transition = true;
-						scope.project.cube.transitionTimer = $timeout(transitionComplete, (transitionSpeed * 1000) + 100);
+						cube.transition = true;
+						cube.transitionTimer = $timeout(transitionComplete, (transitionSpeed * 1000) + 100);
 
 						// if browser doesn't support 3D transforms, this is as far as we get
 						if(!Modernizr.csstransforms3d || !Helpers.browser().cubeSupported) { return; }
 
 						// browser supports 3d transforms, so get on with it
 						var translateDistance = gridService.getHalfItemWidth();
-						scope.project.cube.direction = Helpers.getRandomDirection();
+						cube.direction = Helpers.getRandomDirection();
 						element.css({
 							'-webkit-transform' : 'translate3d(0, 0, -'+translateDistance+'px)',
 							'transform'         : 'translate3d(0, 0, -'+translateDistance+'px)',
@@ -120,15 +120,15 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 
 						// this timeout makes sure that the css set above takes effect before the transition starts (mostly a FF problem)
 						setTimeout(function(){
-							if(scope.project.cube.pause) { return; }
+							if(cube.pause) { return; }
 							element.addClass('animate');
-							element.css(cubeCSS.cube(scope.project.cube.direction, transitionSpeed));
+							element.css(cubeCSS.cube(cube.direction, transitionSpeed));
 						}, 100);
 					}, transitionDelay);
 				};
 
 			// watch for both sides of the cube to be loaded
-			scope.$watch(function(){ return scope.project.cube.sidesLoaded; }, function(val){
+			scope.$watch(function(){ return cube.sidesLoaded; }, function(val){
 				if(val === 2) {
 					transitionInit();
 				} else {
@@ -137,13 +137,13 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 			});
 
 			// cube transitions pause/resume
-			scope.$watch(function(){ return scope.project.cube.pause; }, function(newVal, oldVal){
+			scope.$watch(function(){ return cube.pause; }, function(newVal, oldVal){
 				if(oldVal === newVal) { return; }
 				if(newVal) {
 					// clear animation timer on hover
-					if(scope.project.cube.transitionWaitTimer) { $timeout.cancel(scope.project.cube.transitionWaitTimer); }
-					if(scope.project.cube.transitionTimer) { $timeout.cancel(scope.project.cube.transitionTimer); }
-					if(scope.project.cube.transition) {
+					if(cube.transitionWaitTimer) { $timeout.cancel(cube.transitionWaitTimer); }
+					if(cube.transitionTimer) { $timeout.cancel(cube.transitionTimer); }
+					if(cube.transition) {
 						transitionComplete();
 					}
 				} else if(!scope.project.selected) {
@@ -163,16 +163,17 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, gridService, cubeCSS, Helpers){
 	return {
 		link: function(scope, element) {
-			var isNextSide    = element.hasClass('two');
+			var cube = scope.project.cube,
+				isNextSide = element.hasClass('two');
 
 			// adds an img tag into the div so it can preload the cube side image
 			var preloadImage = function() {
-				var index        = isNextSide ? scope.project.cube.nextIndex : scope.project.cube.index,
+				var index        = isNextSide ? cube.nextIndex : cube.index,
 					loadComplete = function() {
 						var $archiveSide;
-						for(var i=0; i<scope.project.cube.sideArchive.length; i++) {
-							if(index === scope.project.cube.sideArchive[i].index) {
-								$archiveSide = scope.project.cube.sideArchive[i].side;
+						for(var i=0; i<cube.sideArchive.length; i++) {
+							if(index === cube.sideArchive[i].index) {
+								$archiveSide = cube.sideArchive[i].side;
 							}
 						}
 						// set cube side background to the image after it's finished loading
@@ -185,7 +186,7 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 							$archiveSide = element.clone();
 							$archiveSide.removeClass('one two').addClass('archive');
 							element.parent().append($archiveSide);
-							scope.project.cube.sideArchive.push({index: index, side: $archiveSide});
+							cube.sideArchive.push({index: index, side: $archiveSide});
 						} else {
 							if(!element.hasClass('archive') && !element.hasClass('archive-active')) {
 								// element is one of the original non-archived sides and thus is no longer needed.
@@ -201,11 +202,11 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 						scope.project.images[index].loaded = true;
 
 						// set sides loaded on cube
-						scope.project.cube.sidesLoaded++;
-						if(scope.project.cube.sidesLoaded === 2) {
-							if(!scope.project.cube.firstLoad) {
+						cube.sidesLoaded++;
+						if(cube.sidesLoaded === 2) {
+							if(!cube.firstLoad) {
 								gridService.set({initialCubesLoaded: gridService.getInitialCubesLoaded() + 1});
-								scope.project.cube.firstLoad = true;
+								cube.firstLoad = true;
 							}
 							scope.$apply();
 						}
@@ -220,23 +221,23 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 				}
 			};
 
-			if(scope.project.cube.firstLoad) {
+			if(cube.firstLoad) {
 				// cube sides have already been loaded (user must have resized the screen to change the grid)
 				preloadImage();
 			}
 
 			scope.$watch(function(){ return gridService.getInitialCubesLoaded(); }, function(val){
 				// sequentially load cube sides in order from first to last on initial site load
-				if(val === scope.project.index && !scope.project.cube.firstLoad) {
+				if(val === scope.project.index && !cube.firstLoad) {
 					preloadImage();
 				}
 			});
 
 			// cube is transitioning, apply 3d rules to the sides
-			scope.$watch(function(){ return scope.project.cube.transition; }, function(val){
+			scope.$watch(function(){ return cube.transition; }, function(val){
 				if(!val) { return; }
 				if(Modernizr.csstransforms3d && Helpers.browser().cubeSupported) {
-					element.css(cubeCSS.side(scope.project.cube.direction, isNextSide));
+					element.css(cubeCSS.side(cube.direction, isNextSide));
 				} else {
 					// browser doesn't support 3dtransforms, so instead just fade side 1 to reveal side 2
 					if(!isNextSide) {
@@ -253,7 +254,7 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 			});
 
 			// swap cube sides: side 2 becomes side 1, and the new side 2 renders the next image of the cube
-			scope.$watch(function(){ return scope.project.cube.transitionComplete; }, function(val){
+			scope.$watch(function(){ return cube.transitionComplete; }, function(val){
 				if(!val) { return; }
 				if(Modernizr.csstransforms3d && Helpers.browser().cubeSupported) {
 					element.css({
@@ -294,18 +295,6 @@ angular.module('Portfolio').directive('gridProject', function(){
 				} else {
 					element.parent().parent().removeClass('active');
 				}
-			});
-		}
-	};
-});
-
-// update grid row height from gridResize directive
-// TODO: switch this to a watch instead of observe
-angular.module('Portfolio').directive('gridRowDirective', function(){
-	return {
-		link: function(scope, element, attrs) {
-			attrs.$observe('rowHeight', function(val){
-				element.css({'height': val+'px'});
 			});
 		}
 	};

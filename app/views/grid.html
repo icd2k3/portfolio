@@ -32,7 +32,7 @@
 	</div>
 	<div id="grid" grid grid-resize watch-about-directive>
 		<div class="grid-row-container" ng-repeat="row in grid.rows track by $index">
-			<div class="grid-row" grid-row-directive data-row-height="{{rowHeight}}">
+			<div class="grid-row" grid-row-directive style="height:{{rowHeight}}px">
 				<div class="grid-project" ng-repeat="project in projects | filter:{row: $index}:true" grid-project ng-class="{active : project.cube.transition, selected : project.selected}" ng-include="templates.item" data-index="{{$index}}"></div>
 			 </div>
 			 <div project-details-directive class="project-details project-animation" ng-if="projectDetails.row == $index" data-project-index="{{projectDetails.index}}">

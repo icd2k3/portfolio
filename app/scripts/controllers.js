@@ -126,12 +126,13 @@ function($scope, $http, $timeout, Helpers) {
 	$scope.project.cube = {
 		index                : index,			// used for tracking the current image
 		nextIndex            : nextIndex,		// used for tracking the next image in queue
+		transitionSpeed      : 0.7,				// time it takes the cube to rotate
 		sidesLoaded          : 0,				// used for knowing when both sides of the cube are loaded
 		firstLoad            : firstLoad,		// initial load of the first cube side (site load init)
 		sideArchive          : [],				// used for storing sides that have already been loaded for less network calls
 		transition           : false,			// cube is in transition
 		transitionComplete   : false,			// cube has completed transition
-		pause                : false,			// pause the cube if user is hovering on it or it's currently selected
+		pause                : $scope.project.selected ? true : false,
 		transitionWaitTimer  : null,			// random ammount of time the cube waits before animating to the next side
 		transitionTimer      : null,			// full timer that includes the random wait delay above ^,
 		direction            : Helpers.getRandomDirection()
