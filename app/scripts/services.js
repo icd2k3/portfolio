@@ -26,7 +26,7 @@ angular.module('Portfolio').factory('data', ['$http', function($http){
 }]);
 
 // For sharing data about the grid between directives & controllers
-angular.module('Portfolio').service('gridService', function(){
+angular.module('Portfolio').service('GridData', function(){
 	var sharedData = {
 		windowWidth: 0,
 		projectsPerRow: 0,
@@ -72,17 +72,7 @@ angular.module('Portfolio').service('WindowFocus', function($window){
 	};
 });
 
-// Unit conversion helpers
-angular.module('Portfolio').service('Convert', function(){
-	var textNums = ['zero','one','two','three','four','five','six','seven','eight','nine','ten'];
-	return {
-		numToString: function(num) {
-			return textNums[Math.round(num)];
-		}
-	};
-});
-
-// Random helper functions
+// helper functions
 angular.module('Portfolio').service('Helpers', function() {
 	var animateScroll = function(to, duration) {
 		// animates scrollTop without jQuery
@@ -95,22 +85,14 @@ angular.module('Portfolio').service('Helpers', function() {
 			animateScroll(to, duration - 10);
 		}, 10);
 	};
-	var usrAgent = navigator.userAgent || navigator.vendor;
-	var browser = {
-		isMobile  : /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(usrAgent),
-		//isTablet  : /android \d|ipad|playbook|silk|tablet|kindle/i.test(usrAgent),
-		//isAndroid : /android (?!.*(chrome|kindle))/i.test(usrAgent),
-		//isFirefox : /firefox/i.test(usrAgent),
-		//isWindows : /windows nt/i.test(usrAgent),
-		isOpera   : /Opera/i.test(usrAgent),
-		//isiPad    : /ipad/i.test(usrAgent),
-		isiPhone  : /iphone/i.test(usrAgent),
-		isiOS     : /iPhone|iPad|iPod/i.test(usrAgent),
-		isIE      : /msie/i.test(usrAgent),
-		//isIE10    : /msie 10/i.test(usrAgent),
-		//isIE9     : /msie 9/i.test(usrAgent),
-		//isIE8     : /msie 8/i.test(usrAgent)
-	};
+	var usrAgent = navigator.userAgent || navigator.vendor,
+		browser = {
+			isMobile  : /(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(usrAgent),
+			isOpera   : /Opera/i.test(usrAgent),
+			isiPhone  : /iphone/i.test(usrAgent),
+			isiOS     : /iPhone|iPad|iPod/i.test(usrAgent),
+			isIE      : /msie/i.test(usrAgent)
+		};
 	// TODO: IE10 & 11 should be able to display a cube animation, but they don't support preserve3d
 	// this means eventually I'll have to change around the cube & transitions to have the sides individually
 	// animate instead of the entire cube... but until then, we'll just disable for IE.
@@ -125,16 +107,24 @@ angular.module('Portfolio').service('Helpers', function() {
 		browser: function() {
 			return browser;
 		},
+		convert: (function() {
+			return {
+				numToString: function(num){
+					var textNums = ['zero','one','two','three','four','five','six','seven','eight','nine','ten'];
+					return textNums[Math.round(num)];
+				}
+			};
+		})(),
 		animateScroll: animateScroll
 	};
 });
 
 // This service returns a css 3d object for the cube/sides based on direction of the current animation
 // because 3d transforms don't support percentages unfortunately, we have to create them here based on the dimensions of the grid
-angular.module('Portfolio').service('cubeCSS', function(gridService){
+angular.module('Portfolio').service('cubeCSS', function(GridData){
 	return {
 		cube: function(direction, transitionSpeed) {
-			var translateDistance = gridService.getHalfItemWidth(),
+			var translateDistance = GridData.getHalfItemWidth(),
 				returnObj;
 			switch(direction) {
 				case 'right':
@@ -169,7 +159,7 @@ angular.module('Portfolio').service('cubeCSS', function(gridService){
 			return returnObj;
 		},
 		side: function(direction, isNextSide){
-			var translateDistance = gridService.getHalfItemWidth(),
+			var translateDistance = GridData.getHalfItemWidth(),
 				returnObj;
 			if(isNextSide) {
 				switch(direction) {

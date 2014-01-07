@@ -12,7 +12,7 @@
 */
 
 // handles the main grid layout, projects per row, window resize etc
-angular.module('Portfolio').directive('gridResize', function($window, gridService) {
+angular.module('Portfolio').directive('gridResize', function($window, GridData) {
 	return {
 		link: function(scope) {
 			// resize row height to make projects perfect squares
@@ -42,8 +42,8 @@ angular.module('Portfolio').directive('gridResize', function($window, gridServic
 						scope.rowHeight = newRowHeight;
 					});
 				}
-				// set vars in gridService so other directives can use the data
-				gridService.set({windowWidth: windowWidth, projectsPerRow: projectsPerRow, rowHeight: newRowHeight});
+				// set vars in GridData so other directives can use the data
+				GridData.set({windowWidth: windowWidth, projectsPerRow: projectsPerRow, rowHeight: newRowHeight});
 			};
 			angular.element($window).bind('resize', windowResize);
 			// trigger initial resize on first render
@@ -74,7 +74,7 @@ angular.module('Portfolio').directive('watchAboutDirective', function(){
 	- transitionSpeed should be set/stored in controller
 	- optimize for speed
 */
-angular.module('Portfolio').directive('cube', function($timeout, $animate, gridService, cubeCSS, Helpers){
+angular.module('Portfolio').directive('cube', function($timeout, $animate, GridData, cubeCSS, Helpers){
 	return {
 		link: function(scope, element) {
 			var cube = scope.project.cube,
@@ -95,7 +95,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 					cube.transitionComplete = true;
 				},
 				transitionInit = function(){
-					if(scope.project.cube.pause) { return; }
+					if(cube.pause) { return; }
 					scope.project.cube.transitionComplete = false;
 					var transitionDelay = Math.round(Math.random()*13000)+1000;
 
@@ -111,7 +111,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 						if(!Modernizr.csstransforms3d || !Helpers.browser().cubeSupported) { return; }
 
 						// browser supports 3d transforms, so get on with it
-						var translateDistance = gridService.getHalfItemWidth();
+						var translateDistance = GridData.getHalfItemWidth();
 						cube.direction = Helpers.getRandomDirection();
 						element.css({
 							'-webkit-transform' : 'translate3d(0, 0, -'+translateDistance+'px)',
@@ -121,8 +121,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 						// this timeout makes sure that the css set above takes effect before the transition starts (mostly a FF problem)
 						setTimeout(function(){
 							if(cube.pause) { return; }
-							element.addClass('animate');
-							element.css(cubeCSS.cube(cube.direction, transitionSpeed));
+							element.addClass('animate').css(cubeCSS.cube(cube.direction, transitionSpeed));
 						}, 100);
 					}, transitionDelay);
 				};
@@ -160,7 +159,7 @@ angular.module('Portfolio').directive('cube', function($timeout, $animate, gridS
 	- Break up into separate directives for organization
 	- Optimize for speed
 */
-angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, gridService, cubeCSS, Helpers){
+angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, GridData, cubeCSS, Helpers){
 	return {
 		link: function(scope, element) {
 			var cube = scope.project.cube,
@@ -205,7 +204,7 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 						cube.sidesLoaded++;
 						if(cube.sidesLoaded === 2) {
 							if(!cube.firstLoad) {
-								gridService.set({initialCubesLoaded: gridService.getInitialCubesLoaded() + 1});
+								GridData.set({initialCubesLoaded: GridData.getInitialCubesLoaded() + 1});
 								cube.firstLoad = true;
 							}
 							scope.$apply();
@@ -226,7 +225,7 @@ angular.module('Portfolio').directive('cubeSide', function($timeout, $animate, g
 				preloadImage();
 			}
 
-			scope.$watch(function(){ return gridService.getInitialCubesLoaded(); }, function(val){
+			scope.$watch(function(){ return GridData.getInitialCubesLoaded(); }, function(val){
 				// sequentially load cube sides in order from first to last on initial site load
 				if(val === scope.project.index && !cube.firstLoad) {
 					preloadImage();
@@ -301,12 +300,12 @@ angular.module('Portfolio').directive('gridProject', function(){
 });
 
 // project details directive for applying template
-angular.module('Portfolio').directive('projectDetailsDirective', function(Helpers, gridService){
+angular.module('Portfolio').directive('projectDetailsDirective', function(Helpers, GridData){
 	return {
 		link: function(scope) {
 			var scrollToProject = function() {
 				// use the current project index & the grid data to find out where we should auto-scroll to
-				var rowHeight      = gridService.getRowHeight(),
+				var rowHeight      = GridData.getRowHeight(),
 					currentRow     = scope.projectDetails.row,
 					yPos           = Math.round(currentRow * rowHeight + (rowHeight * 0.5));
 

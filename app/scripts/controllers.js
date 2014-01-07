@@ -10,8 +10,8 @@
 	router state switching (/project/name), and grid layout.
 */
 angular.module('Portfolio').controller('GridCtrl',
-['$rootScope', '$scope', '$state', '$stateParams', 'data', 'Convert',
-function($rootScope, $scope, $state, $stateParams, data, Convert) {
+['$rootScope', '$scope', '$state', '$stateParams', 'data', 'Helpers',
+function($rootScope, $scope, $state, $stateParams, data, Helpers) {
 	// set overall scope vars
 	$scope.projects = data.projects;	// all project data
 	$scope.projectDetails = {			// used to store the currently selected project's data 
@@ -32,7 +32,7 @@ function($rootScope, $scope, $state, $stateParams, data, Convert) {
 
 	// assign class for grid (one-up, two-up, three-up, etc)
 	$scope.gridClass = function(projectsPerRow) {
-		return Convert.numToString(projectsPerRow)+'-up';
+		return Helpers.convert.numToString(projectsPerRow)+'-up';
 	};
 
 	// handle project url route changes
