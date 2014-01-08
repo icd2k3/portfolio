@@ -37,15 +37,7 @@ portfolioAnimations.animation('.item-load-animation', function(){
 	return {
 		removeClass: function(element, className, done) {
 			if(className === 'ng-hide' && !Modernizr.csstransitions) {
-				$(element).css({
-					'opacity': 0,
-					'width': '0%',
-					'height': '0%'
-				}).animate({
-					'opacity': 1,
-					'width': '100%',
-					'height': '100%'
-				}, 500, function(){
+				$(element).css({'opacity': 0}).animate({'opacity': 1}, 500, function(){
 					done();
 				});
 			}

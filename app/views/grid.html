@@ -31,7 +31,7 @@
 	</div>
 	<div id="grid" js-grid-resize ng-class="{'about-active' : about.active}">
 		<div class="grid-row-container" ng-repeat="row in grid.rows track by $index">
-			<div class="grid-row" style="height:{{rowHeight}}px">
+			<div class="grid-row" ng-style="{'height': rowHeight+'px'}">
 				<div class="grid-project" ng-repeat="project in projects | filter:{row: $index}:true" js-grid-project ng-class="{active : project.cube.transition, selected : project.selected}" ng-include="templates.item" data-index="{{$index}}"></div>
 			 </div>
 			 <div js-project-details-directive class="project-details project-animation" ng-if="projectDetails.row == $index">
