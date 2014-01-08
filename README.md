@@ -23,5 +23,6 @@ Needs a-fixin:
 - Mobile: rotate cube on project click instead of random interval. (improvement)
 - Mobile & Tablet: fix sticky scrolling bug that happens randomly.
 - Optimize & organize.
+- Karma FE tests.
 
 Justin Schrader © 2014

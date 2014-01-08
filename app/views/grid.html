@@ -1,6 +1,5 @@
 <div id="container" class="{{gridClass(grid.projectsPerRow)}}">
 	<div id="about-details" class="about-animation" ng-if="about.active">
-		<!-- <i class="fc-icon fc-icon-logo-rotated"></i> -->
 		<div id="name" class="column">
 			<span>
 				{{about.data.name}}<br/>
@@ -30,12 +29,12 @@
 	<div id="logo" class="logo-animation" ng-hide="about.active">
 		<a ng-click="about.active = !about.active"><i class="fc-icon fc-icon-logo"></i></a>
 	</div>
-	<div id="grid" grid-resize ng-class="{'about-active' : about.active}">
+	<div id="grid" js-grid-resize ng-class="{'about-active' : about.active}">
 		<div class="grid-row-container" ng-repeat="row in grid.rows track by $index">
 			<div class="grid-row" style="height:{{rowHeight}}px">
-				<div class="grid-project" ng-repeat="project in projects | filter:{row: $index}:true" grid-project ng-class="{active : project.cube.transition, selected : project.selected}" ng-include="templates.item" data-index="{{$index}}"></div>
+				<div class="grid-project" ng-repeat="project in projects | filter:{row: $index}:true" js-grid-project ng-class="{active : project.cube.transition, selected : project.selected}" ng-include="templates.item" data-index="{{$index}}"></div>
 			 </div>
-			 <div project-details-directive class="project-details project-animation" ng-if="projectDetails.row == $index" data-project-index="{{projectDetails.index}}">
+			 <div js-project-details-directive class="project-details project-animation" ng-if="projectDetails.row == $index">
 			 	<a class="close-button" ui-sref="index.grid"><i class="fc-icon fc-icon-close"></i></a>
 			 	<h1>{{projectDetails.title}}</h1>
 			 	<div class="alpha">

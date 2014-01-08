@@ -9,7 +9,7 @@
 var portfolioDirectives = angular.module('Portfolio.directives', []);
 
 // handles the main grid layout, projects per row, window resize etc
-portfolioDirectives.directive('gridResize', function($window, GridData) {
+portfolioDirectives.directive('jsGridResize', function($window, GridData) {
 	return {
 		link: function(scope) {
 			// resize row height to make projects perfect squares
@@ -53,7 +53,7 @@ portfolioDirectives.directive('gridResize', function($window, GridData) {
 /* TODOS:
 	- optimize for speed
 */
-portfolioDirectives.directive('cube', function($timeout, $animate, GridData, cubeCSS, Helpers){
+portfolioDirectives.directive('jsCube', function($timeout, $animate, GridData, cubeCSS, Helpers){
 	return {
 		link: function(scope, element) {
 			var cube = scope.project.cube,
@@ -136,7 +136,7 @@ portfolioDirectives.directive('cube', function($timeout, $animate, GridData, cub
 	- Break up into separate directives for organization
 	- Optimize for speed
 */
-portfolioDirectives.directive('cubeSide', function($timeout, $animate, GridData, cubeCSS, Helpers){
+portfolioDirectives.directive('jsCubeSide', function($timeout, $animate, GridData, cubeCSS, Helpers){
 	return {
 		link: function(scope, element) {
 			var cube = scope.project.cube,
@@ -154,7 +154,7 @@ portfolioDirectives.directive('cubeSide', function($timeout, $animate, GridData,
 						}
 						// set cube side background to the image after it's finished loading
 						if(!$archiveSide) {
-							element.attr('style', 'background: url('+scope.project.images[index].src+') no-repeat 0 0; background-size: cover');
+							element.css({'background-image': 'url('+scope.project.images[index].src+')'});
 							// remove the img tag as it's no longer needed
 							if($img) { $img.unbind().remove(); }
 
@@ -170,7 +170,6 @@ portfolioDirectives.directive('cubeSide', function($timeout, $animate, GridData,
 								element.remove();
 							}
 							// switch element to the archived version
-							// TODO: if element has already been switched to the archived version (images cycled twice or more) no need for this
 							element = $archiveSide;
 							element.removeClass('archive').addClass('archive-active');
 						}
@@ -262,7 +261,7 @@ portfolioDirectives.directive('cubeSide', function($timeout, $animate, GridData,
 });
 
 // handles setting .grid-row-container element z-index to top when a child item is transitioning (helps with the 3D effect)
-portfolioDirectives.directive('gridProject', function(){
+portfolioDirectives.directive('jsGridProject', function(){
 	return {
 		link: function(scope, element) {
 			scope.$watch(function(){ return scope.project.cube.transition; }, function(val) {
@@ -278,7 +277,7 @@ portfolioDirectives.directive('gridProject', function(){
 });
 
 // project details directive for applying template
-portfolioDirectives.directive('projectDetailsDirective', function(Helpers, GridData){
+portfolioDirectives.directive('jsProjectDetailsDirective', function(Helpers, GridData){
 	return {
 		link: function(scope) {
 			var scrollToProject = function() {

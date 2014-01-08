@@ -270,10 +270,6 @@ a {
 .item-cube {
     @include transform-style(preserve-3d);
     position: relative;
-    .item-image {
-        @include size(100%, 100%);
-        background-size: cover;
-    }
     img {
         @include size(1px, 1px);
         visibility: hidden;
@@ -281,8 +277,10 @@ a {
         overflow: hidden;
     }
     .side {
-        position: absolute;
         @include backface-visibility(hidden);
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: absolute;
         &.one { z-index: 2; }
         &.two { z-index: 1; }
         &.archive, &.inactive {

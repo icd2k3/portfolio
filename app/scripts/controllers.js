@@ -107,7 +107,7 @@ function($scope, $http, $timeout, Helpers) {
 	// set cube data if it exists
 	var cube = $scope.project.cube,
 		index, nextIndex,  // index & next index of the project image that should be displayed
-		firstLoad;		   // used for the initial staggered load-in animation for all items
+		firstLoad;		   // used for the initial stagger load-in animation for all items
 	// clear both transition timers on the project cube
 	var clearTimers = function() {
 		if(cube && cube.transitionTimer) { $timeout.cancel(cube.transitionTimer); }
