@@ -45,6 +45,10 @@ portfolioDirectives.directive('jsGridResize', function($window, GridData) {
 			angular.element($window).bind('resize', windowResize);
 			// trigger initial resize on first render
 			setTimeout(function(){ windowResize(); }, 1);
+			// cleanup
+			scope.$on('$destroy', function cleanup() {
+				angular.element($window).unbind('resize');
+			});
 		}
 	};
 });
@@ -58,6 +62,10 @@ portfolioDirectives.directive('jsCube', function($timeout, $animate, GridData, c
 		link: function(scope, element) {
 			var cube = scope.project.cube,
 				transitionSpeed = cube.transitionSpeed,
+				clearTimers = function() {
+					if(cube.transitionTimer) { $timeout.cancel(cube.transitionTimer); }
+					if(cube.transitionWaitTimer) { $timeout.cancel(cube.transitionWaitTimer); }
+				},
 				transitionComplete = function(){
 					element.removeClass('animate');
 					cube.transition = false;
@@ -117,8 +125,7 @@ portfolioDirectives.directive('jsCube', function($timeout, $animate, GridData, c
 				if(oldVal === newVal) { return; }
 				if(newVal) {
 					// clear animation timer on hover
-					if(cube.transitionWaitTimer) { $timeout.cancel(cube.transitionWaitTimer); }
-					if(cube.transitionTimer) { $timeout.cancel(cube.transitionTimer); }
+					clearTimers();
 					if(cube.transition) {
 						transitionComplete();
 					}
@@ -126,6 +133,11 @@ portfolioDirectives.directive('jsCube', function($timeout, $animate, GridData, c
 					// reset the transition
 					transitionInit();
 				}
+			});
+
+			// cleanup on element remove
+			scope.$on('$destroy', function cleanup() {
+				clearTimers();
 			});
 		}
 	};

@@ -66,8 +66,8 @@ function($rootScope, $scope, $state, $stateParams, data, Helpers) {
 	Handles things like pausing, selecting, hovering
 */
 portfolioControllers.controller('ItemCtrl',
-['$scope', '$http', '$timeout', 'WindowFocus',
-function($scope, $http, $timeout, WindowFocus) {
+['$scope', 'WindowFocus',
+function($scope, WindowFocus) {
 	// user is hovering over this project block
 	$scope.onMouseOver = function() {
 		$scope.project.cube.pause = true;
@@ -102,17 +102,12 @@ function($scope, $http, $timeout, WindowFocus) {
 	This controller handles setting cube data for each grid item
 */
 portfolioControllers.controller('CubeCtrl',
-['$scope', '$http', '$timeout', 'Helpers',
-function($scope, $http, $timeout, Helpers) {
+['$scope', 'Helpers',
+function($scope, Helpers) {
 	// set cube data if it exists
 	var cube = $scope.project.cube,
 		index, nextIndex,  // index & next index of the project image that should be displayed
 		firstLoad;		   // used for the initial stagger load-in animation for all items
-	// clear both transition timers on the project cube
-	var clearTimers = function() {
-		if(cube && cube.transitionTimer) { $timeout.cancel(cube.transitionTimer); }
-		if(cube && cube.transitionWaitTimer) { $timeout.cancel(cube.transitionWaitTimer); }
-	};
 	if(cube) {
 		// cube data already exists (can happen when user resizes the grid for example)
 		index     = cube.index;
@@ -140,8 +135,4 @@ function($scope, $http, $timeout, Helpers) {
 		transitionTimer      : null,			// full timer that includes the random wait delay above ^,
 		direction            : Helpers.getRandomDirection()
 	};
-	// controller destroy
-	$scope.$on('$destroy', function(){
-		clearTimers();
-	});
 }]);
