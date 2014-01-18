@@ -242,9 +242,23 @@ a {
 }
 .no-touch {
     .item-link {
+        .title, .client, p {
+            @include single-transition(bottom, 0.175s, $ease-out-quad);
+            position: relative;
+            bottom: -150px;
+        }
+        .client {
+            @include transition-delay(0.05s);
+        }
+        p {
+            @include transition-delay(0.075s);
+        }
         &:hover, &:focus {
             .info {
                 opacity: 1;
+            }
+            .title, .client, p {
+                bottom: 0px;
             }
             .gradient {
                 opacity: 0.9;
@@ -417,12 +431,12 @@ a {
         &.ng-leave-active { height: 0px; }
     }
     .project-animation {
-        max-height: 500px;
+        max-height: 750px;
         &.ng-enter, &.ng-leave {
             @include single-transition(max-height, 0.5s, $ease-out-quad);
         }
         &.ng-enter { max-height: 0px; }
-        &.ng-enter-active, &.ng-leave { max-height: 500px; }
+        &.ng-enter-active, &.ng-leave { max-height: 750px; }
         &.ng-leave-active { max-height: 0px; }
     }
     #logo.logo-animation {

@@ -37,6 +37,9 @@
 				clear: both;
 				margin-top: $padding;
 			}
+			p {
+	    		@include font($size: 14px, $line-height: 25px);
+	    	}
 		}
 		#grid.about-active {
             padding-top: 183px;
@@ -51,9 +54,9 @@
 	        &.ng-leave-active { height: 0px; }
     	}
 	    .project-animation {
-	        max-height: 700px;
+	        max-height: 875px;
 	        &.ng-enter { max-height: 0px; }
-	        &.ng-enter-active, &.ng-leave { max-height: 700px; }
+	        &.ng-enter-active, &.ng-leave { max-height: 875px; }
 	        &.ng-leave-active { max-height: 0px; }
 	    }
 	    #logo.logo-animation {
@@ -116,9 +119,9 @@
 	    	}
 	    }
 	    .project-animation {
-	        max-height: 900px;
+	        max-height: 1020px;
 	        &.ng-enter { max-height: 0px; }
-	        &.ng-enter-active, &.ng-leave { max-height: 900px; }
+	        &.ng-enter-active, &.ng-leave { max-height: 1020px; }
 	        &.ng-leave-active { max-height: 0px; }
 	    }
 	    #logo.logo-animation {
@@ -149,6 +152,12 @@
 	    		font-size: 10px;
 	    	}
 		}
+		.project-animation {
+	        max-height: 1100px;
+	        &.ng-enter { max-height: 0px; }
+	        &.ng-enter-active, &.ng-leave { max-height: 1100px; }
+	        &.ng-leave-active { max-height: 0px; }
+	    }
 	}
 }
 

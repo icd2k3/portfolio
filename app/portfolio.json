@@ -34,8 +34,8 @@
 		{
 			"title": "Pathbrite",
 			"client": "Pathbrite",
-			"descriptionShort": "A large scale education technology web application.",
-			"description": "Pathbrite is a large scale education technology web application. Features incude e-portfolio creation, courses, assignments, student grading, and enterprise level community tools. During my time here I was responsible for developing several new key features such as a learning outcomes browser, new student grading options, and assignment submission flow. I also assisted in improving several existing features and helped to make sections of the site more mobile & touch friendly.",
+			"descriptionShort": "Large scale ed-tech BackboneJS application with lots of features & tools for teachers, students, and institutions.",
+			"description": "Pathbrite is a large scale education technology <a href='http://backbonejs.org/' target='_blank'>Backbone</a> web application (with e-portfolio creation).  I worked on the platform remotely for about 10 months and built several new key features as well as fixed and improved existing functionality. Most of the features for this site were completed within 2 week sprints.<br/><br/>Tasks included building a new course <a href=' http://www.youtube.com/watch?v=de7R-Ax-3p0' target='_blank'>learning outcomes file browser</a> so teachers could nest and organize them however they want. A larger feature I worked on was a new <a href='http://www.youtube.com/watch?v=fKvNvfwjQT4' target='_blank'>student assignment submission flow</a> that included the ability to save multiple submitted versions and drafts of assignment items. Other responsibilities included <a href='http://www.youtube.com/watch?v=1Hbft8jGS-Y' target='_blank'>institutional reports</a>, restructuring and reimplementing the design for the course and admin sections, bug finding and fixing, improving sections on mobile and touch devices, and writing <a href='http://casperjs.org/' target='_blank'>CasperJS</a> FE functional tests.",
 			"links": [
 				{"title": "Watch feature demo videos", "url": "http://www.youtube.com/pathbrite"},
 				{"title": "Visit the Pathbrite homepage", "url": "http://www.pathbrite.com"}
@@ -53,7 +53,7 @@
 			"title": "Lux Ahoy",
 			"client": "Luxurious Animals",
 			"descriptionShort": "An HTML5 physics-based mayhem game.",
-			"description": "Lux Ahoy was a fun challenge to see just how far we could push HTML5 in terms of animation and gameplay. In leveraging the canvas tag, a handful of JavaScript frameworks, and png spritesheets I helped to create an engaging physics-based pirate mayhem game. Features include three fully destructible environments, wind & buoyancy dynamics, and detailed character & environmental animations.",
+			"description": "Coming from a Flash background, Lux Ahoy was a fun challenge to see just how far we could push the HTML5 canvas tag to allow for the same type of rich animation and interactivity in the browser.<br/><br/>I leveraged several new (at the time) javascript frameworks such as <a href='http://createjs.com/#!/CreateJS' target='_blank'>CreateJS</a> and <a href='https://code.google.com/p/box2dweb/' target='_blank'>Box2dWeb</a> to create an engaging pirate mayhem game. It includes 3 fully destructible environments with detailed character and level animations plus wind, buoyancy, and projectile dynamics.",
 			"luxDisclaimer": true,
 			"links": [
 				{"title": "Play the game", "url": "http://www.luxahoy.com"},
@@ -75,7 +75,7 @@
 			"client": "Panera Bread",
 			"company": "Luxurious Animals",
 			"descriptionShort": "A top-down table site showcasing some information (and ingredients) from Panera Bread",
-			"description": "This HTML5 site features a virtual butcher's block full of tasty ingredients and information about Panera Bread. By leveraging the latest CSS3 and JavaScript techniques I helped to create a smooth, detailed experience that works across most browsers. I worked on the main top-down animated navigation as well as the video, menu, and Panera Cares sections. My favorite task, however, was the programatic steam that rises off the soup bowls.",
+			"description": "Panera Bread's Soup Stories is a responsive panning microsite that features a virtual butcher's block full of tasty ingredients, soups, and information about the company and it's commitment to the community.<br/><br/>One of my tasks was the overall panning motion for each section of the site. To accomplish this, I used CSS3 transitions and 3d transforms to create a smooth transition (with jQuery fallbacks of course). I was also responsible for building sections of the site including soup stories, daily soups, and feeding america. Other tasks included progressive loading of images for the table and (my personal favorite) programatic steam that rises off the soups.",
 			"luxDisclaimer": true,
 			"links": [
 				{"title": "Visit the archived site", "url": "http://panera.luxanimals.com/"},
@@ -87,14 +87,14 @@
 				{"src": "/images/soupstories_3.jpg", "loaded": false},
 				{"src": "/images/soupstories_4.jpg", "loaded": false}
 			],
-			"tools": ["JavaScript", "jQuery", "Backbone", "HTML5", "CSS3", "SASS", "Yeoman"]
+			"tools": ["JavaScript", "jQuery", "Backbone", "PxLoader", "HTML5", "CSS3", "SASS", "Yeoman"]
 		},
 		{
 			"title": "What If",
 			"client": "Morgan Stanley",
 			"company": "Luxurious Animals",
 			"descriptionShort": "A layered parallax scrolling HTML5 site.",
-			"description": "What If is an elegant layered scrolling parallax site built for Morgan Stanley to accompany a new print campaign. As the user scrolls the page, large silhouettes of Morgan Stanley Financial Advisors reveal cityscapes, rivers, and bridges. Each section of the site also features a video and information about the company and their promise to customers",
+			"description": "As part of Morgan Stanley's What If marketing campaign they requested a layered parallax site to match the print and video work. Utilizing the latest CSS3 and javascript techniques I helped to create an elegant image-driven experience. As the user scrolls the page, large silhouettes of Morgan Stanley financial advisors reveal cityscapes, rivers, and bridges. Each section of the site also features an audio clip, video, and information about each of their core values and their promises to customers. I was responsible for the overall UI of the site including the menu, all advisor info sections, intro, sharing, etc.",
 			"luxDisclaimer": true,
 			"links": [
 				{"title": "Visit the archived site", "url": "http://whoismorganstanley.luxanimals.com/"},

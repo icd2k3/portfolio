@@ -37,8 +37,8 @@ function($rootScope, $scope, $state, $stateParams, data, Helpers) {
 	};
 
 	// handle project url route changes
-	$scope.$on('$stateChangeSuccess', function(evt, toState, toParams) { //, fromState, fromParams
-		evt.preventDefault();
+	$scope.$on('$stateChangeSuccess', function(e, toState, toParams) { //, fromState, fromParams
+		e.preventDefault();
 		var i;
 		// find the correct project if user has routed to one
 		if(toState.name === 'index.project' && $scope.projectsPerRow !== 0) {
@@ -66,8 +66,7 @@ function($rootScope, $scope, $state, $stateParams, data, Helpers) {
 	Handles things like pausing, selecting, hovering
 */
 portfolioControllers.controller('ItemCtrl',
-['$scope', 'WindowFocus',
-function($scope, WindowFocus) {
+['$scope', 'WindowFocus', function($scope, WindowFocus) {
 	// user is hovering over this project block
 	$scope.onMouseOver = function() {
 		$scope.project.cube.pause = true;
@@ -102,8 +101,7 @@ function($scope, WindowFocus) {
 	This controller handles setting cube data for each grid item
 */
 portfolioControllers.controller('CubeCtrl',
-['$scope', 'Helpers',
-function($scope, Helpers) {
+['$scope', 'Helpers', function($scope, Helpers) {
 	// set cube data if it exists
 	var cube = $scope.project.cube,
 		index, nextIndex,  // index & next index of the project image that should be displayed

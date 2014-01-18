@@ -278,11 +278,8 @@ portfolioDirectives.directive('jsGridProject', function(){
 		link: function(scope, element) {
 			scope.$watch(function(){ return scope.project.cube.transition; }, function(val) {
 				var gridRowContainer = element.parent().parent();
-				if(val) {
-					gridRowContainer.addClass('active');
-				} else {
-					gridRowContainer.removeClass('active');
-				}
+				if(val) { gridRowContainer.addClass('active'); }
+				else { gridRowContainer.removeClass('active'); }
 			});
 		}
 	};
