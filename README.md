@@ -1,4 +1,4 @@
-This is my personal portfolio site and my first project built with AngularJS. It features a grid of cubes that rotate at random intervals to reveal different project screenshots. I'm always up for learning and collaboration so if you have any suggestions about ways I could improve this site please contact me at me@justin-schrader.com or commit to this repo. Thanks for checking it out.
+This is my personal portfolio site and my first project built with AngularJS. It features a responsive grid of cubes that rotate at random intervals to reveal different project screenshots. I'm always up for learning and collaboration so if you have any suggestions about ways I could improve this site please contact me at me@justin-schrader.com or commit to this repo. Thanks for checking it out.
 
 Notes:
 This site is still a work in progress. More fixes and optimizations are on the way. (see "needs a-fixin" below)
