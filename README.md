@@ -13,7 +13,7 @@ Tools & Frameworks:
 - Modernizr (http://modernizr.com)
 
 Conditional Tools & Frameworks:
-- jQuery (if browser doesn't support css3 transitions)
+- jQuery (if browser doesn't support CSS3 transitions)
 
 Needs a-fixin:
 - Improvement: Rework cube animation to function in IE 10 & 11 (no support for preserve-3d).
