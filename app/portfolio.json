@@ -34,7 +34,7 @@
 		{
 			"title": "Pathbrite",
 			"client": "Pathbrite",
-			"descriptionShort": "Large scale ed-tech BackboneJS application with lots of features & tools for teachers, students, and institutions.",
+			"descriptionShort": "Large scale ed-tech Backbone application with featuring tools for teachers, students, and institutions.",
 			"description": "Pathbrite is a large scale education technology <a href='http://backbonejs.org/' target='_blank'>Backbone</a> web application (with e-portfolio creation).  I worked on the platform remotely for about 10 months and built several new key features as well as fixed and improved existing functionality. Most of the features for this site were completed within 2 week sprints.<br/><br/>Tasks included building a new course <a href=' http://www.youtube.com/watch?v=de7R-Ax-3p0' target='_blank'>learning outcomes file browser</a> so teachers could nest and organize them however they want. A larger feature I worked on was a new <a href='http://www.youtube.com/watch?v=fKvNvfwjQT4' target='_blank'>student assignment submission flow</a> that included the ability to save multiple submitted versions and drafts of assignment items. Other responsibilities included <a href='http://www.youtube.com/watch?v=1Hbft8jGS-Y' target='_blank'>institutional reports</a>, restructuring and reimplementing the design for the course and admin sections, bug finding and fixing, improving sections on mobile and touch devices, and writing <a href='http://casperjs.org/' target='_blank'>CasperJS</a> FE functional tests.",
 			"links": [
 				{"title": "Watch feature demo videos", "url": "http://www.youtube.com/pathbrite"},
@@ -52,7 +52,7 @@
 		{
 			"title": "Lux Ahoy",
 			"client": "Luxurious Animals",
-			"descriptionShort": "An HTML5 physics-based mayhem game.",
+			"descriptionShort": "A physics-based pirate mayhem javascript game.",
 			"description": "Coming from a Flash background, Lux Ahoy was a fun challenge to see just how far we could push the HTML5 canvas tag to allow for the same type of rich animation and interactivity in the browser.<br/><br/>I leveraged several new (at the time) javascript frameworks such as <a href='http://createjs.com/#!/CreateJS' target='_blank'>CreateJS</a> and <a href='https://code.google.com/p/box2dweb/' target='_blank'>Box2dWeb</a> to create an engaging pirate mayhem game. It includes 3 fully destructible environments with detailed character and level animations plus wind, buoyancy, and projectile dynamics.",
 			"luxDisclaimer": true,
 			"links": [
@@ -71,50 +71,11 @@
 			"tools": ["JavaScript", "jQuery", "CreateJS", "Box2D", "HTML5", "CSS3", "SASS", "Canvas", "Yeoman"]
 		},
 		{
-			"title": "Soup Stories",
-			"client": "Panera Bread",
-			"company": "Luxurious Animals",
-			"descriptionShort": "A top-down table site showcasing some information (and ingredients) from Panera Bread",
-			"description": "Panera Bread's Soup Stories is a responsive panning microsite that features a virtual butcher's block full of tasty ingredients, soups, and information about the company and it's commitment to the community.<br/><br/>One of my tasks was the overall panning motion for each section of the site. To accomplish this, I used CSS3 transitions and 3d transforms to create a smooth transition (with jQuery fallbacks of course). I was also responsible for building sections of the site including soup stories, daily soups, and feeding america. Other tasks included progressive loading of images for the table and (my personal favorite) programatic steam that rises off the soups.",
-			"luxDisclaimer": true,
-			"links": [
-				{"title": "Visit the archived site", "url": "http://panera.luxanimals.com/"},
-				{"title": "Watch the video", "url": "http://vimeo.com/58208702"}
-			],
-			"images": [
-				{"src": "/images/soupstories_1.jpg", "loaded": false},
-				{"src": "/images/soupstories_2.jpg", "loaded": false},
-				{"src": "/images/soupstories_3.jpg", "loaded": false},
-				{"src": "/images/soupstories_4.jpg", "loaded": false}
-			],
-			"tools": ["JavaScript", "jQuery", "Backbone", "PxLoader", "HTML5", "CSS3", "SASS", "Yeoman"]
-		},
-		{
-			"title": "What If",
-			"client": "Morgan Stanley",
-			"company": "Luxurious Animals",
-			"descriptionShort": "A layered parallax scrolling HTML5 site.",
-			"description": "As part of Morgan Stanley's What If marketing campaign they requested a layered parallax site to match the print and video work. Utilizing the latest CSS3 and javascript techniques I helped to create an elegant image-driven experience. As the user scrolls the page, large silhouettes of Morgan Stanley financial advisors reveal cityscapes, rivers, and bridges. Each section of the site also features an audio clip, video, and information about each of their core values and their promises to customers. I was responsible for the overall UI of the site including the menu, all advisor info sections, intro, sharing, etc.",
-			"luxDisclaimer": true,
-			"links": [
-				{"title": "Visit the archived site", "url": "http://whoismorganstanley.luxanimals.com/"},
-				{"title": "Watch the video", "url": "http://vimeo.com/53534532"}
-			],
-			"images": [
-				{"src": "/images/whatif_1.jpg", "loaded": false},
-				{"src": "/images/whatif_2.jpg", "loaded": false},
-				{"src": "/images/whatif_3.jpg", "loaded": false},
-				{"src": "/images/whatif_4.jpg", "loaded": false}
-			],
-			"awards": ["FWA"],
-			"tools": ["JavaScript", "jQuery", "Backbone", "HTML5", "CSS3", "SASS", "Yeoman"]
-		},
-		{
 			"title": "Live Consciously",
 			"client": "Panera Bread",
 			"company": "Luxurious Animals",
 			"descriptionShort": "A Rube Goldberg inspired interactive site.",
-			"description": "This Rube Goldberg inspired site features four interactive sections as well as informative articles featuring Panera news. When navigating sections, the site animates dynamically to each new section instead of using a hard refresh. Also notable is the 'Explore More' section in which users are expected to interact some way with the site to begin the chain reaction video. One of the toughest challenges of this site was fixing and optimizing functionality & animations for tablet devices.",
+			"description": "Panera Bread’s <a href=‘http://marketing.panerabread.com/liveconsciouslyeatdeliciously/' target=‘_blank’>Live Consciously, Eat Deliciously</a> site features 4 interactive Rube Goldberg inspired machines and articles featuring information about the company.<br/><br/>When the user is navigating the <a href=‘http://marketing.panerabread.com/liveconsciouslyeatdeliciously/#!explore/bread' target=‘_blank’>explore</a> section they are given the opportunity to start each chain reaction video. While watching the video, tooltips with links to relevant articles about Panera Bread appear in the toolbar. Also notable, we used some creative css3 and javascript tricks to enable each section of the site (home, articles, and explore) to transition smoothly into one another with no need for a content re-render. One of the toughest challenges of this project was optimizing for tablet and touch devices.",
 			"luxDisclaimer": true,
 			"links": [
 				{"title": "Visit the site", "url": "http://marketing.panerabread.com/liveconsciouslyeatdeliciously/"},
@@ -130,10 +91,49 @@
 			"tools": ["JavaScript", "jQuery", "Backbone", "HTML5", "CSS3", "SASS", "Yeoman"]
 		},
 		{
+			"title": "What If",
+			"client": "Morgan Stanley",
+			"company": "Luxurious Animals",
+			"descriptionShort": "A layered image-driven parallax scrolling HTML5 site.",
+			"description": "As part of Morgan Stanley's <a href='http://whoismorganstanley.luxanimals.com/' target='_blank'>What If</a> marketing campaign they requested a layered parallax site to match the print and video work.<br/><br/>Utilizing the latest CSS3 and javascript techniques I helped to create an elegant image-driven experience. As the user scrolls the page, large silhouettes of Morgan Stanley financial advisors reveal cityscapes, rivers, and bridges. Each section of the site also features an audio clip, video, and information about each of their core values and their promises to customers. I was responsible for the overall UI of the site including the menu, all advisor info sections, intro, sharing, etc.",
+			"luxDisclaimer": true,
+			"links": [
+				{"title": "Visit the archived site", "url": "http://whoismorganstanley.luxanimals.com/"},
+				{"title": "Watch the video", "url": "http://vimeo.com/53534532"}
+			],
+			"images": [
+				{"src": "/images/whatif_1.jpg", "loaded": false},
+				{"src": "/images/whatif_2.jpg", "loaded": false},
+				{"src": "/images/whatif_3.jpg", "loaded": false},
+				{"src": "/images/whatif_4.jpg", "loaded": false}
+			],
+			"awards": ["FWA"],
+			"tools": ["JavaScript", "jQuery", "Backbone", "HTML5", "CSS3", "SASS", "Yeoman"]
+		},
+		{
+			"title": "Soup Stories",
+			"client": "Panera Bread",
+			"company": "Luxurious Animals",
+			"descriptionShort": "A panning site showcasing some tasty ingredients and information about Panera Bread.",
+			"description": "Panera Bread's <a href=‘http://panera.luxanimals.com/' target=‘_blank’>Soup Stories</a> is a responsive panning microsite that features a virtual butcher's block full of tasty ingredients, soups, and information about the company and it's commitment to the community.<br/><br/>One of my tasks was the overall panning motion for each section of the site. To accomplish this, I used CSS3 transitions and 3d transforms to create a smooth transition (with jQuery fallbacks of course). I was also responsible for building sections of the site including soup stories, daily soups, and feeding america. Other tasks included progressive loading of images for the table and (my personal favorite) programatic steam that rises off of the soups.",
+			"luxDisclaimer": true,
+			"links": [
+				{"title": "Visit the archived site", "url": "http://panera.luxanimals.com/"},
+				{"title": "Watch the video", "url": "http://vimeo.com/58208702"}
+			],
+			"images": [
+				{"src": "/images/soupstories_1.jpg", "loaded": false},
+				{"src": "/images/soupstories_2.jpg", "loaded": false},
+				{"src": "/images/soupstories_3.jpg", "loaded": false},
+				{"src": "/images/soupstories_4.jpg", "loaded": false}
+			],
+			"tools": ["JavaScript", "jQuery", "Backbone", "PxLoader", "HTML5", "CSS3", "SASS", "Yeoman"]
+		},
+		{
 			"title": "Luxurious Animals",
 			"company": "Luxurious Animals",
-			"descriptionShort": "The company CMS website for Luxurious Animals.",
-			"description": "This is an <a href='http://ellislab.com/expressionengine' target='_blank'>Expression Engine</a> driven CMS website for Luxurious Animals that I helped build during my time there. I made sure each section of the site was very easy to update even without knowing anything about html or front end scripting. Features include a sortable and searchable portfolio, blog, and about sections. I also assisted in the early stages of design.",
+			"descriptionShort": "Company website for a small digital advertising agency in NYC.",
+			"description": "For almost 5 years I worked at <a href=‘http://www.luxanimals.com' target=‘_blank’>Luxurious Animals</a>, a small digital advertising agency located in NYC. During my time there I was tasked with rebuilding the company website.<br/><br/>I decided on using <a href='http://ellislab.com/expressionengine' target='_blank'>Expression Engine</a> as a CMS and made sure everything was very easy to update without having to know anything about html or front end coding. Features include a sortable & searchable portfolio, blog, and about sections. I also assisted in the early stages of the design.",
 			"links": [
 				{"title": "Visit the site", "url": "http://www.luxanimals.com/"}
 			],
@@ -142,14 +142,14 @@
 				{"src": "/images/luxanimals_2.jpg", "loaded": false},
 				{"src": "/images/luxanimals_3.jpg", "loaded": false}
 			],
-			"tools": ["JavaScript", "ExpressionEngine", "jQuery", "HTML5", "CSS3"]
+			"tools": ["JavaScript", "Expression Engine", "jQuery", "HTML5", "CSS3"]
 		},
 		{
 			"title": "The Maester's Path",
 			"company": "Luxurious Animals",
 			"client": "HBO",
-			"descriptionShort": "An interactive Flash website for HBO's Game of Thrones.",
-			"description": "This was a Flash based interactive experience website for HBO's launch of the new Game of Thrones series. Users were expected to explore the world, solve puzzles, and unlock sneak-peak videos as rewards. Each section of the site features highly detailed animations, textures, and interactivity.",
+			"descriptionShort": "An interactive Flash website experience for HBO's Game of Thrones.",
+			"description": "A highly interactive microsite showcasing HBO’s launch of the new Game of Thrones series. Utilizing AS3, the MVC framework <a href=‘https://code.google.com/p/gaiaframework/' target=‘_blank’>Gaia</a>, and programmatic effects I helped to create an immersive experience. Users were invited to explore the imaginative world, solve challenging puzzles, and complete tasks. As a reward, users were then able to earn a link on their Maester’s chain, unlock sneak-peak video clips from the show, and a GetGlue badge. Each section of this site was very elaborate and featured detailed animations, textures, and effects.",
 			"luxDisclaimer": true,
 			"links": [
 				{"title": "Visit the site", "url": "http://got-review.luxanimals.com/"}
