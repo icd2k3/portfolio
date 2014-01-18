@@ -5,7 +5,7 @@ This site is still a work in progress. More fixes and optimizations are on the w
 
 Tools & Frameworks:
 - AngularJS (http://angularjs.org/)
-- Angular UI-Router, Animate, and Sanitize modules
+- Angular Modules: UI-Router, Animate, and Sanitize
 - Yeoman (http://www.yeoman.io)
 - Compass (http://compass-style.org)
 - SASS (http://sass-lang.com)
