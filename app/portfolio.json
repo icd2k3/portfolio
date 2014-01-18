@@ -75,7 +75,7 @@
 			"client": "Panera Bread",
 			"company": "Luxurious Animals",
 			"descriptionShort": "A Rube Goldberg inspired interactive site.",
-			"description": "Panera Bread’s <a href=‘http://marketing.panerabread.com/liveconsciouslyeatdeliciously/' target=‘_blank’>Live Consciously, Eat Deliciously</a> site features 4 interactive Rube Goldberg inspired machines and articles featuring information about the company.<br/><br/>When the user is navigating the <a href=‘http://marketing.panerabread.com/liveconsciouslyeatdeliciously/#!explore/bread' target=‘_blank’>explore</a> section they are given the opportunity to start each chain reaction video. While watching the video, tooltips with links to relevant articles about Panera Bread appear in the toolbar. Also notable, we used some creative css3 and javascript tricks to enable each section of the site (home, articles, and explore) to transition smoothly into one another with no need for a content re-render. One of the toughest challenges of this project was optimizing for tablet and touch devices.",
+			"description": "Panera Bread's <a href='http://marketing.panerabread.com/liveconsciouslyeatdeliciously/' target='_blank'>Live Consciously, Eat Deliciously</a> site features 4 interactive Rube Goldberg inspired machines and articles featuring information about the company.<br/><br/>When the user is navigating the <a href='http://marketing.panerabread.com/liveconsciouslyeatdeliciously/#!explore/bread' target='_blank'>explore</a> section they are given the opportunity to start each chain reaction video. While watching the video, tooltips with links to relevant articles about Panera Bread appear in the toolbar. Also notable, we used some creative css3 and javascript tricks to enable each section of the site (home, articles, and explore) to transition smoothly into one another with no need for a content re-render. One of the toughest challenges of this project was optimizing for tablet and touch devices.",
 			"luxDisclaimer": true,
 			"links": [
 				{"title": "Visit the site", "url": "http://marketing.panerabread.com/liveconsciouslyeatdeliciously/"},
@@ -115,7 +115,7 @@
 			"client": "Panera Bread",
 			"company": "Luxurious Animals",
 			"descriptionShort": "A panning site showcasing some tasty ingredients and information about Panera Bread.",
-			"description": "Panera Bread's <a href=‘http://panera.luxanimals.com/' target=‘_blank’>Soup Stories</a> is a responsive panning microsite that features a virtual butcher's block full of tasty ingredients, soups, and information about the company and it's commitment to the community.<br/><br/>One of my tasks was the overall panning motion for each section of the site. To accomplish this, I used CSS3 transitions and 3d transforms to create a smooth transition (with jQuery fallbacks of course). I was also responsible for building sections of the site including soup stories, daily soups, and feeding america. Other tasks included progressive loading of images for the table and (my personal favorite) programatic steam that rises off of the soups.",
+			"description": "Panera Bread's <a href='http://panera.luxanimals.com/' target='_blank'>Soup Stories</a> is a responsive panning microsite that features a virtual butcher's block full of tasty ingredients, soups, and information about the company and it's commitment to the community.<br/><br/>One of my tasks was the overall panning motion for each section of the site. To accomplish this, I used CSS3 transitions and 3d transforms to create a smooth transition (with jQuery fallbacks of course). I was also responsible for building sections of the site including soup stories, daily soups, and feeding america. Other tasks included progressive loading of images for the table and (my personal favorite) programatic steam that rises off of the soups.",
 			"luxDisclaimer": true,
 			"links": [
 				{"title": "Visit the archived site", "url": "http://panera.luxanimals.com/"},
@@ -133,7 +133,7 @@
 			"title": "Luxurious Animals",
 			"company": "Luxurious Animals",
 			"descriptionShort": "Company website for a small digital advertising agency in NYC.",
-			"description": "For almost 5 years I worked at <a href=‘http://www.luxanimals.com' target=‘_blank’>Luxurious Animals</a>, a small digital advertising agency located in NYC. During my time there I was tasked with rebuilding the company website.<br/><br/>I decided on using <a href='http://ellislab.com/expressionengine' target='_blank'>Expression Engine</a> as a CMS and made sure everything was very easy to update without having to know anything about html or front end coding. Features include a sortable & searchable portfolio, blog, and about sections. I also assisted in the early stages of the design.",
+			"description": "For almost 5 years I worked at <a href='http://www.luxanimals.com' target='_blank'>Luxurious Animals</a>, a small digital advertising agency located in NYC. During my time there I was tasked with rebuilding the company website.<br/><br/>I decided on using <a href='http://ellislab.com/expressionengine' target='_blank'>Expression Engine</a> as a CMS and made sure everything was very easy to update without having to know anything about html or front end coding. Features include a sortable & searchable portfolio, blog, and about sections. I also assisted in the early stages of the design.",
 			"links": [
 				{"title": "Visit the site", "url": "http://www.luxanimals.com/"}
 			],
@@ -149,7 +149,7 @@
 			"company": "Luxurious Animals",
 			"client": "HBO",
 			"descriptionShort": "An interactive Flash website experience for HBO's Game of Thrones.",
-			"description": "A highly interactive microsite showcasing HBO’s launch of the new Game of Thrones series. Utilizing AS3, the MVC framework <a href=‘https://code.google.com/p/gaiaframework/' target=‘_blank’>Gaia</a>, and programmatic effects I helped to create an immersive experience. Users were invited to explore the imaginative world, solve challenging puzzles, and complete tasks. As a reward, users were then able to earn a link on their Maester’s chain, unlock sneak-peak video clips from the show, and a GetGlue badge. Each section of this site was very elaborate and featured detailed animations, textures, and effects.",
+			"description": "A highly interactive microsite showcasing HBO's launch of the new Game of Thrones series. Utilizing AS3, the MVC framework <a href='https://code.google.com/p/gaiaframework/' target='_blank'>Gaia</a>, and programmatic effects I helped to create an immersive experience. Users were invited to explore the imaginative world, solve challenging puzzles, and complete tasks. As a reward, users were then able to earn a link on their Maester's chain, unlock sneak-peak video clips from the show, and a GetGlue badge. Each section of this site was very elaborate and featured detailed animations, textures, and effects.",
 			"luxDisclaimer": true,
 			"links": [
 				{"title": "Visit the site", "url": "http://got-review.luxanimals.com/"}
