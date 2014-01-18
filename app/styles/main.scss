@@ -343,6 +343,9 @@ a {
     }
     li {
     	font-size: 16px;
+        &:not(:first-child) {
+            margin-top: 6px;
+        }
     }
     .top-row {
         div {
@@ -367,7 +370,12 @@ a {
     a {
     	@include position-relative($left: -75px, $top: -75px);
     	@include size(150px, 150px);
-    	@include rotate(-45deg);
+        // for some reason, using the compass rotate mixin doesn't work in ie9
+        // using no prefix "transform:" also breaks ie9 as well
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
     	display: block;
     	background: $background-pattern;
         &:hover {
