@@ -18,10 +18,10 @@ Conditional Tools & Frameworks:
 - jQuery (if browser doesn't support CSS3 transitions)
 
 Needs a-fixin:
-- Improvement: Rework cube animation to function in IE 10 & 11 (no support for preserve-3d).
 - Bug: cubes dissappear for a short time on occasion if user leaves window/tab, then returns to site.
+- Bug: On mobile/tablet there's a sticky scrolling bug that surfaces sometimes.
+- Improvement: Rework cube animation to function in IE 10 & 11 (no support for preserve-3d).
 - Improvement: Rotate & scale initial item animate in instead of just scale.
 - Improvement: On mobile devices, rotate cube on project click instead of random interval.
-- Bug: On mobile/tablet there's a sticky scrolling bug that surfaces sometimes.
 
 Justin Schrader © 2014
