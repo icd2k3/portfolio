@@ -50,6 +50,20 @@
 			"tools": ["JavaScript", "BackboneJS", "HTML5", "CSS3", "SASS", "jQuery", "Underscore", "Fontcustom", "Jake"]
 		},
 		{
+			"title": "Mugshot Ninja",
+			"descriptionShort": "Turn any webcam into a motion-sensing security camera for free!",
+			"description": "I decided to build this application after a thief broke into my home and stole my laptop. After arming the system, the application uses your computer’s webcam to scan for motion. If motion is detected, it snaps pictures of the potential intruder and uploads them instantly to your <a href=‘https://www.dropbox.com' target=‘_blank’>Dropbox</a> account. It even emails you an alert with the details if you’re out-and-about. I’ve been arming it every time I leave the house for a few hours or so.<br/><br/>Currently, this application is ONLY compatible with Chome & Firefox (those are the only browsers that allow access to the user’s webcam). Future plans include an iPhone app that would allow you to connect to your computer’s webcam feed live.",
+			"links": [
+				{"title": "Launch the app", "url": "https://www.mugshot.ninja"}
+			],
+			"images": [
+				{"src": "/images/mugshot_ninja_1.jpg", "loaded": false},
+				{"src": "/images/mugshot_ninja_2.jpg", "loaded": false},
+				{"src": "/images/mugshot_ninja_3.jpg", "loaded": false}
+			],
+			"tools": ["JavaScript", "React", "Flux", "Gulp", "HTML5", "CSS3", "SASS", "Fontcustom"]
+		},
+		{
 			"title": "Lux Ahoy",
 			"client": "Luxurious Animals",
 			"descriptionShort": "A physics-based pirate mayhem javascript game.",
